@@ -53,6 +53,9 @@
   :root {
     --gold-rgb: 212, 175, 55;
 
+    /* ---- Hero dim overlay (light = tinted, dark = none) ---- */
+    --hero-tint:      rgba(0, 0, 0, 0.28);
+
     /* ---- Theme-sensitive UI utility vars (light defaults) ---- */
     --ui-border:      color-mix(in oklab, #000 8%, transparent);
     --ui-border-md:   color-mix(in oklab, #000 10%, transparent);
@@ -69,6 +72,7 @@
 
   /* ---- Dark theme overrides ---- */
   html.dark {
+    --hero-tint:      transparent;
     --color-base:     #06070b;
     --color-ink:      #0b0d14;
     --color-panel:    #11141d;

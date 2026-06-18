@@ -45,14 +45,15 @@ export default function Hero() {
         fill
         priority
         sizes="100vw"
-        className="object-cover opacity-30"
+        className="object-cover opacity-45"
       />
       {/* WebGL field */}
       <div className="absolute inset-0">
         <HeroCanvas />
       </div>
 
-      {/* soft vignette fade to page background */}
+      {/* dim tint (light mode only) + vignette fade */}
+      <div className="absolute inset-0 [background-color:var(--hero-tint)]" />
       <div className="absolute inset-0 bg-gradient-to-t from-base via-base/50 to-transparent" />
 
       {/* gold glow accents */}
