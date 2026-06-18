@@ -34,14 +34,14 @@ export default function HospitalityPreview() {
         {/* copy */}
         <div className="relative z-10">
           <Reveal>
-            <span className="eyebrow !text-lagoon before:!bg-gradient-to-r before:!from-transparent before:!to-lagoon">
+            <span className="eyebrow text-accent-teal before:bg-linear-to-r before:from-transparent before:to-(--accent-teal)">
               We Also Build Destinations
             </span>
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 font-serif text-4xl leading-[1.04] tracking-tight text-balance sm:text-5xl md:text-[3.4rem]">
               Building Luxury{" "}
-              <span className="bg-gradient-to-r from-lagoon via-sand to-coral bg-clip-text italic text-transparent">
+              <span className="text-tropical-gradient italic">
                 Amid Paradise.
               </span>
             </h2>
@@ -112,7 +112,7 @@ export default function HospitalityPreview() {
             </motion.svg>
 
             {/* location tag */}
-            <div className="glass absolute bottom-5 left-5 rounded-full px-4 py-2 text-xs text-silver">
+            <div className="glass absolute bottom-5 left-5 rounded-full px-4 py-2 text-xs text-foam drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
               <span className="mr-2 text-lagoon">◈</span>
               {hospitality.location}
             </div>

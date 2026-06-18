@@ -4,74 +4,98 @@ import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import MagneticButton from "@/components/ui/MagneticButton";
-import { projects, type Project } from "@/data/site";
+import { projects, slugify, type Project, type ProjectStatus } from "@/data/site";
 
-function StatusPill({ status }: { status: Project["status"] }) {
-  const ongoing = status === "Ongoing";
+type Accent = {
+  text: string;
+  dot: string;
+  pill: string;
+  ring: string;
+  border: string;
+};
+
+/* Full literal class strings so Tailwind can detect them (no dynamic interpolation). */
+const ACCENTS: Record<ProjectStatus, Accent> = {
+  Executed: {
+    text: "text-lagoon",
+    dot: "bg-lagoon",
+    pill: "bg-lagoon/15 text-lagoon",
+    ring: "group-hover:ring-lagoon/40",
+    border: "hover:border-lagoon/50",
+  },
+  Ongoing: {
+    text: "text-accent-gold-strong",
+    dot: "bg-gold",
+    pill: "bg-gold/15 text-accent-gold-strong",
+    ring: "group-hover:ring-gold/40",
+    border: "hover:border-gold/50",
+  },
+  Awarded: {
+    text: "text-coral",
+    dot: "bg-coral",
+    pill: "bg-coral/15 text-coral",
+    ring: "group-hover:ring-coral/40",
+    border: "hover:border-coral/50",
+  },
+};
+
+const GROUPS: { status: ProjectStatus; label: string; grid: string; aspect: string }[] = [
+  { status: "Executed", label: "Executed", grid: "sm:grid-cols-2", aspect: "aspect-16/10" },
+  { status: "Ongoing", label: "Ongoing", grid: "sm:grid-cols-2 lg:grid-cols-3", aspect: "aspect-4/3" },
+  // narrow 4-col cards → portrait at lg so the long titles have room
+  { status: "Awarded", label: "Awarded", grid: "sm:grid-cols-2 lg:grid-cols-4", aspect: "aspect-4/3 lg:aspect-3/4" },
+];
+
+function StatusPill({ status }: { status: ProjectStatus }) {
+  const a = ACCENTS[status];
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.65rem] font-medium uppercase tracking-wider ${
-        ongoing ? "bg-gold/15 text-gold" : "[background-color:var(--ui-border)] text-silver"
-      }`}
+      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.6rem] font-medium uppercase tracking-wider ${a.pill}`}
     >
-      <span
-        className={`h-1.5 w-1.5 rounded-full ${
-          ongoing ? "animate-pulse bg-gold" : "bg-silver"
-        }`}
-      />
+      <span className={`h-1.5 w-1.5 rounded-full ${a.dot} ${status === "Ongoing" ? "animate-pulse" : ""}`} />
       {status}
     </span>
   );
 }
 
-function ProjectCard({ p, featured }: { p: Project; featured?: boolean }) {
+function ProjectCard({ p, aspect }: { p: Project; aspect: string }) {
+  const a = ACCENTS[p.status];
   return (
     <a
-      href="/#projects"
+      href={`/projects/${slugify(p.name)}`}
       data-cursor
-      className="group relative block h-full overflow-hidden rounded-3xl border [border-color:var(--ui-border)] transition-all duration-500 hover:border-gold/45"
+      className={`group relative block h-full overflow-hidden rounded-3xl border border-(--ui-border) bg-(--ui-surface-xs) transition-all duration-500 ${a.border}`}
     >
-      <div className={`relative ${featured ? "aspect-[16/11]" : "aspect-[4/3]"}`}>
+      <div className={`relative ${aspect}`}>
         <Image
           src={p.image}
           alt={p.name}
           fill
-          sizes={featured ? "(max-width:1024px) 100vw, 55vw" : "(max-width:1024px) 100vw, 30vw"}
-          className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
+          sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 30vw"
+          className="object-cover transition-transform duration-[1.2s] ease-out-expo group-hover:scale-110"
         />
-        {/* gradient + outline */}
-        <div className="absolute inset-0 bg-gradient-to-t from-base via-base/30 to-transparent" />
-        <div className="pointer-events-none absolute inset-3 rounded-2xl ring-1 ring-gold/0 transition-all duration-500 group-hover:ring-gold/40" />
+        {/* fade for text legibility (works in both themes — fades to page color) */}
+        <div className="absolute inset-0 bg-linear-to-t from-base via-base/45 to-transparent" />
+        <div className={`pointer-events-none absolute inset-3 rounded-2xl ring-1 ring-transparent transition-all duration-500 ${a.ring}`} />
       </div>
 
-      {/* content */}
-      <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
-        <div className="flex items-center gap-3">
-          <span className="text-[0.7rem] uppercase tracking-[0.2em] text-gold">
-            {p.category}
-          </span>
+      <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <span className={`text-[0.68rem] uppercase tracking-[0.2em] ${a.text}`}>{p.category}</span>
           <StatusPill status={p.status} />
         </div>
-        <h3 className={`mt-3 font-serif tracking-tight ${featured ? "text-3xl md:text-4xl" : "text-2xl"}`}>
-          {p.name}
-        </h3>
+        <h3 className="mt-2.5 font-serif text-xl tracking-tight md:text-2xl">{p.name}</h3>
         <div className="mt-2 flex items-center gap-3 text-xs text-mist">
           <span>{p.location}</span>
           <span className="h-1 w-1 rounded-full bg-mist/50" />
           <span>{p.year}</span>
         </div>
-        <p className="mt-3 max-h-0 overflow-hidden text-sm leading-relaxed text-silver/80 opacity-0 transition-all duration-500 group-hover:max-h-32 group-hover:opacity-100">
-          {p.blurb}
-        </p>
       </div>
     </a>
   );
 }
 
 export default function Projects() {
-  const featured = projects.find((p) => p.featured) ?? projects[0];
-  const rest = projects.filter((p) => p !== featured);
-
   return (
     <section id="projects" className="relative scroll-mt-24 py-28 md:py-36">
       <div className="container-x">
@@ -85,21 +109,45 @@ export default function Projects() {
             }
           />
           <Reveal>
-            <MagneticButton href="/#contact" variant="ghost">
-              Start a project
+            <MagneticButton href="/projects" variant="ghost">
+              View all projects
             </MagneticButton>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          <Reveal className="md:col-span-2">
-            <ProjectCard p={featured} featured />
-          </Reveal>
-          {rest.map((p, i) => (
-            <Reveal key={p.name} delay={i * 0.05}>
-              <ProjectCard p={p} />
-            </Reveal>
-          ))}
+        <div className="mt-16 space-y-16">
+          {GROUPS.map((group) => {
+            const items = projects.filter((p) => p.status === group.status);
+            if (items.length === 0) return null;
+            const a = ACCENTS[group.status];
+            const count = String(items.length).padStart(2, "0");
+            return (
+              <div key={group.status}>
+                {/* group header */}
+                <Reveal>
+                  <div className="mb-7 flex items-center gap-4">
+                    <div className="flex items-center gap-2.5">
+                      <span className={`h-2 w-2 rounded-full ${a.dot} ${group.status === "Ongoing" ? "animate-pulse" : ""}`} />
+                      <h3 className="font-display text-sm font-medium uppercase tracking-[0.28em] text-silver">
+                        {group.label}
+                      </h3>
+                    </div>
+                    <span className="h-px flex-1 bg-(--ui-border)" />
+                    <span className={`font-serif text-lg ${a.text}`}>{count}</span>
+                  </div>
+                </Reveal>
+
+                {/* cards */}
+                <div className={`grid grid-cols-1 gap-5 ${group.grid}`}>
+                  {items.map((p, i) => (
+                    <Reveal key={p.name} delay={i * 0.06}>
+                      <ProjectCard p={p} aspect={group.aspect} />
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

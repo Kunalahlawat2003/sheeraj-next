@@ -23,11 +23,15 @@ export default function HospHeading({
       {eyebrow && (
         <Reveal>
           <span
-            className={`inline-flex items-center gap-3 font-display text-[0.72rem] font-medium uppercase tracking-[0.32em] text-lagoon ${
-              center ? "justify-center" : ""
-            }`}
+            className={`inline-flex items-center gap-3 font-display text-[0.72rem] font-medium uppercase tracking-[0.32em] ${
+              onLight ? "text-ocean" : "text-lagoon"
+            } ${center ? "justify-center" : ""}`}
           >
-            <span className="h-px w-7 bg-gradient-to-r from-transparent to-lagoon" />
+            <span
+              className={`h-px w-7 bg-gradient-to-r from-transparent ${
+                onLight ? "to-ocean" : "to-lagoon"
+              }`}
+            />
             {eyebrow}
           </span>
         </Reveal>

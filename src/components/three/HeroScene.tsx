@@ -5,70 +5,6 @@ import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 /* -------------------------------------------------------------------------- */
-/*  Glowing topographic wave-grid — the land being shaped / roads forming.     */
-/* -------------------------------------------------------------------------- */
-const vertex = /* glsl */ `
-  uniform float uTime;
-  varying float vElev;
-  varying vec2 vUv;
-  void main() {
-    vUv = uv;
-    vec3 p = position;
-    float e = sin(p.x * 0.35 + uTime * 0.55) * 0.6
-            + sin(p.y * 0.50 + uTime * 0.40) * 0.5
-            + sin((p.x + p.y) * 0.20 - uTime * 0.30) * 0.8;
-    p.z += e;
-    vElev = e;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
-  }
-`;
-
-const fragment = /* glsl */ `
-  uniform vec3 uColor;
-  uniform float uTime;
-  varying float vElev;
-  varying vec2 vUv;
-  void main() {
-    float d = distance(vUv, vec2(0.5));
-    float edge = smoothstep(0.5, 0.08, d);
-    float pulse = 0.6 + 0.4 * sin(uTime * 0.8 + vElev * 1.6);
-    float a = edge * (0.22 + 0.4 * smoothstep(-1.0, 1.6, vElev)) * pulse;
-    vec3 col = uColor * (0.7 + 0.55 * vElev);
-    gl_FragColor = vec4(col, a);
-  }
-`;
-
-function WaveGrid() {
-  const mat = useRef<THREE.ShaderMaterial>(null);
-  const uniforms = useMemo(
-    () => ({
-      uTime: { value: 0 },
-      uColor: { value: new THREE.Color("#d4af37") },
-    }),
-    []
-  );
-  useFrame((_, dt) => {
-    if (mat.current) mat.current.uniforms.uTime.value += dt;
-  });
-  return (
-    <mesh rotation={[-Math.PI / 2.35, 0, 0]} position={[0, -2.2, 0]}>
-      <planeGeometry args={[64, 64, 130, 130]} />
-      <shaderMaterial
-        ref={mat}
-        uniforms={uniforms}
-        vertexShader={vertex}
-        fragmentShader={fragment}
-        wireframe
-        transparent
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-        side={THREE.DoubleSide}
-      />
-    </mesh>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
 /*  Drifting embers / construction dust.                                       */
 /* -------------------------------------------------------------------------- */
 function softSprite() {
@@ -153,7 +89,6 @@ export default function HeroScene() {
       style={{ position: "absolute", inset: 0 }}
     >
       <fog attach="fog" args={["#06070b", 9, 30]} />
-      <WaveGrid />
       <Embers />
       <Rig />
     </Canvas>

@@ -193,7 +193,7 @@ export default function RentalForm() {
                       setForm(empty);
                       setSent(false);
                     }}
-                    className="mt-7 text-sm text-gold underline-offset-4 hover:underline"
+                    className="mt-7 text-sm text-accent-gold-strong underline-offset-4 hover:underline"
                   >
                     Submit another request
                   </button>
@@ -209,7 +209,7 @@ export default function RentalForm() {
                   className="grid gap-4 sm:grid-cols-2"
                 >
                   <div className="sm:col-span-1">
-                    <label className="mb-1.5 block pl-1 text-[0.7rem] uppercase tracking-wider text-gold">
+                    <label className="mb-1.5 block pl-1 text-[0.7rem] uppercase tracking-wider text-accent-gold-strong">
                       Machinery
                     </label>
                     <select

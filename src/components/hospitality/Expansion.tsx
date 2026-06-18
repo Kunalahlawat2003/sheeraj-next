@@ -23,13 +23,13 @@ export default function Expansion() {
             <Reveal key={p.year} delay={i * 0.1}>
               <div className="relative">
                 <div className="flex items-center gap-3">
-                  <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-lagoon/40 bg-shell font-display text-xs font-semibold text-lagoon">
+                  <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-lagoon/40 bg-shell font-display text-xs font-semibold text-ocean-deep">
                     0{i + 1}
                   </span>
                   <span className="font-serif text-2xl text-ocean-deep">{p.year}</span>
                 </div>
                 <h3 className="mt-5 font-serif text-xl text-ocean-deep">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ocean/70">{p.body}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ocean">{p.body}</p>
               </div>
             </Reveal>
           ))}

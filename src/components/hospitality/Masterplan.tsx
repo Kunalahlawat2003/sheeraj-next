@@ -91,7 +91,7 @@ export default function Masterplan() {
                 <span className="text-aqua">
                   <Icon name={zone.icon} className="h-8 w-8" />
                 </span>
-                <div className="mt-4 font-display text-xs tracking-widest text-foam/50">
+                <div className="mt-4 font-display text-xs tracking-widest text-foam/70">
                   ZONE {String(active + 1).padStart(2, "0")} / {String(m.zones.length).padStart(2, "0")}
                 </div>
                 <h3 className="mt-2 font-serif text-3xl text-foam">{zone.name}</h3>
@@ -108,7 +108,7 @@ export default function Masterplan() {
                   className={`rounded-full border px-3.5 py-1.5 text-xs transition-all ${
                     active === i
                       ? "border-aqua/60 bg-aqua/10 text-aqua"
-                      : "border-foam/15 text-foam/60 hover:border-aqua/40 hover:text-foam"
+                      : "border-foam/15 text-foam/75 hover:border-aqua/40 hover:text-foam"
                   }`}
                 >
                   {z.name}

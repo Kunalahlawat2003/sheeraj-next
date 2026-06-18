@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: company.theme,
     type: "website",
   },
-  icons: { icon: "/favicon.svg" },
+  // Favicon is provided by the App Router file convention: src/app/icon.png (logo1).
 };
 
 export const viewport: Viewport = {

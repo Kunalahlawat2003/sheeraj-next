@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="container-x relative">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Logo />
+            <Logo variant="seal" size={76} />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-mist">
               {company.theme}
             </p>
@@ -26,7 +26,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-xs uppercase tracking-[0.25em] text-gold/80">
+            <h4 className="font-display text-xs uppercase tracking-[0.25em] text-accent-gold">
               Explore
             </h4>
             <ul className="mt-5 space-y-3">
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-xs uppercase tracking-[0.25em] text-gold/80">
+            <h4 className="font-display text-xs uppercase tracking-[0.25em] text-accent-gold">
               Divisions
             </h4>
             <ul className="mt-5 space-y-3 text-sm text-silver/75">
@@ -65,7 +65,7 @@ export default function Footer() {
           <p>
             © {year} {company.legalName}. All rights reserved.
           </p>
-          <p className="tracking-[0.2em] text-gold/70">{company.motto.toUpperCase()}</p>
+          <p className="tracking-[0.2em] text-accent-gold">{company.motto.toUpperCase()}</p>
         </div>
       </div>
     </footer>

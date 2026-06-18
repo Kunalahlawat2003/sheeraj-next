@@ -23,7 +23,7 @@ export default function Amenities() {
       <LeafCluster className="absolute -left-10 top-2 z-0 h-40 scale-90 text-[#0e463f]/[0.07]" />
 
       <div className="container-x relative z-10">
-        <HospHeading eyebrow={a.eyebrow} title={a.title} align="center" className="mb-16" />
+        <HospHeading eyebrow={a.eyebrow} title={a.title} align="center" className="mb-16" onLight />
 
         <div className="grid auto-rows-[13rem] grid-cols-2 gap-4 md:grid-cols-4">
           {a.items.map((item, i) => (

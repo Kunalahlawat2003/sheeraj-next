@@ -58,7 +58,7 @@ export default function Contact() {
             {contact.offices.map((o) => (
               <Reveal key={o.label}>
                 <div className="glass rounded-2xl p-5">
-                  <div className="text-[0.7rem] uppercase tracking-wider text-gold">
+                  <div className="text-[0.7rem] uppercase tracking-wider text-accent-gold-strong">
                     {o.label}
                   </div>
                   <div className="mt-2 text-sm text-silver">{o.value}</div>

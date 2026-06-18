@@ -53,8 +53,9 @@
   :root {
     --gold-rgb: 212, 175, 55;
 
-    /* ---- Hero dim overlay (light = tinted, dark = none) ---- */
-    --hero-tint:      rgba(0, 0, 0, 0.28);
+    /* ---- Hero overlays ---- */
+    --hero-tint:           transparent;
+    --hero-video-opacity:  0.88;
 
     /* ---- Theme-sensitive UI utility vars (light defaults) ---- */
     --ui-border:      color-mix(in oklab, #000 8%, transparent);
@@ -68,11 +69,43 @@
     --ui-ghost-dim:   color-mix(in oklab, #000 4%, transparent);
     --ui-dot:         rgba(0, 0, 0, 0.18);
     --ui-map-bg:      #edeae2;
+
+    /* ---- Media overlay (text over photos / video) ----
+       LIGHT theme → BLACK tint on imagery, so text on top is LIGHT. */
+    --media-tint:        rgba(0, 0, 0, 0.46);
+    --media-tint-strong: rgba(0, 0, 0, 0.64);
+    --media-scrim:       linear-gradient(
+                           to top,
+                           rgba(0, 0, 0, 0.74) 0%,
+                           rgba(0, 0, 0, 0.30) 45%,
+                           rgba(0, 0, 0, 0.10) 100%
+                         );
+    --on-media:          #f7f5ef;
+    --on-media-muted:    rgba(247, 245, 239, 0.84);
+    --on-media-faint:    rgba(247, 245, 239, 0.62);
+    --on-media-shadow:   0 2px 22px rgba(0, 0, 0, 0.55);
+    /* Accent over media: light theme paints a BLACK tint, so accents stay bright. */
+    --on-media-accent:   #e9cd7c;
+
+    /* ---- Theme-aware accents (light defaults: darkened for contrast on cream) ----
+       Use text-accent-* instead of raw text-gold / text-lagoon on solid + glass
+       surfaces; they auto-brighten in dark mode. */
+    --accent-gold:        #8a6d1e;   /* ~4.6:1 on cream */
+    --accent-gold-strong: #6f5615;   /* tiny uppercase / letter-spaced labels */
+    --accent-teal:        #0c4b59;   /* ocean — replaces low-contrast lagoon */
+    --grad-gold-1:        #b8901f;
+    --grad-gold-2:        #8a6d1e;
+    --grad-gold-3:        #6f5615;
+    /* Tropical accent gradient — darkened for cream/light hospitality bands. */
+    --grad-trop-1:        #0c4b59;
+    --grad-trop-2:        #1a6f5e;
+    --grad-trop-3:        #b8502f;
   }
 
   /* ---- Dark theme overrides ---- */
   html.dark {
-    --hero-tint:      transparent;
+    --hero-tint:           transparent;
+    --hero-video-opacity:  1;
     --color-base:     #06070b;
     --color-ink:      #0b0d14;
     --color-panel:    #11141d;
@@ -93,6 +126,34 @@
     --ui-ghost-dim:   rgba(255, 255, 255, 0.018);
     --ui-dot:         rgba(255, 255, 255, 0.50);
     --ui-map-bg:      #080b12;
+
+    /* DARK theme → WHITE tint on imagery, so text on top is DARK. */
+    --media-tint:        rgba(255, 255, 255, 0.55);
+    --media-tint-strong: rgba(255, 255, 255, 0.70);
+    --media-scrim:       linear-gradient(
+                           to top,
+                           rgba(255, 255, 255, 0.82) 0%,
+                           rgba(255, 255, 255, 0.38) 45%,
+                           rgba(255, 255, 255, 0.14) 100%
+                         );
+    --on-media:          #0a0c12;
+    --on-media-muted:    rgba(10, 12, 18, 0.82);
+    --on-media-faint:    rgba(10, 12, 18, 0.60);
+    --on-media-shadow:   0 1px 14px rgba(255, 255, 255, 0.45);
+    /* Accent over media: dark theme paints a WHITE tint, so accents go dark. */
+    --on-media-accent:   #8a6d1e;
+
+    /* DARK: accents return to their bright on-dark values. */
+    --accent-gold:        #d4af37;
+    --accent-gold-strong: #e9cd7c;
+    --accent-teal:        #34b9ab;   /* lagoon */
+    --grad-gold-1:        #f6e7b0;
+    --grad-gold-2:        #d4af37;
+    --grad-gold-3:        #9c7c22;
+    /* DARK: tropical gradient returns to bright aqua → sand → coral. */
+    --grad-trop-1:        #5fd3c4;
+    --grad-trop-2:        #ead9b0;
+    --grad-trop-3:        #ff7e5f;
   }
 
   html.dark * {
@@ -169,17 +230,22 @@
     font-weight: 500;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    color: var(--accent-gold);
   }
   .eyebrow::before {
     content: "";
     width: 1.75rem;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-gold));
+    background: linear-gradient(90deg, transparent, var(--accent-gold));
   }
 
   .text-gold-gradient {
-    background: linear-gradient(120deg, #f6e7b0 0%, var(--color-gold) 45%, #9c7c22 100%);
+    background: linear-gradient(
+      120deg,
+      var(--grad-gold-1) 0%,
+      var(--grad-gold-2) 45%,
+      var(--grad-gold-3) 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -334,6 +400,65 @@
   }
 
   .text-balance { text-wrap: balance; }
+
+  /* ----------------------------------------------------------------------------
+     Media overlays — readable text over photos / video in BOTH themes.
+     Light theme paints a black tint (light text); dark theme paints a white
+     tint (dark text). Put .media-tint / .media-scrim on a position:relative
+     wrapper that contains the image/video, and the text content on top with
+     a higher z-index. Apply .text-on-media* to the text itself.
+  ---------------------------------------------------------------------------- */
+  .media-tint::after,
+  .media-scrim::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .media-tint::after  { background: var(--media-tint); }
+  .media-scrim::after { background: var(--media-scrim); }
+
+  /* Inline overlay layers (when a component already has its own absolute div) */
+  .bg-media-tint        { background: var(--media-tint); }
+  .bg-media-tint-strong { background: var(--media-tint-strong); }
+  .bg-media-scrim       { background: var(--media-scrim); }
+
+  /* Text colors for content sitting on tinted media (theme-adaptive) */
+  .text-on-media {
+    color: var(--on-media);
+    text-shadow: var(--on-media-shadow);
+  }
+  .text-on-media-muted { color: var(--on-media-muted); }
+  .text-on-media-faint { color: var(--on-media-faint); }
+
+  /* Headings inside an on-media region must beat the global h1–h4 base color.
+     Utilities layer outranks the base layer, so this stays adaptive. */
+  .on-media :is(h1, h2, h3, h4) { color: var(--on-media); }
+
+  /* Eyebrows over media keep a bright/dark accent that contrasts the tint. */
+  .on-media .eyebrow { color: var(--on-media-accent); }
+  .on-media .eyebrow::before {
+    background: linear-gradient(90deg, transparent, var(--on-media-accent));
+  }
+
+  /* Theme-aware accent text — dark on light surfaces, bright on dark surfaces. */
+  .text-accent-gold        { color: var(--accent-gold); }
+  .text-accent-gold-strong { color: var(--accent-gold-strong); }
+  .text-accent-teal        { color: var(--accent-teal); }
+
+  /* Theme-aware tropical accent (clipped gradient text). */
+  .text-tropical-gradient {
+    background: linear-gradient(
+      120deg,
+      var(--grad-trop-1) 0%,
+      var(--grad-trop-2) 50%,
+      var(--grad-trop-3) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 /* ----------------------------------------------------------------------------

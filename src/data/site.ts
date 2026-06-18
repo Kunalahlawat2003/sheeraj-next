@@ -168,11 +168,13 @@ export const hospitality = {
   image: "/images/island-aerial.jpg",
 };
 
+export type ProjectStatus = "Executed" | "Ongoing" | "Awarded";
+
 export type Project = {
   name: string;
   category: string;
   location: string;
-  status: "Ongoing" | "Completed";
+  status: ProjectStatus;
   year: string;
   blurb: string;
   image: string;
@@ -180,61 +182,91 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  // ── Executed (2) ──
   {
-    name: "Andaman Island Resort",
-    category: "Hospitality",
-    location: "Andaman & Nicobar Islands",
-    status: "Ongoing",
-    year: "2024–",
-    blurb:
-      "Our flagship luxury resort — beachfront villas, wellness spaces, and sustainable systems on a pristine island.",
-    image: "/images/resort-overwater.jpg",
-    featured: true,
-  },
-  {
-    name: "State Highway Corridor",
+    name: "MP District Roads MDR-07 — Widening & Reconstruction (Package 2)",
     category: "Highways",
-    location: "India",
-    status: "Completed",
-    year: "2022",
-    blurb: "Multi-lane carriageway with service roads, drainage, and safety furniture, delivered ahead of schedule.",
+    location: "Madhya Pradesh",
+    status: "Executed",
+    year: "2020",
+    blurb: "Widening and reconstruction of Madhya Pradesh district roads under Package 2 (MP-MDR-07).",
     image: "/images/project-highway.jpg",
   },
   {
-    name: "Major Irrigation Canal",
+    name: "Four-Laning of NH-8E, Mahuva–Kagavadar (Package III)",
+    category: "Highways",
+    location: "Gujarat",
+    status: "Executed",
+    year: "2025",
+    blurb: "Balance four-laning works on the Mahuva–Kagavadar section of NH-8E.",
+    image: "/images/project-expressway.jpg",
+  },
+
+  // ── Ongoing (3) ──
+  {
+    name: "Remodeling of WJC Augmentation Canal (NABARD RIDF XXV)",
     category: "Canals",
-    location: "India",
-    status: "Completed",
-    year: "2021",
-    blurb: "Lined main canal and distributary network expanding assured irrigation across thousands of hectares.",
+    location: "Haryana",
+    status: "Ongoing",
+    year: "Mar 2026",
+    blurb: "Remodeling of the augmentation canal main branch from Hamida Head to Picholia Head.",
     image: "/images/project-canal.jpg",
   },
   {
-    name: "River Bridge & Approaches",
-    category: "Bridges",
-    location: "India",
-    status: "Completed",
-    year: "2020",
-    blurb: "Pre-stressed concrete bridge with reinforced approaches connecting communities across the river.",
-    image: "/images/project-bridge.jpg",
-  },
-  {
-    name: "Public Infrastructure Package",
-    category: "Government",
-    location: "India",
-    status: "Completed",
-    year: "2019",
-    blurb: "Turnkey civic works delivered as EPC partner to the public authority, on time and to specification.",
-    image: "/images/project-government.jpg",
-  },
-  {
-    name: "Expressway Package",
+    name: "KMP Link Elevated Road — Spur to Delhi–Mumbai Expressway",
     category: "Highways",
-    location: "India",
+    location: "Haryana",
     status: "Ongoing",
-    year: "2023–",
-    blurb: "High-speed corridor featuring structures, interchanges, and intelligent road systems.",
+    year: "Jun 2026",
+    blurb: "Elevated road with service roads forming the KMP link spur to the Delhi–Mumbai Expressway.",
+    image: "/images/hero-infrastructure.jpg",
+  },
+  {
+    name: "Jaipur Ring Road (NH-148C) — Two Interchanges",
+    category: "Ring Roads",
+    location: "Rajasthan",
+    status: "Ongoing",
+    year: "Jun 2026",
+    blurb: "Balance works on two interchanges of the Jaipur Ring Road (NH-148C).",
     image: "/images/project-expressway.jpg",
+  },
+
+  // ── Awarded (4) ──
+  {
+    name: "5-Star Eco-Tourism Resort, Shaheed Dweep Island (PPP)",
+    category: "Hospitality",
+    location: "Andaman & Nicobar Islands",
+    status: "Awarded",
+    year: "75-yr concession",
+    blurb: "A 5-star eco-tourism resort on Shaheed Dweep Island, developed on a PPP basis.",
+    image: "/images/resort-overwater.jpg",
+  },
+  {
+    name: "Megapode Resort, Sri Vijaya Puram (DBFOT)",
+    category: "Hospitality",
+    location: "Andaman & Nicobar Islands",
+    status: "Awarded",
+    year: "50-yr concession",
+    blurb: "Design, build, finance, operate & transfer of the Megapode Resort at Sri Vijaya Puram.",
+    image: "/images/island-aerial.jpg",
+  },
+  {
+    name: "Four-Laning of GGM–Alwar Road (NH-248A), Nuh",
+    category: "Highways",
+    location: "Haryana",
+    status: "Awarded",
+    year: "LOA issued",
+    blurb: "Four-laning and strengthening of the GGM–Alwar road (NH-248A) near Nuh.",
+    image: "/images/project-highway.jpg",
+  },
+  {
+    name: "Six-Lane Flyovers & EC, Indore (Pigdambar–Dhanmod)",
+    category: "Bridges",
+    location: "Madhya Pradesh",
+    status: "Awarded",
+    year: "LOA awaited",
+    blurb: "Six-laning with flyovers and elevated corridors across the Pigdambar–Dhanmod stretch.",
+    image: "/images/project-bridge.jpg",
   },
 ];
 
@@ -511,7 +543,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     gallery: ["/images/project-highway.jpg", "/images/project-expressway.jpg", "/images/project-bridge.jpg"],
     facts: [
       { label: "Location", value: "India" },
-      { label: "Status", value: "Completed" },
+      { label: "Status", value: "Executed" },
       { label: "Length", value: "Multi-lane corridor" },
       { label: "Year", value: "2022" },
     ],
@@ -528,7 +560,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     gallery: ["/images/project-canal.jpg", "/images/project-government.jpg"],
     facts: [
       { label: "Location", value: "India" },
-      { label: "Status", value: "Completed" },
+      { label: "Status", value: "Executed" },
       { label: "Command area", value: "Thousands of ha" },
       { label: "Year", value: "2021" },
     ],
@@ -545,9 +577,9 @@ export const projectDetails: Record<string, ProjectDetail> = {
     gallery: ["/images/project-bridge.jpg", "/images/project-highway.jpg"],
     facts: [
       { label: "Location", value: "India" },
-      { label: "Status", value: "Completed" },
+      { label: "Status", value: "Awarded" },
       { label: "Type", value: "PSC bridge" },
-      { label: "Year", value: "2020" },
+      { label: "Year", value: "2025" },
     ],
     timeline: [
       { phase: "Foundations", label: "Piling & pier caps" },
@@ -562,9 +594,9 @@ export const projectDetails: Record<string, ProjectDetail> = {
     gallery: ["/images/project-government.jpg", "/images/project-canal.jpg"],
     facts: [
       { label: "Location", value: "India" },
-      { label: "Status", value: "Completed" },
+      { label: "Status", value: "Awarded" },
       { label: "Delivery", value: "Turnkey EPC" },
-      { label: "Year", value: "2019" },
+      { label: "Year", value: "2025" },
     ],
     timeline: [
       { phase: "Design", label: "Detailed engineering" },
@@ -587,6 +619,57 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Earthwork", label: "Formation" },
       { phase: "Structures", label: "Interchanges" },
       { phase: "Surfacing", label: "Pavement & ITS" },
+    ],
+  },
+  "coastal-ring-road": {
+    overview:
+      "An orbital ring road with grade separators and service roads, easing congestion around a fast-growing coastal city.",
+    scope: ["Orbital carriageway", "Grade separators & junctions", "Service roads & drainage", "Safety furniture & lighting"],
+    gallery: ["/images/hero-infrastructure.jpg", "/images/project-expressway.jpg", "/images/project-highway.jpg"],
+    facts: [
+      { label: "Location", value: "India" },
+      { label: "Status", value: "Ongoing" },
+      { label: "Type", value: "Ring road" },
+      { label: "Year", value: "2024–" },
+    ],
+    timeline: [
+      { phase: "Earthwork", label: "Formation & embankment" },
+      { phase: "Structures", label: "Grade separators" },
+      { phase: "Surfacing", label: "Pavement & furniture" },
+    ],
+  },
+  "elevated-metro-viaduct": {
+    overview:
+      "An elevated mass-transit viaduct of precast segmental spans threading through a dense urban corridor — awarded and mobilising.",
+    scope: ["Precast segmental spans", "Pile & pier foundations", "Station structures", "Erection by launching girder"],
+    gallery: ["/images/about-engineering.jpg", "/images/project-bridge.jpg", "/images/project-expressway.jpg"],
+    facts: [
+      { label: "Location", value: "India" },
+      { label: "Status", value: "Awarded" },
+      { label: "Type", value: "Metro viaduct" },
+      { label: "Year", value: "2025" },
+    ],
+    timeline: [
+      { phase: "Mobilise", label: "Casting yard & survey" },
+      { phase: "Substructure", label: "Piles & piers" },
+      { phase: "Superstructure", label: "Segment erection" },
+    ],
+  },
+  "national-highway-package": {
+    overview:
+      "A greenfield national-highway package with major structures, awarded and mobilising for execution to IRC/MoRTH standards.",
+    scope: ["Greenfield carriageway", "Major & minor bridges", "Interchanges & culverts", "Road safety & ITS"],
+    gallery: ["/images/project-highway.jpg", "/images/project-expressway.jpg", "/images/project-bridge.jpg"],
+    facts: [
+      { label: "Location", value: "India" },
+      { label: "Status", value: "Awarded" },
+      { label: "Type", value: "National highway" },
+      { label: "Year", value: "2025" },
+    ],
+    timeline: [
+      { phase: "Mobilise", label: "Survey & DPR review" },
+      { phase: "Earthwork", label: "Formation" },
+      { phase: "Structures", label: "Bridges & pavement" },
     ],
   },
 };

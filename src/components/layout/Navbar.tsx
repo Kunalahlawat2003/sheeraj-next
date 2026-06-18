@@ -1,18 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Logo from "@/components/ui/Logo";
 import MagneticButton from "@/components/ui/MagneticButton";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import { nav, type NavItem } from "@/data/site";
+import { company, nav, type NavItem } from "@/data/site";
 import { scrollToTarget } from "@/components/providers/SmoothScroll";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [openDrop, setOpenDrop] = useState<string | null>(null);
+
+  const pathname = usePathname();
+  // The transparent header overlays a full-bleed (now tinted) media hero on these
+  // routes — use media-adaptive text there until the glass header kicks in on scroll.
+  const overHero = !scrolled && (pathname === "/" || pathname === "/hospitality");
+  // Hamburger bars: media-adaptive over the hero, but plain once the menu overlay is open.
+  const barBg = overHero && !open ? "bg-(--on-media)" : "bg-silver";
 
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
@@ -38,7 +46,9 @@ export default function Navbar() {
   const renderLink = (item: NavItem, mobile = false) => {
     const base = mobile
       ? "block py-3 text-2xl font-serif text-silver hover:text-gold transition-colors"
-      : "relative text-sm text-silver/85 transition-colors hover:text-gold";
+      : `relative text-sm transition-colors hover:text-gold ${
+          overHero ? "text-on-media" : "text-silver/85"
+        }`;
     const label = (
       <span className="inline-flex items-center gap-1.5">
         {item.label}
@@ -71,8 +81,24 @@ export default function Navbar() {
         }`}
       >
         <nav className="container-x flex items-center justify-between">
-          <Link href="/" aria-label="Sheeraj Projects — home">
-            <Logo />
+          <Link
+            href="/"
+            aria-label="Sheeraj Projects — home"
+            className="inline-flex items-center gap-2.5"
+          >
+            <Logo variant="seal" size={40} priority />
+            <span className="flex flex-col leading-none">
+              <span
+                className={`font-display text-base font-semibold uppercase tracking-[0.12em] transition-colors sm:text-lg ${
+                  overHero ? "text-on-media" : "text-silver"
+                }`}
+              >
+                {company.name}
+              </span>
+              <span className="mt-1 font-serif text-[0.72rem] italic lowercase tracking-wide text-gold">
+                {company.motto}
+              </span>
+            </span>
           </Link>
 
           {/* Desktop nav */}
@@ -85,7 +111,11 @@ export default function Navbar() {
                   onMouseEnter={() => setOpenDrop(item.label)}
                   onMouseLeave={() => setOpenDrop(null)}
                 >
-                  <button className="flex items-center gap-1.5 text-sm text-silver/85 transition-colors hover:text-gold">
+                  <button
+                    className={`flex items-center gap-1.5 text-sm transition-colors hover:text-gold ${
+                      overHero ? "text-on-media" : "text-silver/85"
+                    }`}
+                  >
                     {item.label}
                     <svg width="10" height="10" viewBox="0 0 10 10" className="mt-0.5 opacity-60">
                       <path d="M1 3l4 4 4-4" stroke="currentColor" strokeWidth="1.3" fill="none" />
@@ -145,9 +175,9 @@ export default function Navbar() {
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
-            <span className={`h-px w-6 bg-silver transition-all ${open ? "translate-y-[7px] rotate-45" : ""}`} />
-            <span className={`h-px w-6 bg-silver transition-all ${open ? "opacity-0" : ""}`} />
-            <span className={`h-px w-6 bg-silver transition-all ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
+            <span className={`h-px w-6 ${barBg} transition-all ${open ? "translate-y-[7px] rotate-45" : ""}`} />
+            <span className={`h-px w-6 ${barBg} transition-all ${open ? "opacity-0" : ""}`} />
+            <span className={`h-px w-6 ${barBg} transition-all ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
           </button>
         </nav>
 

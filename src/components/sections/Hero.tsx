@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import HeroCanvas from "@/components/three/HeroCanvas";
 import MagneticButton from "@/components/ui/MagneticButton";
-import { company, media } from "@/data/site";
+import { company } from "@/data/site";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -37,31 +35,23 @@ export default function Hero() {
   };
 
   return (
-    <section id="top" className="relative min-h-[100svh] w-full overflow-hidden">
-      {/* base texture image */}
-      <Image
-        src={media.heroImage}
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover opacity-45"
-      />
-      {/* WebGL field */}
-      <div className="absolute inset-0">
-        <HeroCanvas />
-      </div>
+    <section id="top" className="relative min-h-[100svh] w-full overflow-hidden bg-base">
+      {/* background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/homeHero2.mp4" type="video/mp4" />
+      </video>
 
-      {/* dim tint (light mode only) + vignette fade */}
-      <div className="absolute inset-0 [background-color:var(--hero-tint)]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-base via-base/50 to-transparent" />
-
-      {/* gold glow accents */}
-      <div className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-gold/10 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-20 top-1/4 h-64 w-64 rounded-full bg-lagoon/10 blur-[120px]" />
+      {/* vignette fade into the page background at the bottom edge */}
+      <div className="absolute inset-0 [background:linear-gradient(to_top,var(--color-base)_0%,color-mix(in_oklab,var(--color-base)_40%,transparent)_20%,transparent_42%)]" />
 
       {/* content */}
-      <div className="container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-28">
+      <div className="on-media container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-28">
         <motion.span
           custom={0}
           variants={v}
@@ -77,7 +67,7 @@ export default function Hero() {
           variants={v}
           initial="hidden"
           animate={show}
-          className="mt-6 max-w-5xl font-serif text-[3.1rem] font-medium leading-[0.98] tracking-tight text-balance sm:text-7xl lg:text-[5.6rem]"
+          className="mt-6 max-w-5xl font-serif text-[3.1rem] font-medium leading-[0.98] tracking-tight text-balance filter-[drop-shadow(var(--on-media-shadow))] sm:text-7xl lg:text-[5.6rem]"
         >
           Building Tomorrow&apos;s{" "}
           <span className="text-gold-gradient italic">Infrastructure.</span>
@@ -88,7 +78,7 @@ export default function Hero() {
           variants={v}
           initial="hidden"
           animate={show}
-          className="mt-7 max-w-xl text-lg leading-relaxed text-silver/80"
+          className="mt-7 max-w-xl text-lg leading-relaxed text-on-media-muted"
         >
           Engineering highways, waterways, ring roads — and future destinations
           across India and the islands.

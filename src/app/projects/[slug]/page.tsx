@@ -30,11 +30,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <Image src={project.image} alt={project.name} fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-base via-base/65 to-base/30" />
         <div className="container-x relative z-10 pb-14">
-          <nav className="mb-6 flex items-center gap-2 text-xs text-mist">
+          <nav className="mb-6 flex items-center gap-2 text-xs text-silver/80">
             <Link href="/" className="hover:text-gold">Home</Link>
-            <span className="text-faint">/</span>
+            <span className="text-mist">/</span>
             <Link href="/projects" className="hover:text-gold">Projects</Link>
-            <span className="text-faint">/</span>
+            <span className="text-mist">/</span>
             <span className="text-silver">{project.name}</span>
           </nav>
           <div className="flex items-center gap-3">
