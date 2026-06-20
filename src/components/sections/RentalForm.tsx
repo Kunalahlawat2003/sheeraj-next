@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Reveal from "@/components/ui/Reveal";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { machinery } from "@/data/site";
@@ -9,6 +10,7 @@ import { machinery } from "@/data/site";
 type Form = {
   machinery: string;
   model: string;
+  quantity: string;
   company: string;
   name: string;
   email: string;
@@ -18,8 +20,9 @@ type Form = {
 type Errors = Partial<Record<keyof Form, string>>;
 
 const empty: Form = {
-  machinery: machinery[0],
+  machinery: machinery[0].items[0],
   model: "",
+  quantity: "",
   company: "",
   name: "",
   email: "",
@@ -35,6 +38,8 @@ function Field({
   error,
   type = "text",
   textarea,
+  required,
+  maxLength,
 }: {
   label: string;
   name: keyof Form;
@@ -43,12 +48,24 @@ function Field({
   error?: string;
   type?: string;
   textarea?: boolean;
+  required?: boolean;
+  maxLength?: number;
 }) {
   const base =
     "peer w-full rounded-xl border [background-color:var(--ui-surface-xs)] px-4 pt-6 pb-2 text-sm text-silver outline-none transition-all placeholder-transparent focus:[background-color:var(--ui-surface-sm)]";
   const ring = error
     ? "border-red-500/60 focus:border-red-400"
     : "[border-color:var(--ui-border-md)] focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.18)]";
+
+  const handleChange = (raw: string) => {
+    if (type === "tel") {
+      const digits = raw.replace(/\D/g, "");
+      onChange(name, maxLength ? digits.slice(0, maxLength) : digits);
+    } else {
+      onChange(name, raw);
+    }
+  };
+
   return (
     <div className="relative">
       {textarea ? (
@@ -57,7 +74,7 @@ function Field({
           rows={4}
           placeholder={label}
           value={value}
-          onChange={(e) => onChange(name, e.target.value)}
+          onChange={(e) => handleChange(e.target.value)}
           className={`${base} ${ring} resize-none`}
         />
       ) : (
@@ -66,7 +83,8 @@ function Field({
           type={type}
           placeholder={label}
           value={value}
-          onChange={(e) => onChange(name, e.target.value)}
+          maxLength={maxLength}
+          onChange={(e) => handleChange(e.target.value)}
           className={`${base} ${ring}`}
         />
       )}
@@ -75,6 +93,7 @@ function Field({
         className="pointer-events-none absolute left-4 top-2 text-[0.7rem] uppercase tracking-wider text-mist transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-focus:top-2 peer-focus:text-[0.7rem] peer-focus:uppercase peer-focus:tracking-wider peer-focus:text-gold"
       >
         {label}
+        {required && <span className="ml-0.5 text-gold">*</span>}
       </label>
       <AnimatePresence>
         {error && (
@@ -92,10 +111,13 @@ function Field({
   );
 }
 
-export default function RentalForm() {
+function RentalFormInner() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [form, setForm] = useState<Form>(empty);
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const update = (k: keyof Form, v: string) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -109,13 +131,48 @@ export default function RentalForm() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       e.email = "That email doesn't look right.";
     if (!form.phone.trim()) e.phone = "A phone number is required.";
+    else if (form.phone.length < 10) e.phone = "Enter a valid 10-digit number.";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
 
-  const submit = (ev: React.FormEvent) => {
+  const submit = async (ev: { preventDefault(): void }) => {
     ev.preventDefault();
-    if (validate()) setSent(true);
+    if (!validate() || !executeRecaptcha) return;
+
+    setLoading(true);
+    setApiError(null);
+
+    try {
+      const recaptchaToken = await executeRecaptcha("machinery_inquiry");
+
+      const res = await fetch("/api/machinery-inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          machinery: form.machinery,
+          model: form.model || undefined,
+          quantity: form.quantity ? parseInt(form.quantity, 10) : undefined,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company || undefined,
+          message: form.message || undefined,
+          recaptchaToken,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error((data as { error?: string }).error || "Something went wrong.");
+      }
+
+      setSent(true);
+    } catch (err) {
+      setApiError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -208,35 +265,64 @@ export default function RentalForm() {
                   exit={{ opacity: 0 }}
                   className="grid gap-4 sm:grid-cols-2"
                 >
-                  <div className="sm:col-span-1">
+                  <div className="sm:col-span-2">
                     <label className="mb-1.5 block pl-1 text-[0.7rem] uppercase tracking-wider text-accent-gold-strong">
                       Machinery
                     </label>
-                    <select
-                      value={form.machinery}
-                      onChange={(e) => update("machinery", e.target.value)}
-                      className="w-full rounded-xl border [border-color:var(--ui-border-md)] [background-color:var(--ui-surface-xs)] px-4 py-3.5 text-sm text-silver outline-none transition-all focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.18)]"
-                    >
-                      {machinery.map((m) => (
-                        <option key={m} value={m} className="bg-ink">
-                          {m}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                      <select
+                        value={form.machinery}
+                        onChange={(e) => update("machinery", e.target.value)}
+                        className="w-full appearance-none rounded-xl border border-(--ui-border-md) bg-(--ui-surface-xs) px-4 py-3.5 pr-10 text-sm text-silver outline-none transition-all focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.18)]"
+                      >
+                        {machinery.map(({ group, items }) => (
+                          <optgroup key={group} label={group}>
+                            {items.map((m) => (
+                              <option key={m} value={m} className="bg-ink">
+                                {m}
+                              </option>
+                            ))}
+                          </optgroup>
+                        ))}
+                      </select>
+                      <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-gold/70">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
-                  <div className="self-end">
-                    <Field label="Model / Spec" name="model" value={form.model} onChange={update} />
-                  </div>
+                  <Field label="Model / Spec" name="model" value={form.model} onChange={update} />
+                  <Field label="Quantity" name="quantity" type="number" value={form.quantity} onChange={update} />
                   <Field label="Company" name="company" value={form.company} onChange={update} />
-                  <Field label="Your name" name="name" value={form.name} onChange={update} error={errors.name} />
-                  <Field label="Email" name="email" type="email" value={form.email} onChange={update} error={errors.email} />
-                  <Field label="Phone" name="phone" type="tel" value={form.phone} onChange={update} error={errors.phone} />
+                  <Field label="Your name" name="name" value={form.name} onChange={update} error={errors.name} required />
+                  <Field label="Email" name="email" type="email" value={form.email} onChange={update} error={errors.email} required />
+                  <Field label="Phone" name="phone" type="tel" value={form.phone} onChange={update} error={errors.phone} required maxLength={10} />
                   <div className="sm:col-span-2">
                     <Field label="Message" name="message" value={form.message} onChange={update} textarea />
                   </div>
+
+                  <AnimatePresence>
+                    {apiError && (
+                      <motion.p
+                        key="api-error"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="sm:col-span-2 rounded-lg bg-red-500/10 px-4 py-2.5 text-sm text-red-400"
+                      >
+                        {apiError}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+
                   <div className="sm:col-span-2 mt-2">
-                    <MagneticButton type="submit" className="w-full justify-center">
-                      Request a quote
+                    <MagneticButton
+                      type="submit"
+                      className="w-full justify-center"
+                      disabled={loading}
+                    >
+                      {loading ? "Sending…" : "Request a quote"}
                     </MagneticButton>
                   </div>
                 </motion.form>
@@ -246,5 +332,15 @@ export default function RentalForm() {
         </Reveal>
       </div>
     </section>
+  );
+}
+
+export default function RentalForm() {
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ""}
+    >
+      <RentalFormInner />
+    </GoogleReCaptchaProvider>
   );
 }

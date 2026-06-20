@@ -4,21 +4,40 @@ import { notFound } from "next/navigation";
 
 import Reveal from "@/components/ui/Reveal";
 import ApplyModal from "@/components/careers/ApplyModal";
-import { jobs } from "@/data/site";
+import { CAREER_API_BASE, type Job } from "@/lib/careerApi";
 
-export function generateStaticParams() {
-  return jobs.map((j) => ({ slug: j.slug }));
+export const dynamic = "force-dynamic";
+
+async function getJob(jobId: string): Promise<Job | null> {
+  try {
+    const res = await fetch(`${CAREER_API_BASE}/sheeraj-projects/job/${jobId}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.data ?? null;
+  } catch {
+    return null;
+  }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
-  const job = jobs.find((j) => j.slug === slug);
-  return { title: job ? job.title : "Career", description: job?.summary };
+  const job = await getJob(slug);
+  return { title: job ? job.title : "Career", description: job?.description };
 }
 
-export default async function JobDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function JobDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const job = jobs.find((j) => j.slug === slug);
+  const job = await getJob(slug);
   if (!job) notFound();
 
   return (
@@ -36,20 +55,29 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
           {/* main */}
           <Reveal>
             <div>
-              <span className="eyebrow">{job.department}</span>
-              <h1 className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight md:text-5xl">{job.title}</h1>
+              <span className="eyebrow">{job.category}</span>
+              <h1 className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight md:text-5xl">
+                {job.title}
+              </h1>
               <div className="mt-4 flex flex-wrap gap-2 text-[0.7rem] uppercase tracking-wider">
-                <span className="rounded-full [background-color:var(--ui-surface-md)] px-2.5 py-1 text-mist">{job.location}</span>
-                <span className="rounded-full [background-color:var(--ui-surface-md)] px-2.5 py-1 text-mist">{job.type}</span>
+                <span className="rounded-full bg-(--ui-surface-md) px-2.5 py-1 text-mist">
+                  {job.jobType}
+                </span>
+                <span className="rounded-full bg-(--ui-surface-md) px-2.5 py-1 text-mist">
+                  {job.workingStatus}
+                </span>
               </div>
-              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-silver/90">{job.summary}</p>
+              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-silver/90">
+                {job.description}
+              </p>
 
               <div className="mt-10">
                 <h2 className="font-serif text-2xl">What you&apos;ll do</h2>
                 <ul className="mt-5 space-y-3">
-                  {job.responsibilities.map((r) => (
+                  {job.Responsibilities.map((r) => (
                     <li key={r} className="flex items-start gap-3 text-sm text-mist">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />{r}
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                      {r}
                     </li>
                   ))}
                 </ul>
@@ -58,16 +86,17 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
               <div className="mt-10">
                 <h2 className="font-serif text-2xl">What you&apos;ll bring</h2>
                 <ul className="mt-5 space-y-3">
-                  {job.requirements.map((r) => (
+                  {job.Requirements.map((r) => (
                     <li key={r} className="flex items-start gap-3 text-sm text-mist">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-lagoon" />{r}
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-lagoon" />
+                      {r}
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div className="mt-12 lg:hidden">
-                <ApplyModal jobTitle={job.title} />
+                <ApplyModal jobTitle={job.title} jobId={job.JobID} />
               </div>
             </div>
           </Reveal>
@@ -76,23 +105,32 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal delay={0.1}>
               <div className="glass rounded-3xl p-7">
-                <div className="text-[0.7rem] uppercase tracking-wider text-gold">Role at a glance</div>
+                <div className="text-[0.7rem] uppercase tracking-wider text-gold">
+                  Role at a glance
+                </div>
                 <dl className="mt-5 space-y-4 text-sm">
                   {[
-                    ["Department", job.department],
-                    ["Location", job.location],
-                    ["Type", job.type],
+                    ["Department", job.category],
+                    ["Type", job.workingStatus],
+                    ["Work mode", job.jobType],
+                    ["Experience", job.experienceRequired],
                   ].map(([k, v]) => (
-                    <div key={k} className="flex items-center justify-between gap-4 border-b [border-color:var(--ui-border)] pb-3">
+                    <div
+                      key={k}
+                      className="flex items-center justify-between gap-4 border-b border-(--ui-border) pb-3"
+                    >
                       <dt className="text-mist">{k}</dt>
                       <dd className="text-right text-silver">{v}</dd>
                     </div>
                   ))}
                 </dl>
                 <div className="mt-7 hidden lg:block">
-                  <ApplyModal jobTitle={job.title} />
+                  <ApplyModal jobTitle={job.title} jobId={job.JobID} />
                 </div>
-                <Link href="/careers" className="mt-4 block text-center text-sm text-mist transition-colors hover:text-gold">
+                <Link
+                  href="/careers"
+                  className="mt-4 block text-center text-sm text-mist transition-colors hover:text-gold"
+                >
                   ← All roles
                 </Link>
               </div>

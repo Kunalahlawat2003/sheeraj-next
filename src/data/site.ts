@@ -295,16 +295,85 @@ export const bankers = [
   "Union Bank of India",
 ];
 
-export const machinery = [
-  "Excavator",
-  "Bulldozer",
-  "Wheel Loader",
-  "Motor Grader",
-  "Soil Compactor / Roller",
-  "Concrete Batching Plant",
-  "Tower / Crawler Crane",
-  "Tipper / Dumper",
-  "Asphalt Paver",
+export const machinery: { group: string; items: string[] }[] = [
+  {
+    group: "Tipper Truck",
+    items: ["Tata Tipper Truck", "Mahindra Tipper Truck", "Ashok Leyland Tipper Truck"],
+  },
+  { group: "Transit Mixer", items: ["Tata Mixer"] },
+  { group: "Shifting Trailor", items: ["Ashok Leyland Shifting Trailor"] },
+  { group: "Water Tanker", items: ["Tata Water Tanker"] },
+  { group: "Transit Trailer", items: ["Tata Transit Trailer"] },
+  {
+    group: "Diesel Tanker",
+    items: ["Tata Diesel Tanker", "Ashok Leyland Diesel Tanker"],
+  },
+  { group: "Camper", items: ["Mahindra Camper"] },
+  { group: "Motor Bike", items: ["Hero Motor Bike", "Honda Motor Bike", "Bajaj Motor Bike"] },
+  { group: "Tractors", items: ["Tractor Broomer", "Tractor Dewatering", "Tractor Holland"] },
+  {
+    group: "Wheel Loader",
+    items: ["JCB Wheel Loader", "Liugong Wheel Loader", "Backhoe Loader"],
+  },
+  { group: "Roller", items: ["Wirtgen Roller"] },
+  { group: "Soil Compactor", items: ["Wirtgen Soil Compactor"] },
+  { group: "Grader", items: ["CAT Grader", "Mahindra Grader"] },
+  {
+    group: "Excavator",
+    items: [
+      "CAT Excavator",
+      "Komatsu Excavator",
+      "Volvo Excavator",
+      "Kobelco Excavator",
+      "Tata Hitachi Excavator",
+      "L&T Excavator",
+    ],
+  },
+  { group: "Crane", items: ["Escorts Crane"] },
+  { group: "Stone Crusher", items: ["Metsu Stone Crusher", "Puzzolana Stone Crusher"] },
+  {
+    group: "Batching Plant",
+    items: [
+      "Aquarious Batching Plant",
+      "Conmet Batching Plant",
+      "Liebherr Batching Plant",
+      "Schwing Stetter Batching Plant",
+    ],
+  },
+  { group: "Hot Mix Plant", items: ["Everest Hot Mix Plant"] },
+  { group: "Sand Washing Plant", items: ["CDE Sand Washing Plant"] },
+  {
+    group: "Paver",
+    items: ["Volvo Paver", "Ingersoll Paver", "Wirtgen Paver", "Appollo Paver", "Conmet Paver"],
+  },
+  { group: "Texture Curing Machine", items: ["Kiwi Texture Curing Machine"] },
+  { group: "Concrete Pump", items: ["Sany Concrete Pump", "Putzmeister Concrete Pump"] },
+  { group: "Air Compressor", items: ["Sany Air Compressor", "Ingersoll"] },
+  { group: "Tower Light", items: ["Ingersoll Tower Light"] },
+  {
+    group: "Diesel Generator Set",
+    items: [
+      "Jackson Diesel Generator Set",
+      "Koel Diesel Generator Set",
+      "Powerica Diesel Generator Set",
+      "Kirloskar Diesel Generator Set",
+      "CAT Diesel Generator Set",
+      "Field Marshall Diesel Generator Set",
+      "Mahindra Diesel Generator Set",
+    ],
+  },
+  {
+    group: "Other Machines",
+    items: [
+      "TMC",
+      "Bitumen Bouser",
+      "Service Van",
+      "Dewatering Pump",
+      "Kerb Lying machine",
+      "Baby Roller",
+      "JCB Telehandler",
+    ],
+  },
 ];
 
 export const careers = {

@@ -14,6 +14,7 @@ type Props = {
   strength?: number;
   ariaLabel?: string;
   type?: "button" | "submit";
+  disabled?: boolean;
 };
 
 /**
@@ -29,6 +30,7 @@ export default function MagneticButton({
   strength = 0.4,
   ariaLabel,
   type = "button",
+  disabled,
 }: Props) {
   const shellRef = useRef<HTMLElement>(null);
   const innerRef = useRef<HTMLSpanElement>(null);
@@ -110,6 +112,7 @@ export default function MagneticButton({
       type={type}
       aria-label={ariaLabel}
       className={cls}
+      disabled={disabled}
       onClick={onClick}
     >
       {inner}
