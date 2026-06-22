@@ -542,7 +542,7 @@ export const team = {
   ca: {
     name: "Mr. Alok Bishnoi",
     role: "Chartered Accountant",
-    photo: "/images/project-government.jpg",
+    photo: "/images/boardMember/accounts.jpg",
     message:
       "Financial discipline, transparency, and accountability are integral to our operations. We are committed to maintaining strong financial practices that support sustainable growth and stakeholder confidence.",
   } as Person,

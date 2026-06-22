@@ -125,7 +125,7 @@ export default function Navbar() {
             <Logo variant="seal" size={40} priority />
             <span className="flex flex-col leading-none">
               <span
-                className={`font-display text-base font-semibold uppercase tracking-[0.12em] transition-colors sm:text-lg ${
+                className={`font-brand text-base font-semibold uppercase tracking-[0.12em] transition-colors sm:text-lg ${
                   overHero ? "text-on-media" : "text-silver"
                 }`}
               >

@@ -45,7 +45,7 @@ export default function Preloader() {
           >
             <Logo variant="seal" size={56} />
             <span className="flex flex-col leading-none">
-              <span className="font-display text-lg font-semibold uppercase tracking-[0.12em] text-silver sm:text-xl">
+              <span className="font-brand text-lg font-semibold uppercase tracking-[0.12em] text-silver sm:text-xl">
                 {company.name}
               </span>
               <span className="mt-1 font-serif text-[0.8rem] italic lowercase tracking-wide text-gold">
