@@ -132,7 +132,7 @@ export default function CareersExplorer() {
 
       {filtered.length === 0 && (
         <div className="rounded-2xl border border-(--ui-border) p-12 text-center text-mist">
-          No roles match these filters right now — try a different department.
+          There are no open positions at this time. Please check back soon for future opportunities.
         </div>
       )}
     </div>

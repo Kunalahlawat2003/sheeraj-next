@@ -21,6 +21,7 @@ const STARS: [number, number, number][] = [
 const ob = { transformBox: "fill-box" as const, transformOrigin: "bottom" };
 const ol = { transformBox: "fill-box" as const, transformOrigin: "left" };
 const oc = { transformBox: "fill-box" as const, transformOrigin: "center" };
+const ot = { transformBox: "fill-box" as const, transformOrigin: "top" };
 
 export default function ResortBuild() {
   const wrap = useRef<HTMLDivElement>(null);
@@ -35,7 +36,7 @@ export default function ResortBuild() {
       if (reduce) {
         gsap.set(
           [".rb-island", ".rb-island-green", ".rb-found", ".rb-wall", ".rb-roof",
-           ".rb-pool-water", ".rb-palm", ".rb-lamp", ".rb-jetty", ".rb-boat", ".rb-light", ".rb-glow", ".rb-star"],
+           ".rb-pool-water", ".rb-palm", ".rb-lamp", ".rb-lantern", ".rb-jetty", ".rb-boat", ".rb-light", ".rb-glow", ".rb-star"],
           { x: 0, y: 0, scaleX: 1, scaleY: 1, opacity: 1 }
         );
         gsap.set([".rb-crane", ".rb-hook"], { opacity: 0 });
@@ -45,6 +46,7 @@ export default function ResortBuild() {
 
       // ambient life (independent of scroll)
       gsap.to(".rb-bird", { y: "-=5", repeat: -1, yoyo: true, duration: 1.8, ease: "sine.inOut", stagger: 0.25 });
+      gsap.fromTo(".rb-lantern", { rotation: -2.5 }, { rotation: 2.5, repeat: -1, yoyo: true, duration: 3.8, ease: "sine.inOut" });
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
@@ -62,6 +64,7 @@ export default function ResortBuild() {
       tl.fromTo(".rb-wall", { y: 34, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.12, duration: 0.7 }, 1.05);
       tl.fromTo(".rb-hook", { y: -80, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power1.inOut" }, 1.2);
       tl.fromTo(".rb-roof", { y: -60, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.12, duration: 0.6 }, 1.6);
+      tl.fromTo(".rb-lantern", { opacity: 0 }, { opacity: 1, duration: 0.9 }, 1.9);
 
       // 03 — Water & Landscape
       tl.fromTo(".rb-island-green", { scaleY: 0 }, { scaleY: 1, stagger: 0.12, duration: 0.8 }, 2.05);
@@ -288,13 +291,31 @@ export default function ResortBuild() {
                   <line x1="506" y1="318" x2="506" y2="290" stroke="#7d6a4a" strokeWidth="2" />
                 </g>
 
-                {/* ── Construction crane ── */}
+                {/* ── Construction crane (lowers the lantern in, then lifts away) ── */}
                 <g className="rb-crane" stroke="#6b7a82" strokeWidth="3" fill="none" strokeLinecap="round">
                   <path d="M372 250V66" />
                   <path d="M372 66h-150M372 66l28 8M372 80l-150-4" />
-                  <path className="rb-hook" d="M300 70v26" opacity="0" />
+                  <path className="rb-hook" d="M301 70v16" opacity="0" />
                 </g>
-                <rect className="rb-hook" x="294" y="96" width="14" height="8" rx="1" fill="url(#rb-struct)" opacity="0" />
+
+                {/* ── Hanging lantern — lowered in by the crane, then stays lit ── */}
+                <g className="rb-lantern" style={ot} opacity="0">
+                  {/* suspension cord up out of frame */}
+                  <line x1="301" y1="0" x2="301" y2="86" stroke="#5c6a62" strokeWidth="1.4" />
+                  {/* top cap */}
+                  <rect x="298" y="84" width="6" height="3" rx="1" fill="#46514b" />
+                  <path d="M296 89h10l-2-2h-6Z" fill="#46514b" />
+                  {/* warm halo (lights up at the reveal) */}
+                  <circle className="rb-light" cx="301" cy="100" r="16" fill="#ffd98a" opacity="0" filter="url(#rb-bloom)" style={oc} />
+                  {/* lantern body */}
+                  <rect x="295" y="89" width="12" height="21" rx="3" fill="url(#rb-struct)" stroke="#7d6a4a" strokeWidth="0.9" />
+                  {/* glass that warms up */}
+                  <rect className="rb-light" x="297" y="91.5" width="8" height="16" rx="1.5" fill="#ffe6ad" opacity="0" style={oc} />
+                  {/* frame mullion */}
+                  <line x1="301" y1="91.5" x2="301" y2="107.5" stroke="#7d6a4a" strokeWidth="0.7" opacity="0.5" />
+                  {/* bottom cap */}
+                  <path d="M296 110h10l-2 3h-6Z" fill="#46514b" />
+                </g>
               </svg>
             </div>
           </div>

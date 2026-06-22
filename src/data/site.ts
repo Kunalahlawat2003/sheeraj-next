@@ -149,7 +149,7 @@ export const media = {
 export const chairman = {
   name: "Chairman's Name",
   role: "Founder & Chairman",
-  photo: "/images/chairman-pannu.jpg",
+  photo: "/images/chairman-Sir.jpg",
   shortQuote:
     "We don't just clear pathways or construct layouts—we build infrastructure that drives regional economic growth.",
 };
@@ -190,7 +190,7 @@ export const projects: Project[] = [
     status: "Executed",
     year: "2020",
     blurb: "Widening and reconstruction of Madhya Pradesh district roads under Package 2 (MP-MDR-07).",
-    image: "/images/project-highway.jpg",
+    image: "/images/mp/1.jpeg",
   },
   {
     name: "Four-Laning of NH-8E, Mahuva–Kagavadar (Package III)",
@@ -257,7 +257,7 @@ export const projects: Project[] = [
     status: "Awarded",
     year: "LOA issued",
     blurb: "Four-laning and strengthening of the GGM–Alwar road (NH-248A) near Nuh.",
-    image: "/images/project-highway.jpg",
+    image: "/images/nuh/1.png",
   },
   {
     name: "Six-Lane Flyovers & EC, Indore (Pigdambar–Dhanmod)",
@@ -266,7 +266,7 @@ export const projects: Project[] = [
     status: "Awarded",
     year: "LOA awaited",
     blurb: "Six-laning with flyovers and elevated corridors across the Pigdambar–Dhanmod stretch.",
-    image: "/images/project-bridge.jpg",
+    image: "/images/indore/1.jpeg",
   },
 ];
 
@@ -523,7 +523,7 @@ export const team = {
   chairman: {
     name: "Mr. Rajender Singh Pannu",
     role: "Founder & Chairman",
-    photo: "/images/chairman-pannu.jpg",
+    photo: "/images/chairman-Sir.jpg",
     message:
       "Everything bearing the Sheeraj name is built to outlast us. That quiet promise — made when we laid our first kilometre of highway — still guides every decision we make, from canals and corridors to the shores of the Andamans.",
   } as Person,
@@ -733,6 +733,113 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Earthwork", label: "Formation & embankment" },
       { phase: "Structures", label: "Interchanges & ramps" },
       { phase: "Surfacing", label: "Pavement & finishing" },
+    ],
+  },
+  "four-laning-of-ggm-alwar-road-nh-248a-nuh": {
+    officialName:
+      "Construction of Four-Lane with Paved Shoulders of GGM–Alwar Road (NH-248A) from Nuh–Firozpur Jhirka up to Rajasthan Border (KM 46.95 to KM 95.97, Design Chainage KM 96.980), excluding KM 50.900–54.46 and KM 61.900–65.18, including strengthening & improvement of the existing road over 6.84 km in Malab village (KM 50.900–54.46) and Bhadas village (KM 61.900–65.18), Nuh, Haryana",
+    client: "Ministry of Road Transport & Highways (MoRTH)",
+    value: "₹180.09 Cr",
+    stretch: "KM 46.95 to KM 95.97 — Nuh–Firozpur Jhirka to Rajasthan Border",
+    overview:
+      "Awarded by the Ministry of Road Transport & Highways, this package delivers the four-laning with paved shoulders of the GGM–Alwar road (NH-248A) from Nuh and Firozpur Jhirka up to the Rajasthan border in Haryana. The works span the reach from KM 46.95 to KM 95.97 (design chainage KM 96.980) — excluding the built-up stretches at KM 50.900–54.46 and KM 61.900–65.18 — and additionally cover the strengthening and improvement of 6.84 km of existing road through Malab village (KM 50.900–54.46) and Bhadas village (KM 61.900–65.18). On completion, the corridor will upgrade a key inter-state link between the Gurugram region and Alwar to national-highway standards.",
+    scope: [
+      "Four-laning with paved shoulders of NH-248A",
+      "Main carriageway from KM 46.95 to KM 95.97 (design chainage KM 96.980)",
+      "Strengthening & improvement of 6.84 km existing road through Malab and Bhadas villages",
+      "Major and minor structures, culverts and cross-drainage works",
+      "Service roads, road furniture, signage, lighting and safety barriers",
+      "Construction to IRC / MoRTH specifications",
+    ],
+    gallery: [
+      "/images/nuh/4.jpeg",
+      "/images/nuh/2.jpeg",
+      "/images/nuh/3.jpeg",
+      "/images/nuh/5.jpeg",
+      "/images/nuh/6.jpeg",
+    ],
+    facts: [
+      { label: "State", value: "Haryana" },
+      { label: "Highway", value: "NH-248A" },
+      { label: "Project Value", value: "₹180.09 Cr" },
+      { label: "Authority", value: "MoRTH" },
+    ],
+    timeline: [
+      { phase: "Mobilise", label: "Survey, DPR review & setting out" },
+      { phase: "Earthwork", label: "Formation & embankment" },
+      { phase: "Structures", label: "Culverts, drainage & strengthening" },
+      { phase: "Surfacing", label: "Pavement, furniture & handover" },
+    ],
+  },
+  "six-lane-flyovers-and-ec-indore-pigdambar-dhanmod": {
+    officialName:
+      "Construction of Six-Lane Elevated Corridors at Pigdambar Chauraha (KM 14.235) and Medicaps (KM 13.430), a Light Vehicle Underpass (LVUP) at Sirsodiya Junction (KM 61.660), and Flyovers at Dhanmod Bypass (KM 65.455) and Dhanmod Bypass End (KM 73.495), Indore, Madhya Pradesh",
+    client: "National Highways Authority of India (NHAI)",
+    value: "₹213.59 Cr",
+    stretch: "Pigdambar–Dhanmod — KM 13.430 to KM 73.495",
+    overview:
+      "Awarded by the National Highways Authority of India, this Indore package delivers a series of grade-separated structures along the Pigdambar–Dhanmod corridor in Madhya Pradesh. The scope comprises six-lane elevated corridors at Pigdambar Chauraha (KM 14.235) and Medicaps (KM 13.430), a light-vehicle underpass at Sirsodiya Junction (KM 61.660), and flyovers at the Dhanmod Bypass (KM 65.455) and Dhanmod Bypass End (KM 73.495). Together the works untangle the corridor's busiest junctions and carry through-traffic clear of local movement, with a planned construction period of 18 months from the award of the Letter of Acceptance.",
+    scope: [
+      "Six-lane elevated corridor at Pigdambar Chauraha (KM 14.235)",
+      "Six-lane elevated corridor at Medicaps (KM 13.430)",
+      "Light Vehicle Underpass (LVUP) at Sirsodiya Junction (KM 61.660)",
+      "Flyover at Dhanmod Bypass (KM 65.455)",
+      "Flyover at Dhanmod Bypass End (KM 73.495)",
+      "Approaches, drainage, road furniture and safety systems to NHAI / MoRTH specs",
+    ],
+    gallery: [
+      "/images/indore/2.jpeg",
+      "/images/indore/3.jpeg",
+      "/images/indore/4.jpeg",
+      "/images/indore/5.jpeg",
+      "/images/indore/6.jpeg",
+    ],
+    facts: [
+      { label: "State", value: "Madhya Pradesh" },
+      { label: "Authority", value: "NHAI" },
+      { label: "Project Value", value: "₹213.59 Cr" },
+      { label: "Duration", value: "18 months" },
+    ],
+    timeline: [
+      { phase: "Mobilise", label: "LOA, survey & casting yard setup" },
+      { phase: "Substructure", label: "Piles, pier caps & foundations" },
+      { phase: "Superstructure", label: "Girders, deck & underpass" },
+      { phase: "Surfacing", label: "Pavement, furniture & handover" },
+    ],
+  },
+  "mp-district-roads-mdr-07-widening-and-reconstruction-package-2": {
+    officialName:
+      "Widening & Reconstruction of Madhya Pradesh District Road 11 Sector Projects, Package 2: Sirsod–Pkthhore Road and Nlarwar–Chitori to Amola Road (MP-MDR-07-01 & MP-MDR-07-18)",
+    client: "Madhya Pradesh Road Development Corporation (MPRDC)",
+    value: "₹123.68 Cr",
+    stretch: "Sirsod–Pkthhore Road (MP-MDR-07-01) & Nlarwar–Chitori to Amola Road (MP-MDR-07-18)",
+    overview:
+      "Executed for the Madhya Pradesh Road Development Corporation, this package widened and reconstructed two district-road sections under the State's MP District Road 11-Sector Projects programme (Package 2) — the Sirsod–Pkthhore road (MP-MDR-07-01) and the Nlarwar–Chitori to Amola road (MP-MDR-07-18). The works upgraded the existing alignments to a stronger, wider cross-section with rebuilt pavement, cross-drainage and road-safety systems, completed in 2020 at a contract value of ₹123.68 crore.",
+    scope: [
+      "Widening & reconstruction of Sirsod–Pkthhore Road (MP-MDR-07-01)",
+      "Widening & reconstruction of Nlarwar–Chitori to Amola Road (MP-MDR-07-18)",
+      "Pavement reconstruction and strengthening to IRC/MoRTH specs",
+      "Cross-drainage works, culverts and side drains",
+      "Road furniture, signage and safety systems",
+    ],
+    gallery: [
+      "/images/mp/2.jpeg",
+      "/images/mp/3.jpeg",
+      "/images/mp/4.jpeg",
+      "/images/mp/5.jpeg",
+      "/images/mp/6.jpeg",
+    ],
+    facts: [
+      { label: "State", value: "Madhya Pradesh" },
+      { label: "Authority", value: "MPRDC" },
+      { label: "Project Value", value: "₹123.68 Cr" },
+      { label: "Completed", value: "2020" },
+    ],
+    timeline: [
+      { phase: "Mobilise", label: "Survey, setting-out & site setup" },
+      { phase: "Earthwork", label: "Widening, formation & sub-grade" },
+      { phase: "Pavement", label: "Reconstruction & strengthening" },
+      { phase: "Surfacing", label: "Furniture, drainage & handover" },
     ],
   },
   "andaman-island-resort": {
