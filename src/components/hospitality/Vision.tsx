@@ -38,7 +38,7 @@ export default function Vision() {
           <div className="relative">
             <div className="relative aspect-[5/6] overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(6,38,47,0.5)]">
               <Image
-                src={hospitalityPage.gallery[0]}
+                src={v.image}
                 alt="Aerial view of the island estate"
                 fill
                 sizes="(max-width:1024px) 100vw, 45vw"

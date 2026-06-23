@@ -35,11 +35,16 @@ export default function Community() {
   return (
     <section
       id="community"
-      className="relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-ocean-deep via-[#07313c] to-[#06262f] py-28 md:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-linear-to-br from-[#063945] via-[#07313c] to-[#041c24] py-28 md:py-36"
     >
+      {/* layered radial wash for depth (kept on-palette: lagoon → aqua over ocean) */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_15%_0%,rgba(20,140,150,0.18),transparent_55%),radial-gradient(110%_90%_at_85%_100%,rgba(45,200,210,0.12),transparent_60%)]" />
       {/* ambient glows + tropical decor */}
-      <div className="pointer-events-none absolute -left-28 top-24 h-72 w-72 rounded-full bg-lagoon/10 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-28 bottom-24 h-72 w-72 rounded-full bg-aqua/10 blur-[120px]" />
+      <div className="anim-pulse-glow pointer-events-none absolute -left-28 top-24 h-72 w-72 rounded-full bg-lagoon/20 blur-[120px]" />
+      <div
+        className="anim-pulse-glow pointer-events-none absolute -right-28 bottom-24 h-72 w-72 rounded-full bg-aqua/15 blur-[120px]"
+        style={{ animationDelay: "-4.5s" }}
+      />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-aqua/30 to-transparent" />
       <LeafCluster className="absolute -left-8 bottom-0 z-0 text-lagoon/10" />
       <PalmFrond className="absolute -right-4 top-10 z-0 h-56 w-36 -scale-x-100 rotate-[-18deg] text-aqua/10 anim-sway-soft" />
@@ -70,11 +75,13 @@ export default function Community() {
                 alt="Aerial masterplan view of the 20-acre gated villa community"
                 fill
                 sizes="(max-width:1024px) 100vw, 45vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#06262f]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ocean-deep/85 via-ocean-deep/10 to-transparent" />
+              {/* inner sheen ring on hover */}
+              <div className="pointer-events-none absolute inset-0 rounded-4xl ring-1 ring-inset ring-aqua/0 transition-all duration-500 group-hover:ring-aqua/25" />
               {/* floating area tag */}
-              <div className="absolute bottom-5 left-5 rounded-2xl border border-white/15 bg-white/10 px-5 py-3 backdrop-blur-xl">
+              <div className="absolute bottom-5 left-5 rounded-2xl border border-white/15 bg-white/10 px-5 py-3 backdrop-blur-xl transition-transform duration-500 group-hover:-translate-y-1">
                 <div className="font-serif text-2xl text-foam">
                   20<span className="ml-0.5 text-[1rem] text-aqua">acres</span>
                 </div>
@@ -99,8 +106,8 @@ export default function Community() {
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {c.features.map((f, i) => (
                 <Reveal key={f} delay={0.05 + (i % 2) * 0.05}>
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 transition-colors hover:border-aqua/30 hover:bg-white/[0.07]">
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-aqua/15 text-aqua">
+                  <div className="group/feat flex items-center gap-3 rounded-2xl border border-white/10 bg-white/4 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-aqua/40 hover:bg-white/8 hover:shadow-[0_14px_34px_-22px_rgba(45,200,210,0.55)]">
+                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-aqua/15 text-aqua transition-colors duration-300 group-hover/feat:bg-aqua group-hover/feat:text-ocean-deep">
                       <svg
                         viewBox="0 0 16 16"
                         className="h-3.5 w-3.5"
@@ -126,10 +133,12 @@ export default function Community() {
         <div className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {c.stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
-              <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.05] p-7 text-center shadow-[0_24px_60px_-34px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-aqua/40 hover:bg-white/[0.08]">
+              <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-7 text-center shadow-[0_24px_60px_-34px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-aqua/40 hover:bg-white/8 hover:shadow-[0_34px_70px_-30px_rgba(45,200,210,0.35)]">
                 {/* sheen */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-60" />
-                <div className="relative font-serif text-4xl text-aqua md:text-5xl">
+                {/* top accent line, revealed on hover */}
+                <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-aqua/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="anim-text-shimmer relative bg-linear-to-r from-foam via-aqua to-lagoon bg-clip-text font-serif text-4xl text-transparent md:text-5xl">
                   {s.display ? (
                     s.display
                   ) : (
@@ -248,8 +257,13 @@ export default function Community() {
 
         {/* 5 — CTA ----------------------------------------------------------- */}
         <Reveal>
-          <div className="relative mt-20 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.02] to-transparent p-10 text-center backdrop-blur-xl md:p-16">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-aqua/10 blur-[100px]" />
+          <div className="relative mt-20 overflow-hidden rounded-4xl border border-white/10 bg-linear-to-br from-white/8 via-white/2 to-transparent p-10 text-center backdrop-blur-xl md:p-16">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-aqua/40 to-transparent" />
+            <div className="anim-pulse-glow pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-aqua/15 blur-[100px]" />
+            <div
+              className="anim-pulse-glow pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-lagoon/15 blur-[110px]"
+              style={{ animationDelay: "-4.5s" }}
+            />
             <h3 className="relative mx-auto max-w-2xl font-serif text-3xl leading-tight text-foam md:text-[2.6rem]">
               {c.cta.title}
             </h3>

@@ -559,6 +559,18 @@
 .anim-sway-soft { animation: sway-soft 8s ease-in-out infinite; transform-origin: bottom center; }
 .anim-bob { animation: bob 5s ease-in-out infinite; }
 .anim-spin-slow { animation: spin-slow 90s linear infinite; }
+.anim-pulse-glow { animation: pulse-glow 9s ease-in-out infinite; }
+
+/* slow drifting gradient sheen for clip-text headings/numbers */
+@keyframes text-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.anim-text-shimmer { background-size: 200% auto; animation: text-shimmer 6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-pulse-glow, .anim-text-shimmer { animation: none; }
+}
 
 /* ----------------------------------------------------------------------------
    Chairman message — internal scroll area (scrolls first, then chains to page)

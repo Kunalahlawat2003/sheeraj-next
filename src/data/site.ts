@@ -11,6 +11,7 @@ import andaman1 from "../../public/images/andaman/1.jpeg";
 import andaman2 from "../../public/images/andaman/2.jpeg";
 import andaman3 from "../../public/images/andaman/3.jpeg";
 import andaman5 from "../../public/images/andaman/5.png";
+import andamanVision from "../../public/images/andaman/vision.jpg";
 
 export const company = {
   name: "Sheeraj Projects",
@@ -173,7 +174,7 @@ export const hospitality = {
     { title: "Signature Experiences", blurb: "Overwater decks, infinity pools, wellness retreats.", icon: "sun" as IconName },
     { title: "Resilient Construction", blurb: "Coastal-grade structures built to marine durability standards.", icon: "shield" as IconName },
   ],
-  image:"/images/island-aerial2.jpg",
+  image:"/images/andaman/destination.jpg",
 };
 
 export type ProjectStatus = "Executed" | "Ongoing" | "Awarded";
@@ -416,6 +417,7 @@ export const hospitalityPage = {
     eyebrow: "The Vision",
     title: "We build places people dream of visiting — and never want to leave.",
     body: "At Sheeraj, every resort is envisioned as more than a destination. It is a carefully curated experience where architecture, nature, and hospitality come together effortlessly.",
+    image: andamanVision,
     points: [
       "Designed around nature, wellness, and relaxation",
       "Created for timeless elegance and enduring value",
