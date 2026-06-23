@@ -4,6 +4,14 @@
 //  Swap copy / numbers / image paths freely. Images live in /public/images.
 // ============================================================================
 
+// Static image imports — Next hashes the file CONTENTS, so replacing the file
+// busts the cache automatically (no stale optimized copy). Prefer this over a
+// bare "/images/..." string for any image you expect to swap out.
+import andaman1 from "../../public/images/andaman/1.jpeg";
+import andaman2 from "../../public/images/andaman/2.jpeg";
+import andaman3 from "../../public/images/andaman/3.jpeg";
+import andaman5 from "../../public/images/andaman/5.png";
+
 export const company = {
   name: "Sheeraj Projects",
   legalName: "Sheeraj Projects Private Limited",
@@ -48,9 +56,9 @@ export const nav: NavItem[] = [
 
 export const stats = [
   { value: 10, suffix: "+", label: "Years of engineering" },
-  { value: 120, suffix: "+", label: "Projects delivered" },
-  { value: 850, suffix: " km", label: "Highways & canals built" },
-  { value: 6, suffix: "", label: "States of operation" },
+  { value: 2, suffix: "+", label: "Projects delivered" },
+  { value: 97.59, suffix: " km", label: "Highways & canals built" },
+  { value: 5, suffix: "", label: "States of operation" },
 ];
 
 export type Service = {
@@ -435,9 +443,9 @@ export const hospitalityPage = {
     intro:
       "Sheeraj specializes in the development and construction of premium hospitality destinations. From beachfront villas and overwater experiences to iconic arrival spaces, every project is designed to blend seamlessly with its surroundings while meeting the highest standards of quality and craftsmanship.",
     items: [
-      { title: "Luxury Resort Development", blurb: "End-to-end development of world-class hospitality destinations.", image: "/images/andaman/1.jpeg" },
-      { title: "Construction & Project Execution", blurb: "Delivering complex resort projects with precision, quality, and efficiency.", image: "/images/andaman/2.jpeg" },
-      { title: "Destination Infrastructure", blurb: "Creating the infrastructure that transforms locations into thriving destinations.", image: "/images/andaman/3.jpeg" },
+      { title: "Luxury Resort Development", blurb: "End-to-end development of world-class hospitality destinations.", image: andaman1, fit: "contain" },
+      { title: "Construction & Project Execution", blurb: "Delivering complex resort projects with precision, quality, and efficiency.", image: andaman2, fit: "contain" },
+      { title: "Destination Infrastructure", blurb: "Creating the infrastructure that transforms locations into thriving destinations.", image: andaman3, fit: "contain" },
     ],
   },
   sustainability: {
@@ -506,6 +514,54 @@ export const hospitalityPage = {
       { value: 2, suffix: "", label: "Government-awarded projects" },
       { value: 3, suffix: " Yrs", label: "Time to first revenue" },
     ],
+  },
+  community: {
+    eyebrow: "Gated Villa Community",
+    title: "Get Into the Community",
+    intro:
+      "Experience a thoughtfully planned 20-acre gated villa community designed for luxury, privacy, and modern living.",
+    image: andaman5,
+    bodyTitle: "A Community Crafted Around Luxury Living",
+    body: "Spread across 20 acres of beautifully planned landscape, our gated villa community combines architectural elegance with open green spaces, premium amenities, and a secure environment. Every villa is positioned to maximize privacy while keeping residents connected to the heart of the community.",
+    features: [
+      "20 Acre Master-Planned Community",
+      "Premium Independent Villas",
+      "24×7 Gated Security",
+      "Landscaped Green Spaces",
+      "Clubhouse & Recreation Areas",
+      "Wide Internal Roads",
+      "Resort-Style Amenities",
+      "Sustainable Community Design",
+    ],
+    // Uniform shape (display wins over value) so the cards map cleanly.
+    stats: [
+      { value: 20, suffix: "", unit: "Acres", display: "", label: "Master Planned Development" },
+      { value: 100, suffix: "+", unit: "", display: "", label: "Luxury Villas" },
+      { value: 70, suffix: "%", unit: "", display: "", label: "Open Green Spaces" },
+      { value: 0, suffix: "", unit: "", display: "24/7", label: "Security & Surveillance" },
+    ],
+    plan: {
+      eyebrow: "Master Plan",
+      title: "The 20-Acre Community Layout",
+      image: andaman5,
+      // Index-matched to the pin coordinates in Community.tsx.
+      zones: [
+        "Arrival + Lobby",
+        "All-Day Dining",
+        "Pool / Cabana Pavilion",
+        "Garden Villas",
+        "Lagoon Villas",
+        "Sea View Villas",
+        "Presidential Villa",
+        "Spa / Wellness",
+      ],
+    },
+    cta: {
+      title: "Discover Your Place in the Community",
+      body: "Explore available villas, amenities, and the lifestyle designed around comfort, privacy, and connection.",
+      primary: { label: "Explore Villas", href: "#masterplan" },
+      secondary: { label: "View Master Plan", href: "#community-plan" },
+    },
   },
 };
 

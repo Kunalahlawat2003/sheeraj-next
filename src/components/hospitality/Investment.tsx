@@ -7,6 +7,7 @@ import Reveal from "@/components/ui/Reveal";
 import Counter from "@/components/ui/Counter";
 import { LeafCluster } from "./tropical";
 import ContactForm, { type FieldDef } from "@/components/ui/ContactForm";
+import { API_BASE } from "@/lib/api";
 import { company, hospitalityPage } from "@/data/site";
 
 const INVESTOR_FIELDS: FieldDef[] = [
@@ -110,6 +111,16 @@ export default function Investment() {
               submitLabel="Request investor deck"
               successTitle="Thank you."
               successBody="Our investment team will reach out with the confidential deck shortly."
+              endpoint={`${API_BASE}/contact-form-sheeraj-projects-investor`}
+              mapPayload={(d) => ({
+                name: d.name,
+                email: d.email,
+                phone: d.phone,
+                company: d.company || undefined,
+                areaOfInterest: d.interest || undefined,
+                ticketSize: d.ticket || undefined,
+                message: d.message || undefined,
+              })}
             />
           </Reveal>
         </div>

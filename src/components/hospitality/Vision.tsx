@@ -47,7 +47,7 @@ export default function Vision() {
             </div>
             {/* floating tag */}
             <div className="absolute -bottom-6 -left-4 rounded-2xl bg-white/80 px-6 py-4 backdrop-blur shadow-xl sm:-left-8">
-              <div className="font-serif text-3xl text-ocean-deep">40<span className="text-lagoon">ac</span></div>
+              <div className="font-serif text-3xl text-ocean-deep">31.18<span className="text-lagoon">ac</span></div>
               <div className="mt-1 text-xs uppercase tracking-wider text-ocean/80">Pristine island estate</div>
             </div>
           </div>

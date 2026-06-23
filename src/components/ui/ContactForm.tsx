@@ -113,18 +113,27 @@ export default function ContactForm({
   submitLabel = "Send message",
   successTitle = "Message received.",
   successBody = "Thank you — our team will be in touch within one business day.",
+  endpoint,
+  mapPayload,
 }: {
   fields?: FieldDef[];
   accent?: "gold" | "lagoon";
   submitLabel?: string;
   successTitle?: string;
   successBody?: string;
+  /** When set, the form POSTs JSON here. Without it, the form just shows the
+   *  success state (used by the general contact forms that have no backend yet). */
+  endpoint?: string;
+  /** Maps the raw field state to the backend's expected JSON keys. */
+  mapPayload?: (data: Record<string, string>) => Record<string, unknown>;
 }) {
   const [data, setData] = useState<Record<string, string>>(() =>
     Object.fromEntries(fields.map((f) => [f.name, f.options ? f.options[0] : ""]))
   );
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const accentRing =
     accent === "lagoon"
@@ -136,6 +145,7 @@ export default function ContactForm({
   const update = (k: string, v: string) => {
     setData((d) => ({ ...d, [k]: v }));
     if (errors[k]) setErrors((e) => ({ ...e, [k]: "" }));
+    if (apiError) setApiError(null);
   };
 
   const validate = () => {
@@ -150,9 +160,40 @@ export default function ContactForm({
     return Object.keys(e).length === 0;
   };
 
-  const submit = (ev: React.FormEvent) => {
+  const submit = async (ev: React.FormEvent) => {
     ev.preventDefault();
-    if (validate()) setSent(true);
+    if (!validate()) return;
+
+    // No backend wired for this form — keep the existing optimistic success.
+    if (!endpoint) {
+      setSent(true);
+      return;
+    }
+
+    setLoading(true);
+    setApiError(null);
+    try {
+      const payload = mapPayload ? mapPayload(data) : data;
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
+        message?: string;
+      };
+      if (!res.ok || !result.success) {
+        throw new Error(result.message || "Something went wrong. Please try again.");
+      }
+      setSent(true);
+    } catch (err) {
+      setApiError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -191,12 +232,28 @@ export default function ContactForm({
             {fields.map((f) => (
               <Field key={f.name} def={f} value={data[f.name] ?? ""} onChange={update} error={errors[f.name]} accentRing={accentRing} accentText={accentText} />
             ))}
+
+            <AnimatePresence>
+              {apiError && (
+                <motion.p
+                  key="api-error"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="rounded-lg bg-red-500/10 px-4 py-2.5 text-sm text-red-400 sm:col-span-2"
+                >
+                  {apiError}
+                </motion.p>
+              )}
+            </AnimatePresence>
+
             <div className="mt-2 sm:col-span-2">
               <MagneticButton
                 type="submit"
+                disabled={loading}
                 className={`w-full justify-center ${accent === "lagoon" ? "!bg-gradient-to-r !from-aqua !to-lagoon !text-[#06262f]" : ""}`}
               >
-                {submitLabel}
+                {loading ? "Sending…" : submitLabel}
               </MagneticButton>
             </div>
           </motion.form>

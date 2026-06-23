@@ -18,6 +18,9 @@ export default function Counter({
   const [display, setDisplay] = useState(0);
   const started = useRef(false);
 
+  // Preserve fractional precision (e.g. 7.59) through the count-up animation.
+  const decimals = Number.isInteger(value) ? 0 : value.toString().split(".")[1].length;
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -36,7 +39,7 @@ export default function Counter({
         const tick = (now: number) => {
           const p = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - p, 3);
-          setDisplay(Math.round(value * eased));
+          setDisplay(p < 1 ? Number((value * eased).toFixed(decimals)) : value);
           if (p < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -46,11 +49,16 @@ export default function Counter({
 
     io.observe(el);
     return () => io.disconnect();
-  }, [value, duration]);
+  }, [value, duration, decimals]);
 
   return (
     <span ref={ref}>
-      {format ? display.toLocaleString("en-IN") : display}
+      {format
+        ? display.toLocaleString("en-IN", {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals,
+          })
+        : display}
       {suffix}
     </span>
   );
