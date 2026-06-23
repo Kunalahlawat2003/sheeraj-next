@@ -39,11 +39,11 @@ const ACCENTS: Record<ProjectStatus, Accent> = {
   },
 };
 
-const GROUPS: { status: ProjectStatus; label: string; grid: string; aspect: string; sizes: string }[] = [
-  { status: "Executed", label: "Executed", grid: "sm:grid-cols-2", aspect: "aspect-16/10", sizes: "(max-width:640px) 100vw, (min-width:1344px) 672px, 50vw" },
-  { status: "Ongoing", label: "Ongoing", grid: "sm:grid-cols-2 lg:grid-cols-3", aspect: "aspect-4/3", sizes: "(max-width:640px) 100vw, (max-width:1024px) 50vw, (min-width:1344px) 448px, 33vw" },
+const GROUPS: { status: ProjectStatus; label: string; grid: string; aspect: string; sizes: string; compact?: boolean }[] = [
+  { status: "Executed", label: "Executed", grid: "sm:grid-cols-2", aspect: "aspect-16/10", sizes: "(max-width:640px) 100vw, (min-width:1344px) 672px, 50vw", compact: true },
+  { status: "Ongoing", label: "Ongoing", grid: "sm:grid-cols-2 lg:grid-cols-3", aspect: "aspect-4/3", sizes: "(max-width:640px) 100vw, (max-width:1024px) 50vw, (min-width:1344px) 448px, 33vw", compact: true },
   // narrow 4-col cards → portrait at lg so the long titles have room
-  { status: "Awarded", label: "Awarded", grid: "sm:grid-cols-2 lg:grid-cols-4", aspect: "aspect-4/3 lg:aspect-3/4", sizes: "(max-width:640px) 100vw, (max-width:1024px) 50vw, (min-width:1344px) 336px, 25vw" },
+  { status: "Awarded", label: "Awarded", grid: "sm:grid-cols-2 lg:grid-cols-4", aspect: "aspect-4/3 lg:aspect-3/4", sizes: "(max-width:640px) 100vw, (max-width:1024px) 50vw, (min-width:1344px) 336px, 25vw", compact: true },
 ];
 
 function StatusPill({ status }: { status: ProjectStatus }) {
@@ -58,7 +58,7 @@ function StatusPill({ status }: { status: ProjectStatus }) {
   );
 }
 
-function ProjectCard({ p, aspect, sizes }: { p: Project; aspect: string; sizes: string }) {
+function ProjectCard({ p, aspect, sizes, compact = false }: { p: Project; aspect: string; sizes: string; compact?: boolean }) {
   const a = ACCENTS[p.status];
   return (
     <a
@@ -79,16 +79,45 @@ function ProjectCard({ p, aspect, sizes }: { p: Project; aspect: string; sizes: 
         <div className={`pointer-events-none absolute inset-3 rounded-2xl ring-1 ring-transparent transition-all duration-500 ${a.ring}`} />
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+      {/*
+        compact (Awarded only): at lg (1024 px — Nest Hub & iPad Pro) the cards become
+        4 narrow portrait columns, so we shrink text/padding ONLY at lg and restore at xl.
+        Every other breakpoint uses the exact same values as non-compact cards.
+      */}
+      <div className={`absolute inset-x-0 bottom-0 ${compact ? "p-5 md:p-6 lg:p-3 xl:p-6" : "p-5 md:p-6"}`}>
         <div className="flex flex-wrap items-center gap-2.5">
-          <span className={`text-[0.68rem] uppercase tracking-[0.2em] ${a.text}`}>{p.category}</span>
+          <span
+            className={`uppercase ${
+              compact
+                ? "text-[0.68rem] tracking-[0.2em] lg:text-[0.5rem] lg:tracking-[0.12em] xl:text-[0.68rem] xl:tracking-[0.2em]"
+                : "text-[0.68rem] tracking-[0.2em]"
+            } ${a.text}`}
+          >
+            {p.category}
+          </span>
           <StatusPill status={p.status} />
         </div>
-        <h3 className="mt-2.5 font-serif text-xl tracking-tight md:text-2xl">{p.name}</h3>
-        <div className="mt-2 flex items-center gap-3 text-xs text-mist">
-          <span>{p.location}</span>
-          <span className="h-1 w-1 rounded-full bg-mist/50" />
-          <span>{p.year}</span>
+
+        <h3
+          className={`font-serif tracking-tight ${
+            compact
+              ? "mt-2.5 text-xl md:text-2xl lg:mt-1.5 lg:text-sm xl:mt-2.5 xl:text-2xl"
+              : "mt-2.5 text-xl md:text-2xl"
+          }`}
+        >
+          {p.name}
+        </h3>
+
+        <div
+          className={`flex flex-wrap items-center gap-x-2 gap-y-0.5 text-mist ${
+            compact
+              ? "mt-2 text-xs lg:mt-1 lg:text-[0.6rem] xl:mt-2 xl:text-xs"
+              : "mt-2 text-xs"
+          }`}
+        >
+          <span className="leading-snug">{p.location}</span>
+          <span className="h-1 w-1 shrink-0 rounded-full bg-mist/50" />
+          <span className="leading-snug">{p.year}</span>
         </div>
       </div>
     </a>
@@ -141,7 +170,7 @@ export default function Projects() {
                 <div className={`grid grid-cols-1 gap-5 ${group.grid}`}>
                   {items.map((p, i) => (
                     <Reveal key={p.name} delay={i * 0.06}>
-                      <ProjectCard p={p} aspect={group.aspect} sizes={group.sizes} />
+                      <ProjectCard p={p} aspect={group.aspect} sizes={group.sizes} compact={group.compact} />
                     </Reveal>
                   ))}
                 </div>
