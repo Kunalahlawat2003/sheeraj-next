@@ -10,7 +10,7 @@ import { hospitalityPage } from "@/data/site";
 export default function Sustainability() {
   const s = hospitalityPage.sustainability;
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-ocean-deep via-[#0a3a36] to-[#1a2f33] py-28 md:py-36">
+    <section className="relative overflow-hidden bg-linear-to-b from-ocean-deep via-[#0a3a36] to-[#1a2f33] py-20 sm:py-24 md:py-36">
       {/* sunset wash */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-coral/40 to-transparent" />
       <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-coral/10 blur-[120px]" />

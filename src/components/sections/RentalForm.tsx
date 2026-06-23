@@ -176,11 +176,11 @@ function RentalFormInner() {
   };
 
   return (
-    <section id="rental" className="relative scroll-mt-24 py-28 md:py-36">
-      <div className="container-x grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+    <section id="rental" className="relative scroll-mt-24 py-20 sm:py-24 md:py-28 lg:py-36">
+      <div className="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <span className="eyebrow">Plant &amp; Machinery</span>
-          <h2 className="mt-5 font-serif text-4xl leading-tight tracking-tight md:text-5xl">
+          <h2 className="mt-5 font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">
             Rent from India&apos;s most{" "}
             <span className="text-gold-gradient italic">capable fleet.</span>
           </h2>
@@ -202,7 +202,7 @@ function RentalFormInner() {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="glass relative overflow-hidden rounded-3xl p-7 md:p-9">
+          <div className="glass relative overflow-hidden rounded-3xl p-6 sm:p-7 md:p-9">
             <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold/10 blur-3xl" />
 
             <AnimatePresence mode="wait">

@@ -9,7 +9,7 @@ import { hospitalityPage } from "@/data/site";
 export default function Vision() {
   const v = hospitalityPage.vision;
   return (
-    <section className="relative overflow-hidden bg-cream py-28 text-ocean-deep md:py-36">
+    <section className="relative overflow-hidden bg-cream py-20 text-ocean-deep sm:py-24 md:py-36">
       {/* faint palm watermark */}
       <div className="pointer-events-none absolute -right-10 top-10 z-0 text-ocean-deep/[0.05]">
         <PalmTree className="h-80 w-80" />
@@ -17,7 +17,7 @@ export default function Vision() {
       <PalmFrond className="pointer-events-none absolute -left-6 bottom-0 z-0 h-56 w-36 rotate-[15deg] text-[#0e463f]/10 anim-sway-soft" />
       <Hibiscus className="pointer-events-none absolute left-[42%] top-16 z-0 h-8 w-8 text-coral/40 anim-bob" />
 
-      <div className="container-x relative z-10 grid items-center gap-16 lg:grid-cols-2">
+      <div className="container-x relative z-10 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div>
           <HospHeading eyebrow={v.eyebrow} title={v.title} intro={v.body} onLight />
           <ul className="mt-9 space-y-4">

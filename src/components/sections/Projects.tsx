@@ -39,11 +39,11 @@ const ACCENTS: Record<ProjectStatus, Accent> = {
   },
 };
 
-const GROUPS: { status: ProjectStatus; label: string; grid: string; aspect: string }[] = [
-  { status: "Executed", label: "Executed", grid: "sm:grid-cols-2", aspect: "aspect-16/10" },
-  { status: "Ongoing", label: "Ongoing", grid: "sm:grid-cols-2 lg:grid-cols-3", aspect: "aspect-4/3" },
+const GROUPS: { status: ProjectStatus; label: string; grid: string; aspect: string; sizes: string }[] = [
+  { status: "Executed", label: "Executed", grid: "sm:grid-cols-2", aspect: "aspect-16/10", sizes: "(max-width:640px) 100vw, (min-width:1344px) 672px, 50vw" },
+  { status: "Ongoing", label: "Ongoing", grid: "sm:grid-cols-2 lg:grid-cols-3", aspect: "aspect-4/3", sizes: "(max-width:640px) 100vw, (max-width:1024px) 50vw, (min-width:1344px) 448px, 33vw" },
   // narrow 4-col cards → portrait at lg so the long titles have room
-  { status: "Awarded", label: "Awarded", grid: "sm:grid-cols-2 lg:grid-cols-4", aspect: "aspect-4/3 lg:aspect-3/4" },
+  { status: "Awarded", label: "Awarded", grid: "sm:grid-cols-2 lg:grid-cols-4", aspect: "aspect-4/3 lg:aspect-3/4", sizes: "(max-width:640px) 100vw, (max-width:1024px) 50vw, (min-width:1344px) 336px, 25vw" },
 ];
 
 function StatusPill({ status }: { status: ProjectStatus }) {
@@ -58,7 +58,7 @@ function StatusPill({ status }: { status: ProjectStatus }) {
   );
 }
 
-function ProjectCard({ p, aspect }: { p: Project; aspect: string }) {
+function ProjectCard({ p, aspect, sizes }: { p: Project; aspect: string; sizes: string }) {
   const a = ACCENTS[p.status];
   return (
     <a
@@ -71,7 +71,7 @@ function ProjectCard({ p, aspect }: { p: Project; aspect: string }) {
           src={p.image}
           alt={p.name}
           fill
-          sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 30vw"
+          sizes={sizes}
           className="object-cover transition-transform duration-[1.2s] ease-out-expo group-hover:scale-110"
         />
         {/* fade for text legibility (works in both themes — fades to page color) */}
@@ -97,9 +97,9 @@ function ProjectCard({ p, aspect }: { p: Project; aspect: string }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative scroll-mt-24 py-28 md:py-36">
+    <section id="projects" className="relative scroll-mt-24 py-20 sm:py-28 md:py-36">
       <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-8">
+        <div className="flex flex-wrap items-end justify-between gap-6 sm:gap-8">
           <SectionHeading
             eyebrow="Selected Work"
             title={
@@ -115,7 +115,7 @@ export default function Projects() {
           </Reveal>
         </div>
 
-        <div className="mt-16 space-y-16">
+        <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-16">
           {GROUPS.map((group) => {
             const items = projects.filter((p) => p.status === group.status);
             if (items.length === 0) return null;
@@ -141,7 +141,7 @@ export default function Projects() {
                 <div className={`grid grid-cols-1 gap-5 ${group.grid}`}>
                   {items.map((p, i) => (
                     <Reveal key={p.name} delay={i * 0.06}>
-                      <ProjectCard p={p} aspect={group.aspect} />
+                      <ProjectCard p={p} aspect={group.aspect} sizes={group.sizes} />
                     </Reveal>
                   ))}
                 </div>

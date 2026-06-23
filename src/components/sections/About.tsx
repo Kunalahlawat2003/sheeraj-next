@@ -9,8 +9,8 @@ import { aboutHighlights, chairman, media, stats } from "@/data/site";
 
 export default function About() {
   return (
-    <section id="about" className="relative scroll-mt-24 py-28 md:py-36">
-      <div className="container-x grid items-center gap-16 lg:grid-cols-2">
+    <section id="about" className="relative scroll-mt-24 py-20 sm:py-24 md:py-36">
+      <div className="container-x grid items-center gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-16">
         {/* left — copy */}
         <div>
           <SectionHeading
@@ -26,7 +26,7 @@ export default function About() {
             intro="For a decade, we have engineered the heavy highways, vital waterways, and ring roads that connect mainland India and its islands. Today, we bring that exact same engineering precision to crafting premium destinations that redefine modern hospitality."
           />
 
-          <ul className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+          <ul className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:mt-10">
             {aboutHighlights.map((h, i) => (
               <Reveal key={h} delay={i * 0.06}>
                 <li className="flex items-start gap-3 text-sm text-silver/85">
@@ -40,10 +40,10 @@ export default function About() {
           </ul>
 
           {/* stats */}
-          <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border [border-color:var(--ui-border)] [background-color:var(--ui-surface-sm)] sm:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border [border-color:var(--ui-border)] [background-color:var(--ui-surface-sm)] sm:grid-cols-4 lg:mt-12">
             {stats.map((s) => (
-              <div key={s.label} className="bg-ink/80 px-5 py-6">
-                <div className="font-serif text-3xl text-gold-gradient">
+              <div key={s.label} className="bg-ink/80 px-4 py-5 sm:px-5 sm:py-6">
+                <div className="font-serif text-2xl text-gold-gradient sm:text-3xl">
                   <Counter value={s.value} suffix={s.suffix} />
                 </div>
                 <div className="mt-2 text-[0.72rem] uppercase leading-snug tracking-wider text-mist">
@@ -71,8 +71,8 @@ export default function About() {
             </TiltCard>
 
             {/* floating quote */}
-            <div className="glass anim-float absolute -bottom-8 -left-4 max-w-xs rounded-2xl p-6 sm:-left-10">
-              <p className="font-serif text-lg italic leading-snug text-silver">
+            <div className="glass anim-float absolute -bottom-8 -left-4 max-w-[16rem] rounded-2xl p-5 sm:-left-10 sm:max-w-xs sm:p-6">
+              <p className="font-serif text-base italic leading-snug text-silver sm:text-lg">
                 “{chairman.shortQuote}”
               </p>
             </div>

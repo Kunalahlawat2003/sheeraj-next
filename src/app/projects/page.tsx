@@ -23,7 +23,7 @@ export default function ProjectsPage() {
         <MagneticButton href="/contact">Start a project</MagneticButton>
       </PageHero>
 
-      <section className="pb-28">
+      <section className="pb-16 sm:pb-24 lg:pb-28">
         <div className="container-x">
           <ProjectsExplorer />
         </div>

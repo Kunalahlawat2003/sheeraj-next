@@ -95,12 +95,12 @@ export default function ResortBuild() {
   return (
     <section ref={wrap} id="construction" className="relative bg-[#04222a]" style={{ height: "360vh" }}>
       <div ref={pin} className="sticky top-0 flex h-svh flex-col overflow-hidden">
-        <div className="container-x pt-24">
+        <div className="container-x pt-16 sm:pt-20 lg:pt-24">
           <span className="inline-flex items-center gap-3 font-display text-[0.72rem] font-medium uppercase tracking-[0.32em] text-lagoon">
             <span className="h-px w-7 bg-linear-to-r from-transparent to-lagoon" />
             {c.eyebrow}
           </span>
-          <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight text-foam md:text-5xl">
+          <h2 className="mt-3 max-w-2xl font-serif text-3xl leading-tight text-foam sm:text-4xl md:text-5xl">
             Watch paradise{" "}
             <span className="bg-linear-to-r from-aqua via-sand to-coral bg-clip-text italic text-transparent">
               being built.

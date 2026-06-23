@@ -31,7 +31,7 @@ export default function PageHero({
   };
 
   return (
-    <section className="relative overflow-hidden pt-36 pb-16 md:pt-44 md:pb-24">
+    <section className="relative overflow-hidden pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-44 md:pb-24">
       {/* background */}
       {image && (
         <div className="absolute inset-0">
@@ -68,11 +68,11 @@ export default function PageHero({
             {eyebrow}
           </motion.span>
         )}
-        <motion.h1 custom={2} variants={v} initial="hidden" animate="show" className="mt-5 font-serif text-5xl leading-[1.02] tracking-tight text-balance sm:text-6xl md:text-7xl">
+        <motion.h1 custom={2} variants={v} initial="hidden" animate="show" className="mt-5 font-serif text-[2.5rem] leading-[1.05] tracking-tight text-balance sm:text-6xl sm:leading-[1.02] md:text-7xl">
           {title}
         </motion.h1>
         {subtitle && (
-          <motion.p custom={3} variants={v} initial="hidden" animate="show" className={`mt-6 max-w-2xl text-lg leading-relaxed text-mist ${center ? "mx-auto" : ""}`}>
+          <motion.p custom={3} variants={v} initial="hidden" animate="show" className={`mt-5 max-w-2xl text-base leading-relaxed text-mist sm:mt-6 sm:text-lg ${center ? "mx-auto" : ""}`}>
             {subtitle}
           </motion.p>
         )}

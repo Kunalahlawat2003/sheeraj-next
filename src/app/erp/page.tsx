@@ -25,17 +25,17 @@ export default function ErpPage() {
         <div className="flex justify-center">
           <Logo />
         </div>
-        <span className="eyebrow mt-10 justify-center">Internal Portal</span>
-        <h1 className="mt-5 font-serif text-5xl tracking-tight md:text-6xl">
+        <span className="eyebrow mt-7 justify-center sm:mt-10">Internal Portal</span>
+        <h1 className="mt-4 font-serif text-4xl tracking-tight sm:mt-5 sm:text-5xl md:text-6xl">
           ERP is <span className="text-gold-gradient italic">coming soon.</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-md text-mist">
+        <p className="mx-auto mt-4 max-w-md text-mist sm:mt-6">
           Our project-controls and resource-planning portal is being built. Check
           back shortly — or reach the team in the meantime.
         </p>
         <Link
           href="/"
-          className="btn btn-ghost mt-10 inline-flex"
+          className="btn btn-ghost mt-7 inline-flex sm:mt-10"
         >
           ← Back to home
         </Link>

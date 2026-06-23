@@ -54,7 +54,7 @@ export default function Hero() {
       <div className="absolute inset-0 [background:linear-gradient(to_top,var(--color-base)_0%,color-mix(in_oklab,var(--color-base)_40%,transparent)_20%,transparent_42%)]" />
 
       {/* content */}
-      <div className="on-media container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-28">
+      <div className="on-media container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-24 sm:pt-28">
         <motion.span
           custom={0}
           variants={v}
@@ -70,7 +70,7 @@ export default function Hero() {
           variants={v}
           initial="hidden"
           animate={show}
-          className="mt-6 max-w-5xl font-serif text-[3.1rem] font-medium leading-[0.98] tracking-tight text-balance text-white! filter-[drop-shadow(var(--on-media-shadow))] sm:text-7xl lg:text-[5.6rem]"
+          className="mt-5 max-w-5xl font-serif text-[2.6rem] font-medium leading-[1.02] tracking-tight text-balance text-white! filter-[drop-shadow(var(--on-media-shadow))] sm:mt-6 sm:text-6xl sm:leading-[0.98] lg:text-[5.6rem]"
         >
           Building Tomorrow&apos;s{" "}
           <span className="text-gold-gradient italic">Infrastructure.</span>
@@ -81,7 +81,7 @@ export default function Hero() {
           variants={v}
           initial="hidden"
           animate={show}
-          className="mt-7 max-w-xl text-lg leading-relaxed text-white/80"
+          className="mt-6 max-w-xl text-[1rem] leading-relaxed text-white/80 sm:mt-7 sm:text-lg"
         >
           From national highways and urban ring roads to complex waterways, we build the critical infrastructure shaping the future of mainland India and its islands.
         </motion.p>
@@ -91,7 +91,7 @@ export default function Hero() {
           variants={v}
           initial="hidden"
           animate={show}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          className="mt-7 flex flex-wrap items-center gap-4 sm:mt-10"
         >
           <MagneticButton href="/#projects">View Infrastructure Portfolio</MagneticButton>
         </motion.div>
@@ -102,7 +102,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: ready ? 1 : 0 }}
         transition={{ delay: 1, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex"
       >
         <span className="font-display text-[0.6rem] uppercase tracking-[0.4em] text-mist">
           Scroll

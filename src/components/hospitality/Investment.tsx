@@ -25,7 +25,7 @@ export default function Investment() {
   return (
     <section
       id="invest"
-      className="relative scroll-mt-24 overflow-hidden bg-[#06262f] py-28 md:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-[#06262f] py-20 sm:py-24 md:py-36"
     >
       {/* faded island backdrop */}
       <Image

@@ -8,7 +8,7 @@ import { services } from "@/data/site";
 
 export default function Services() {
   return (
-    <section id="services" className="relative scroll-mt-24 py-28 md:py-36">
+    <section id="services" className="relative scroll-mt-24 py-20 sm:py-28 md:py-36">
       {/* faint grid backdrop */}
       <div
         aria-hidden
@@ -33,7 +33,7 @@ export default function Services() {
           intro="Six disciplines, one engineering culture — delivered end-to-end with our own teams and fleet."
         />
 
-        <div className="mt-16 grid auto-rows-[minmax(0,1fr)] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid auto-rows-[minmax(0,1fr)] grid-cols-1 gap-5 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
             <Reveal
               key={s.key}
@@ -41,7 +41,7 @@ export default function Services() {
               className={s.span === "wide" ? "lg:col-span-2" : ""}
             >
               <TiltCard max={6} className="h-full rounded-[1.25rem]">
-                <div className="card-border flex h-full min-h-[15rem] flex-col justify-between p-7">
+                <div className="card-border flex h-full min-h-[15rem] flex-col justify-between p-6 sm:p-7">
                   <div className="flex items-start justify-between">
                     <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-gold/25 bg-gradient-to-b from-gold/10 to-transparent text-gold">
                       <Icon name={s.icon} />

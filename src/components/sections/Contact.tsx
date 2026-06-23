@@ -25,7 +25,7 @@ function Pin({ x, y, label, delay = 0 }: { x: string; y: string; label: string; 
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative scroll-mt-24 py-28 md:py-36">
+    <section id="contact" className="relative scroll-mt-24 py-20 sm:py-24 md:py-36">
       {/* gradient + particles */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-1/4 top-0 h-72 w-72 rounded-full bg-gold/8 blur-[120px]" />
@@ -41,7 +41,7 @@ export default function Contact() {
         ))}
       </div>
 
-      <div className="container-x relative grid items-center gap-14 lg:grid-cols-2">
+      <div className="container-x relative grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
         <div>
           <SectionHeading
             eyebrow="Get In Touch"
@@ -54,7 +54,7 @@ export default function Contact() {
             intro={contact.intro}
           />
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2">
             {contact.offices.map((o) => (
               <Reveal key={o.label}>
                 <div className="glass rounded-2xl p-5">

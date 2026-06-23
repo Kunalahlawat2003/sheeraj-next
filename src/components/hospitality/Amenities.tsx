@@ -18,14 +18,14 @@ const spans = [
 export default function Amenities() {
   const a = hospitalityPage.amenities;
   return (
-    <section className="relative overflow-hidden bg-cream py-28 text-ocean-deep md:py-36">
+    <section className="relative overflow-hidden bg-cream py-20 text-ocean-deep sm:py-24 md:py-28 lg:py-36">
       <LeafCluster flip className="absolute -right-8 bottom-0 z-0 text-[#0e463f]/10" />
       <LeafCluster className="absolute -left-10 top-2 z-0 h-40 scale-90 text-[#0e463f]/[0.07]" />
 
       <div className="container-x relative z-10">
-        <HospHeading eyebrow={a.eyebrow} title={a.title} align="center" className="mb-16" onLight />
+        <HospHeading eyebrow={a.eyebrow} title={a.title} align="center" className="mb-10 sm:mb-12 lg:mb-16" onLight />
 
-        <div className="grid auto-rows-[13rem] grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid auto-rows-[10rem] grid-cols-2 gap-3 sm:auto-rows-[13rem] sm:gap-4 md:grid-cols-4">
           {a.items.map((item, i) => (
             <Reveal key={item.title} delay={(i % 3) * 0.06} className={spans[i] ?? ""}>
               <div className="group relative h-full w-full overflow-hidden rounded-2xl shadow-[0_24px_50px_-32px_rgba(6,38,47,0.5)]">

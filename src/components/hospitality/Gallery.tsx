@@ -19,7 +19,7 @@ export default function Gallery() {
   const imgs = hospitalityPage.gallery;
   const half = Math.ceil(imgs.length / 2);
   return (
-    <section className="relative overflow-hidden bg-[#04222a] py-28 md:py-32">
+    <section className="relative overflow-hidden bg-[#04222a] py-20 sm:py-24 md:py-32">
       <LeafCluster className="absolute -left-8 top-2 z-0 text-aqua/10" />
       <LeafCluster flip className="absolute -right-8 top-2 z-0 text-lagoon/10" />
 

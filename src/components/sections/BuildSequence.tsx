@@ -83,9 +83,9 @@ export default function BuildSequence() {
         className="sticky top-0 flex h-[100svh] flex-col overflow-hidden"
       >
         {/* heading */}
-        <div className="container-x pt-24">
+        <div className="container-x pt-16 sm:pt-20 lg:pt-24">
           <span className="eyebrow">The Process</span>
-          <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight md:text-5xl">
+          <h2 className="mt-4 max-w-2xl font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
             Watch it{" "}
             <span className="text-gold-gradient italic">build itself.</span>
           </h2>
@@ -93,16 +93,16 @@ export default function BuildSequence() {
 
         {/* scene */}
         <div className="relative flex flex-1 items-center">
-          <div className="container-x grid w-full items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="container-x grid w-full items-center gap-6 sm:gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
             {/* stage readout */}
-            <div className="relative h-44">
+            <div className="relative h-40 sm:h-44">
               {buildSequence.map((s) => (
                 <div
                   key={s.no}
                   className="bs-stage absolute inset-0 opacity-0"
                 >
-                  <div className="font-serif text-7xl [color:var(--ui-ghost)]">{s.no}</div>
-                  <h3 className="-mt-8 font-serif text-3xl text-silver">
+                  <div className="font-serif text-6xl [color:var(--ui-ghost)] sm:text-7xl">{s.no}</div>
+                  <h3 className="-mt-6 font-serif text-2xl text-silver sm:-mt-8 sm:text-3xl">
                     {s.title}
                   </h3>
                   <p className="mt-3 max-w-sm text-sm leading-relaxed text-mist">

@@ -16,7 +16,7 @@ export default function Masterplan() {
   return (
     <section
       id="masterplan"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-ocean-deep via-[#072e38] to-ocean-deep py-28 md:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-ocean-deep via-[#072e38] to-ocean-deep py-20 md:py-28 lg:py-36"
     >
       {/* tropical decor */}
       <LeafCluster flip className="absolute -right-6 top-6 z-0 text-lagoon/10" />

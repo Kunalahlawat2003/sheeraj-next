@@ -8,12 +8,12 @@ import { hospitalityPage } from "@/data/site";
 export default function Expansion() {
   const e = hospitalityPage.expansion;
   return (
-    <section className="relative overflow-hidden bg-shell py-28 text-ocean-deep md:py-36">
+    <section className="relative overflow-hidden bg-shell py-20 text-ocean-deep sm:py-24 md:py-36">
       <LeafCluster flip className="absolute -right-8 top-2 z-0 text-lagoon/12" />
       <Hibiscus className="absolute left-[6%] bottom-16 z-0 h-9 w-9 text-coral/45 anim-bob" />
 
       <div className="container-x relative z-10">
-        <HospHeading eyebrow={e.eyebrow} title={e.title} className="mb-16" onLight />
+        <HospHeading eyebrow={e.eyebrow} title={e.title} className="mb-12 sm:mb-16" onLight />
 
         <div className="relative grid gap-10 md:grid-cols-2">
           {/* connector line */}

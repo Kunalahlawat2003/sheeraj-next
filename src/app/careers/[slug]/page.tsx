@@ -41,9 +41,9 @@ export default async function JobDetailPage({
   if (!job) notFound();
 
   return (
-    <section className="pt-36 pb-24 md:pt-44 md:pb-32">
+    <section className="pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-44 md:pb-32">
       <div className="container-x">
-        <nav className="mb-8 flex items-center gap-2 text-xs text-mist">
+        <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-mist">
           <Link href="/" className="hover:text-gold">Home</Link>
           <span className="text-faint">/</span>
           <Link href="/careers" className="hover:text-gold">Careers</Link>
@@ -51,12 +51,12 @@ export default async function JobDetailPage({
           <span className="text-silver">{job.title}</span>
         </nav>
 
-        <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr]">
+        <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:gap-12">
           {/* main */}
           <Reveal>
             <div>
               <span className="eyebrow">{job.category}</span>
-              <h1 className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight md:text-5xl">
+              <h1 className="mt-4 font-serif text-3xl leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
                 {job.title}
               </h1>
               <div className="mt-4 flex flex-wrap gap-2 text-[0.7rem] uppercase tracking-wider">
@@ -67,12 +67,12 @@ export default async function JobDetailPage({
                   {job.workingStatus}
                 </span>
               </div>
-              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-silver/90">
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-silver/90 sm:mt-7 sm:text-lg">
                 {job.description}
               </p>
 
-              <div className="mt-10">
-                <h2 className="font-serif text-2xl">What you&apos;ll do</h2>
+              <div className="mt-8 lg:mt-10">
+                <h2 className="font-serif text-xl sm:text-2xl">What you&apos;ll do</h2>
                 <ul className="mt-5 space-y-3">
                   {job.Responsibilities.map((r) => (
                     <li key={r} className="flex items-start gap-3 text-sm text-mist">
@@ -83,8 +83,8 @@ export default async function JobDetailPage({
                 </ul>
               </div>
 
-              <div className="mt-10">
-                <h2 className="font-serif text-2xl">What you&apos;ll bring</h2>
+              <div className="mt-8 lg:mt-10">
+                <h2 className="font-serif text-xl sm:text-2xl">What you&apos;ll bring</h2>
                 <ul className="mt-5 space-y-3">
                   {job.Requirements.map((r) => (
                     <li key={r} className="flex items-start gap-3 text-sm text-mist">
@@ -95,7 +95,7 @@ export default async function JobDetailPage({
                 </ul>
               </div>
 
-              <div className="mt-12 lg:hidden">
+              <div className="mt-10 lg:hidden">
                 <ApplyModal jobTitle={job.title} jobId={job.JobID} />
               </div>
             </div>
@@ -104,7 +104,7 @@ export default async function JobDetailPage({
           {/* sidebar */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal delay={0.1}>
-              <div className="glass rounded-3xl p-7">
+              <div className="glass rounded-3xl p-6 sm:p-7">
                 <div className="text-[0.7rem] uppercase tracking-wider text-gold">
                   Role at a glance
                 </div>

@@ -20,10 +20,10 @@ export default function ContactPage() {
         subtitle={contact.intro}
       />
 
-      <section className="pb-28">
-        <div className="container-x grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+      <section className="pb-16 sm:pb-24 lg:pb-28">
+        <div className="container-x grid gap-8 sm:gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
           {/* details */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div className="grid gap-5 sm:grid-cols-2">
               {contact.offices.map((o) => (
                 <Reveal key={o.label}>
@@ -41,7 +41,7 @@ export default function ContactPage() {
                 <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="mt-1 block text-sm text-mist transition-colors hover:text-gold">{company.phone}</a>
                 <div className="mt-5 flex gap-3">
                   {Object.entries(company.social).map(([k, v]) => (
-                    <a key={k} href={v} className="flex h-9 w-9 items-center justify-center rounded-full border [border-color:var(--ui-border-md)] text-xs uppercase text-mist transition-colors hover:border-gold/60 hover:text-gold">
+                    <a key={k} href={v} className="flex h-10 w-10 items-center justify-center rounded-full border [border-color:var(--ui-border-md)] text-xs uppercase text-mist transition-colors hover:border-gold/60 hover:text-gold">
                       {k[0]}
                     </a>
                   ))}

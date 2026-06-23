@@ -26,13 +26,13 @@ export default function ServicesPage() {
         <MagneticButton href="/contact" variant="ghost">Discuss a project</MagneticButton>
       </PageHero>
 
-      <section className="pb-24 md:pb-32">
-        <div className="container-x space-y-20 md:space-y-28">
+      <section className="pb-20 md:pb-24 lg:pb-32">
+        <div className="container-x space-y-14 sm:space-y-20 md:space-y-28">
           {services.map((s, i) => {
             const detail = serviceDetail[s.key];
             const flip = i % 2 === 1;
             return (
-              <div key={s.key} className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <div key={s.key} className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
                 {/* media */}
                 <Reveal className={flip ? "lg:order-2" : ""}>
                   <TiltCard max={5} className="rounded-[1.75rem]">
@@ -73,9 +73,9 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="pb-28">
+      <section className="pb-20 md:pb-28">
         <div className="container-x">
-          <div className="glass relative overflow-hidden rounded-[2rem] px-8 py-14 text-center md:py-16">
+          <div className="glass relative overflow-hidden rounded-[2rem] px-6 py-12 text-center sm:px-8 md:py-16">
             <div className="pointer-events-none absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-gold/15 blur-3xl" />
             <h2 className="relative font-serif text-3xl tracking-tight md:text-4xl">Have a project in mind?</h2>
             <p className="relative mx-auto mt-4 max-w-md text-mist">Tell us the scope — we&apos;ll bring the engineering, the fleet and the discipline.</p>

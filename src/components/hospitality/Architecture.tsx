@@ -10,14 +10,14 @@ import { hospitalityPage } from "@/data/site";
 export default function Architecture() {
   const a = hospitalityPage.architecture;
   return (
-    <section className="relative overflow-hidden bg-shell py-28 text-ocean-deep md:py-36">
+    <section className="relative overflow-hidden bg-shell py-20 text-ocean-deep sm:py-24 md:py-36">
       {/* tropical decor */}
       <LeafCluster className="absolute -left-8 top-4 z-0 text-[#0e463f]/10" />
       <Hibiscus className="absolute right-[8%] top-24 z-0 h-10 w-10 text-coral/50 anim-bob" />
       <Hibiscus className="absolute right-[14%] top-40 z-0 h-7 w-7 text-lagoon/40" />
 
       <div className="container-x relative z-10">
-        <HospHeading eyebrow={a.eyebrow} title={a.title} intro={a.intro} onLight className="mb-16" />
+        <HospHeading eyebrow={a.eyebrow} title={a.title} intro={a.intro} onLight className="mb-10 sm:mb-12 md:mb-16" />
 
         <div className="grid gap-6 md:grid-cols-3">
           {a.items.map((item, i) => {

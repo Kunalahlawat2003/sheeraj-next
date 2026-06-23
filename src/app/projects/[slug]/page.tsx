@@ -44,7 +44,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   const completionLabel = project.status === "Executed" ? "Completed" : "Target Completion";
 
   return (
-    <main className="pt-32 md:pt-36">
+    <main className="pt-28 sm:pt-32 md:pt-36">
       {/* ── Document header: breadcrumb + identifying meta + title ──────── */}
       <header className="border-b [border-color:var(--ui-border)]">
         <div className="container-x pb-12 md:pb-16">
@@ -127,7 +127,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             Uses the purpose-built media-scrim + text-on-media system so the
             caption is guaranteed legible in BOTH light and dark themes. */}
         <Reveal delay={0.12}>
-          <div className="container-x pb-14 md:pb-20">
+          <div className="container-x pb-12 sm:pb-14 md:pb-20">
             <div className="media-scrim on-media relative aspect-[16/9] w-full overflow-hidden rounded-xl border [border-color:var(--ui-border-md)] md:aspect-[2.4/1]">
               <Image
                 src={project.image}
@@ -177,9 +177,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       )}
 
       {/* ── Overview (two columns) + sticky specification register ─────── */}
-      <section className="py-20 md:py-28">
+      <section className="py-16 sm:py-20 md:py-28">
         <div className="container-x">
-          <div className="grid gap-x-14 gap-y-14 lg:grid-cols-12 lg:gap-x-16">
+          <div className="grid gap-x-14 gap-y-10 sm:gap-y-14 lg:grid-cols-12 lg:gap-x-16">
             {/* Overview narrative + scope of work */}
             <div className="lg:col-span-7 xl:col-span-8">
               <Reveal>
@@ -192,7 +192,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               </Reveal>
 
               {detail?.scope && detail.scope.length > 0 && (
-                <div className="mt-12">
+                <div className="mt-10 sm:mt-12">
                   <Reveal>
                     <h2 className="font-display text-xs font-medium uppercase tracking-[0.24em] text-accent-gold-strong">
                       Scope of Work
@@ -256,7 +256,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
       {/* ── Gallery — mosaic: one large feature tile + supporting tiles ── */}
       {detail && detail.gallery.length > 0 && (
-        <section className="border-t [border-color:var(--ui-border)] bg-ink py-20 md:py-28">
+        <section className="border-t [border-color:var(--ui-border)] bg-ink py-16 sm:py-20 md:py-28">
           <div className="container-x">
             <Reveal>
               <div className="flex flex-wrap items-end justify-between gap-4">
@@ -297,7 +297,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
       {/* ── Construction timeline — ordered phase register ─────────────── */}
       {detail?.timeline && detail.timeline.length > 0 && (
-        <section className="border-t [border-color:var(--ui-border)] py-20 md:py-28">
+        <section className="border-t [border-color:var(--ui-border)] py-16 sm:py-20 md:py-28">
           <div className="container-x">
             <Reveal>
               <span className="eyebrow">Construction Sequence</span>
@@ -306,7 +306,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               </h2>
             </Reveal>
 
-            <div className="mt-12 overflow-hidden rounded-xl border [border-color:var(--ui-border-md)]">
+            <div className="mt-10 sm:mt-12 overflow-hidden rounded-xl border [border-color:var(--ui-border-md)]">
               {detail.timeline.map((t, i) => (
                 <Reveal key={t.phase} delay={i * 0.06}>
                   <div
@@ -335,7 +335,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       )}
 
       {/* ── Closing CTA — restrained, official sign-off ────────────────── */}
-      <section className="border-t [border-color:var(--ui-border)] bg-ink py-20 md:py-28">
+      <section className="border-t [border-color:var(--ui-border)] bg-ink py-16 sm:py-20 md:py-28">
         <div className="container-x">
           <Reveal>
             <div className="flex flex-col items-start justify-between gap-8 rounded-xl border [border-color:var(--ui-border-md)] [background-color:var(--ui-surface-xs)] p-8 md:flex-row md:items-center md:p-12">

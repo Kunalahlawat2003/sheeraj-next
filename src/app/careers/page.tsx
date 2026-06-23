@@ -42,11 +42,11 @@ export default function CareersPage() {
       </section>
 
       {/* openings */}
-      <section className="py-16 md:py-20">
+      <section className="py-12 sm:py-14 md:py-20">
         <div className="container-x">
-          <div className="mb-10">
+          <div className="mb-8 md:mb-10">
             <span className="eyebrow">Open Roles</span>
-            <h2 className="mt-4 font-serif text-3xl tracking-tight md:text-4xl">Find your place on the team.</h2>
+            <h2 className="mt-3 font-serif text-2xl tracking-tight sm:text-3xl md:text-4xl">Find your place on the team.</h2>
           </div>
           <CareersExplorer />
         </div>

@@ -35,7 +35,7 @@ export default function Community() {
   return (
     <section
       id="community"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-br from-[#063945] via-[#07313c] to-[#041c24] py-28 md:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-linear-to-br from-[#063945] via-[#07313c] to-[#041c24] py-16 sm:py-20 md:py-28 lg:py-36"
     >
       {/* layered radial wash for depth (kept on-palette: lagoon → aqua over ocean) */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_15%_0%,rgba(20,140,150,0.18),transparent_55%),radial-gradient(110%_90%_at_85%_100%,rgba(45,200,210,0.12),transparent_60%)]" />

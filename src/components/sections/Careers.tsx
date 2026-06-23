@@ -17,9 +17,9 @@ function Helmet({ className = "h-7 w-7" }: { className?: string }) {
 
 export default function Careers() {
   return (
-    <section id="careers" className="relative scroll-mt-24 py-28 md:py-36">
+    <section id="careers" className="relative scroll-mt-24 py-20 sm:py-28 md:py-36">
       <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-8">
+        <div className="flex flex-wrap items-end justify-between gap-6 sm:gap-8">
           <SectionHeading
             eyebrow="Build With Us"
             title={
@@ -36,13 +36,13 @@ export default function Careers() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2">
           {careers.openings.map((o, i) => (
             <Reveal key={o.title} delay={(i % 2) * 0.08}>
               <a
                 href={`/careers/${slugify(o.title)}`}
                 data-cursor
-                className="group relative block overflow-hidden rounded-2xl border [border-color:var(--ui-border)] bg-ink/60 p-7 transition-all duration-500 hover:border-gold/40"
+                className="group relative block overflow-hidden rounded-2xl border [border-color:var(--ui-border)] bg-ink/60 p-6 transition-all duration-500 hover:border-gold/40 sm:p-7"
               >
                 {/* blueprint grid reveal */}
                 <div
@@ -64,7 +64,7 @@ export default function Careers() {
                     →
                   </span>
                 </div>
-                <h3 className="relative mt-6 font-serif text-2xl tracking-tight">
+                <h3 className="relative mt-5 font-serif text-xl tracking-tight sm:mt-6 sm:text-2xl">
                   {o.title}
                 </h3>
                 <div className="relative mt-3 flex items-center gap-3 text-xs text-mist">

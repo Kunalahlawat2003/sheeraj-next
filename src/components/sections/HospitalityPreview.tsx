@@ -30,7 +30,7 @@ export default function HospitalityPreview() {
         className="absolute inset-0 bg-gradient-to-b from-transparent via-lagoon/20 to-coral/15"
       />
 
-      <div className="container-x relative grid items-center gap-14 py-28 md:py-36 lg:grid-cols-2">
+      <div className="container-x relative grid items-center gap-10 py-20 sm:py-24 md:gap-12 md:py-28 lg:grid-cols-2 lg:py-36">
         {/* copy */}
         <div className="relative z-10">
           <Reveal>

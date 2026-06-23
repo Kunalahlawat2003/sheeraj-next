@@ -21,8 +21,8 @@ export default function ChairmanPage() {
         title={<>A message from the <span className="text-gold-gradient italic">Chairman.</span></>}
       />
 
-      <section className="pb-24 md:pb-32">
-        <div className="container-x grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+      <section className="pb-16 sm:pb-20 md:pb-24 lg:pb-32">
+        <div className="container-x grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
           {/* photo card (sticky) */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <PersonCard person={team.chairman} />
@@ -31,24 +31,24 @@ export default function ChairmanPage() {
           {/* message */}
           <Reveal>
             <article className="max-w-2xl">
-              <p className="font-serif text-2xl italic leading-snug text-gold-gradient">
+              <p className="font-serif text-xl italic leading-snug text-gold-gradient sm:text-2xl">
                 “{team.chairman.message}”
               </p>
-              <div className="hairline my-9" />
-              <div className="space-y-6 text-lg leading-relaxed text-mist">
+              <div className="hairline my-7 sm:my-9" />
+              <div className="space-y-5 text-lg leading-relaxed text-mist sm:space-y-6">
                 {c.paragraphs.map((p, i) => (
-                  <p key={i} className={i === 0 ? "first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-6xl first-letter:leading-[0.8] first-letter:text-gold" : ""}>
+                  <p key={i} className={i === 0 ? "first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-5xl first-letter:leading-[0.8] first-letter:text-gold sm:first-letter:text-6xl" : ""}>
                     {p}
                   </p>
                 ))}
               </div>
 
-              <div className="mt-10">
-                <div className="font-serif text-3xl italic text-silver">{c.signature}</div>
+              <div className="mt-8 sm:mt-10">
+                <div className="font-serif text-2xl italic text-silver sm:text-3xl">{c.signature}</div>
                 <div className="mt-1 text-sm uppercase tracking-[0.2em] text-mist">{c.role}</div>
               </div>
 
-              <div className="mt-12 flex flex-wrap gap-4">
+              <div className="mt-10 flex flex-wrap gap-4 sm:mt-12">
                 <MagneticButton href="/about">Meet the leadership</MagneticButton>
                 <MagneticButton href="/contact" variant="ghost">Contact us</MagneticButton>
               </div>

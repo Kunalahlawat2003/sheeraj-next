@@ -36,24 +36,24 @@ export default function HospHero() {
       <div className="pointer-events-none absolute inset-0 z-2 [background:linear-gradient(to_top,var(--color-base)_0%,color-mix(in_oklab,var(--color-base)_40%,transparent)_20%,transparent_42%)]" />
 
       {/* content */}
-      <div className="container-x pointer-events-none relative z-10 flex min-h-svh flex-col justify-center pt-28">
+      <div className="container-x pointer-events-none relative z-10 flex min-h-svh flex-col justify-center pt-24 sm:pt-28">
         <motion.span custom={0} variants={rise} initial="hidden" animate="show" className="inline-flex items-center gap-3 font-display text-[0.72rem] font-medium uppercase tracking-[0.34em] text-white">
           <span className="h-px w-7 bg-gradient-to-r from-transparent to-white" />
           {hospitalityPage.hero.eyebrow}
         </motion.span>
 
-        <motion.h1 custom={1} variants={rise} initial="hidden" animate="show" className="mt-6 max-w-4xl font-serif text-[3rem] font-medium leading-[0.98] tracking-tight text-balance text-white sm:text-7xl lg:text-[5.4rem]">
+        <motion.h1 custom={1} variants={rise} initial="hidden" animate="show" className="mt-5 max-w-4xl font-serif text-[2.5rem] font-medium leading-[1.02] tracking-tight text-balance text-white sm:mt-6 sm:text-6xl sm:leading-[0.98] lg:text-[5.4rem]">
           Building Luxury{" "}
           <span className="bg-gradient-to-r from-aqua via-sand to-coral bg-clip-text italic text-transparent">
             Amid Paradise.
           </span>
         </motion.h1>
 
-        <motion.p custom={2} variants={rise} initial="hidden" animate="show" className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">
+        <motion.p custom={2} variants={rise} initial="hidden" animate="show" className="mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:mt-7 sm:text-lg">
           {hospitalityPage.hero.sub}
         </motion.p>
 
-        <motion.div custom={3} variants={rise} initial="hidden" animate="show" className="pointer-events-auto mt-10 flex flex-wrap items-center gap-4">
+        <motion.div custom={3} variants={rise} initial="hidden" animate="show" className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4">
           <button
             onClick={() => scrollToTarget("#masterplan")}
             className="btn btn-gold !bg-gradient-to-r !from-aqua !to-lagoon !text-[#06262f]"

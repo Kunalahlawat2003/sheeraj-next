@@ -33,8 +33,8 @@ export default function AboutPage() {
       </PageHero>
 
       {/* story + stats */}
-      <section className="py-24 md:py-32">
-        <div className="container-x grid items-center gap-16 lg:grid-cols-2">
+      <section className="py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="container-x grid items-center gap-10 sm:gap-12 lg:gap-16 lg:grid-cols-2">
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border [border-color:var(--ui-border-md)]">
               <Image src="/images/aboutMain.jpg" alt="Sheeraj engineering" fill sizes="(max-width:1024px) 100vw, 45vw" className="object-cover" />
@@ -59,7 +59,7 @@ export default function AboutPage() {
                 </Reveal>
               ))}
             </ul>
-            <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border [border-color:var(--ui-border)] [background-color:var(--ui-surface-sm)] sm:grid-cols-4">
+            <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border [border-color:var(--ui-border)] [background-color:var(--ui-surface-sm)] sm:grid-cols-4 lg:mt-10">
               {stats.map((s) => (
                 <div key={s.label} className="px-5 py-6 [background-color:var(--ui-surface-xs)]">
                   <div className="font-serif text-3xl text-gold-gradient">
@@ -74,14 +74,14 @@ export default function AboutPage() {
       </section>
 
       {/* leadership */}
-      <section className="bg-ink py-24 md:py-32">
+      <section className="bg-ink py-16 sm:py-20 md:py-24 lg:py-32">
         <div className="container-x">
           <SectionHeading
             eyebrow="Leadership"
             title={<>The people behind the <span className="text-gold-gradient">promise.</span></>}
             intro="Engineers, operators and stewards who hold every project to the same exacting standard."
             align="center"
-            className="mb-14"
+            className="mb-10 sm:mb-12 lg:mb-14"
           />
 
           {/* chairman — compact card; the long message scrolls inside, then the page */}
@@ -183,9 +183,9 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24">
+      <section className="py-16 sm:py-20 lg:py-24">
         <div className="container-x">
-          <div className="glass relative overflow-hidden rounded-[2rem] px-8 py-14 text-center md:py-20">
+          <div className="glass relative overflow-hidden rounded-[2rem] px-6 py-12 text-center sm:px-8 sm:py-14 md:py-20">
             <div className="pointer-events-none absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-gold/15 blur-3xl" />
             <h2 className="relative font-serif text-3xl tracking-tight md:text-5xl">
               Let&apos;s build something <span className="text-gold-gradient italic">that lasts.</span>
