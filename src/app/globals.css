@@ -1,21 +1,5 @@
 @import "tailwindcss";
 
-/* ----------------------------------------------------------------------------
-   Brand display face — Tarzan Pro (licensed; self-hosted from /public/fonts).
-   Used ONLY for the "Sheeraj Projects" wordmark via the `font-brand` utility.
-   Drop the file(s) into public/fonts/ (woff2 preferred). Until then this face
-   simply falls back to the display stack — nothing breaks.
----------------------------------------------------------------------------- */
-@font-face {
-  font-family: "Tarzan Pro";
-  src:
-    url("/fonts/TarzanPro.woff2") format("woff2"),
-    url("/fonts/TarzanPro.otf") format("opentype"),
-    url("/fonts/TarzanPro.ttf") format("truetype");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ============================================================================
    SHEERAJ PROJECTS — DESIGN SYSTEM
@@ -59,7 +43,7 @@
   --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
   /* Brand wordmark only (see @font-face above); falls back to the display stack. */
-  --font-brand: "Tarzan Pro", var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-cinzel), ui-serif, Georgia, serif;
 
   /* ---- Easing ---- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

@@ -57,7 +57,7 @@ export default function Footer() {
               className="h-20 w-20 shrink-0 md:h-32 md:w-32"
             />
             <div>
-              <h3 className="max-w-xs font-brand text-2xl font-medium leading-tight tracking-wide text-accent-gold md:text-3xl">
+              <h3 className="max-w-xs font-brand text-2xl font-bold leading-tight tracking-wide text-accent-gold md:text-3xl">
                 {company.legalName.toUpperCase()}
               </h3>
               <div className="mt-6 flex gap-3">

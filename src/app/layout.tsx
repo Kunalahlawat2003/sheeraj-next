@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora, Fraunces } from "next/font/google";
+import { Inter, Sora, Fraunces, Cinzel } from "next/font/google";
 import "./globals.css";
 
 import SmoothScroll from "@/components/providers/SmoothScroll";
@@ -16,6 +16,12 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
   display: "swap",
   style: ["normal", "italic"],
+});
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+  weight: ["700", "900"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -43,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${sora.variable} ${fraunces.variable}`}
+      className={`${inter.variable} ${sora.variable} ${fraunces.variable} ${cinzel.variable}`}
     >
       {/* Prevent flash of wrong theme on initial load */}
       <head>
