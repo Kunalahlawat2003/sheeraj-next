@@ -86,8 +86,8 @@ export default function BuildSequence() {
         <div className="container-x pt-16 sm:pt-20 lg:pt-24">
           <span className="eyebrow">The Process</span>
           <h2 className="mt-4 max-w-2xl font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
-            Watch it{" "}
-            <span className="text-gold-gradient italic">build itself.</span>
+            From blueprint{" "}
+            <span className="text-gold-gradient italic">to landmark.</span>
           </h2>
         </div>
 

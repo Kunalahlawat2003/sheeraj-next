@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const perks = [
-  "Work on landmark infrastructure and island resorts",
+  "Work on landmark infrastructure and hospitality projects",
   "Mentorship from seasoned engineers and project leaders",
   "Clear growth paths and on-site learning",
   "A safety-first, people-first culture",

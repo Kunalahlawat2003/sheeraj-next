@@ -14,8 +14,8 @@ import andaman5 from "../../public/images/andaman/5.png";
 import andamanVision from "../../public/images/andaman/vision.jpg";
 
 export const company = {
-  name: "Sheeraj Projects",
-  legalName: "Sheeraj Projects Private Limited",
+  name: "SHEERAJ Projects",
+  legalName: "SHEERAJ Projects Private Limited",
   motto: "Building Establishments",
   tagline: "Building India's Infrastructure. Crafting Island Escapes.",
   theme: "Building the Roads That Connect India. Building the Destinations That Inspire It.",
@@ -25,7 +25,12 @@ export const company = {
   careersEmail: "careers@sheerajprojects.com",
   phone: "+91-9355125999",
   address: "1411, Tower 1, DLF Corporate Greens, Sector 74A, Gurugram, Haryana - 122004",
-  social: { instagram: "#", youtube: "#", facebook: "#", linkedin: "#" },
+  social: {
+    instagram: "https://www.instagram.com/sheerajprojectspvtltd",
+    youtube: "https://www.youtube.com/@SheerajProjects",
+    facebook: "https://www.facebook.com/people/Sheeraj-Projects-Private-Limited/61556815384432/",
+    linkedin: "https://www.linkedin.com/company/sheeraj-projects-pvt-ltd",
+  },
   erpUrl: "#",
 };
 
@@ -81,14 +86,14 @@ export const services: Service[] = [
   },
   {
     key: "ring-roads",
-    title: "Ring Roads",
+    title: "Elevated Corridors",
     blurb:
       "Orbital corridors and grade separators that unclog cities and keep regions moving.",
     icon: "ring",
   },
   {
     key: "canals",
-    title: "Water Canals",
+    title: "Irrigation Canals",
     blurb:
       "Lined canals, distributaries, and water-management systems carrying life to farmland.",
     icon: "canal",
@@ -115,6 +120,13 @@ export const services: Service[] = [
     icon: "palm",
     span: "wide",
   },
+  {
+    key: "real-estate",
+    title: "Real Estate Development",
+    blurb:
+      "Transforming rare destinations into world-class luxury villa communities defined by beauty, comfort, and exclusivity.",
+    icon: "real-estate",
+  },
 ];
 
 export const aboutHighlights = [
@@ -126,25 +138,25 @@ export const aboutHighlights = [
 
 export const buildSequence = [
   {
-    no: "01",
-    title: "Survey & Foundation",
-    body: "Alignment is set, ground is broken, and the earth is shaped to grade.",
-  },
-  {
-    no: "02",
-    title: "Steel Rises",
-    body: "Rebar cages and beams ascend — the skeleton of every structure we build.",
-  },
-  {
-    no: "03",
-    title: "Concrete & Carriageway",
-    body: "Decks are poured, canals are lined, and lanes are laid kilometre by kilometre.",
-  },
-  {
-    no: "04",
-    title: "The Connection",
-    body: "Bridges link, water flows, roads open — and a destination comes alive.",
-  },
+  no: "01",
+  title: "Vision & Planning",
+  body: "Every destination begins with careful planning, site evaluation, and a vision shaped around its unique surroundings.",
+},
+{
+  no: "02",
+  title: "Design & Development",
+  body: "Master plans take shape as architecture, infrastructure, and landscape design come together to define the community.",
+},
+{
+  no: "03",
+  title: "Construction & Craftsmanship",
+  body: "Luxury villas, amenities, and supporting infrastructure are built with precision, quality, and attention to every detail.",
+},
+{
+  no: "04",
+  title: "A Destination Realized",
+  body: "The completed development emerges as a distinctive destination where exceptional design meets unforgettable experiences.",
+},
 ];
 
 export const media = {
@@ -160,14 +172,14 @@ export const chairman = {
   role: "Founder & Chairman",
   photo: "/images/chairman-Sir.jpg",
   shortQuote:
-    "We don't just clear pathways or construct layouts—we build infrastructure that drives regional economic growth.",
+    "We don't just clear pathways or construct layouts—we build infrastructure that drives national economic growth.",
 };
 
 export const hospitality = {
-  headline: "Building Luxury Amid Paradise.",
+  headline: "Building Luxury Amidst Paradise.",
   location: "Andaman & Nicobar Islands",
   intro:
-    "Sheeraj brings the precision of infrastructure to the world of luxury hospitality. Our flagship resort on the Andaman & Nicobar Islands blends sustainable design, local craft, and engineering excellence into an escape that feels effortless — and is anything but.",
+    "SHEERAJ brings the precision of infrastructure to the world of luxury hospitality. Our flagship resort on the Andaman & Nicobar Islands blends sustainable design, local craft, and engineering excellence into an escape that feels effortless — and is anything but.",
   features: [
     { title: "Beachfront Resorts", blurb: "Low-impact, high-luxury stays around turquoise waters.", icon: "palm" as IconName },
     { title: "Sustainable by Design", blurb: "Solar-ready systems, rainwater harvesting, local materials.", icon: "leaf" as IconName },
@@ -193,16 +205,16 @@ export type Project = {
 export const projects: Project[] = [
   // ── Executed (2) ──
   {
-    name: "MP District Roads MDR-07 — Widening & Reconstruction (Package 2)",
+    name: "Madhya Pradesh Road Development Corporation — Widening & Reconstruction of District Road",
     category: "Highways",
     location: "Madhya Pradesh",
     status: "Executed",
     year: "2020",
-    blurb: "Widening and reconstruction of Madhya Pradesh district roads under Package 2 (MP-MDR-07).",
+    blurb: "Widening and reconstruction of district road under Madhya Pradesh Road Development Corporation.",
     image: "/images/mp/1.jpeg",
   },
   {
-    name: "Four-Laning of NH-8E, Mahuva–Kagavadar (Package III)",
+    name: "National Highways Authority of India — Construction of Four Laning of NH-8E, Mahuva–Kagavadar",
     category: "Highways",
     location: "Gujarat",
     status: "Executed",
@@ -213,16 +225,16 @@ export const projects: Project[] = [
 
   // ── Ongoing (3) ──
   {
-    name: "Remodeling of WJC Augmentation Canal (NABARD RIDF XXV)",
+    name: "Haryana Irrigation & Water Resources Department — Remodeling of Augmentation Canal",
     category: "Canals",
     location: "Haryana",
     status: "Ongoing",
     year: "Mar 2026",
-    blurb: "Remodeling of the augmentation canal main branch from Hamida Head to Picholia Head.",
+    blurb: "Remodeling of the augmentation canal main branch from HAmidsta Head to Picholia Head.",
     image: "/images/karnal/1.jpeg",
   },
   {
-    name: "KMP Link Elevated Road — Spur to Delhi–Mumbai Expressway",
+    name: "Public Works Department — Construction of Elevated Road",
     category: "Highways",
     location: "Haryana",
     status: "Ongoing",
@@ -231,7 +243,7 @@ export const projects: Project[] = [
     image: "/images/faridabad/2.jpg",
   },
   {
-    name: "Jaipur Ring Road (NH-148C) — Two Interchanges",
+    name: "National Highway Authority of India — Construction of Two Number of Interchanges",
     category: "Ring Roads",
     location: "Rajasthan",
     status: "Ongoing",
@@ -242,7 +254,7 @@ export const projects: Project[] = [
 
   // ── Awarded (4) ──
   {
-    name: "5-Star Eco-Tourism Resort, Shaheed Dweep Island (PPP)",
+    name: "ANIIDCO — Development of 5-Star Eco-Tourism Resort",
     category: "Hospitality",
     location: "Andaman & Nicobar Islands",
     status: "Awarded",
@@ -251,7 +263,7 @@ export const projects: Project[] = [
     image: "/images/resort-overwater.jpg",
   },
   {
-    name: "Megapode Resort, Sri Vijaya Puram (DBFOT)",
+    name: "ANIIDCO — Design, Build, Finance, Operate and Transfer of Megapode Resort",
     category: "Hospitality",
     location: "Andaman & Nicobar Islands",
     status: "Awarded",
@@ -260,7 +272,7 @@ export const projects: Project[] = [
     image: "/images/island-aerial2.jpg",
   },
   {
-    name: "Four-Laning of GGM–Alwar Road (NH-248A), Nuh",
+    name: "MoRTH — Construction of 4 Lane with Paved Shoulders",
     category: "Highways",
     location: "Haryana",
     status: "Awarded",
@@ -269,7 +281,7 @@ export const projects: Project[] = [
     image: "/images/nuh/1.png",
   },
   {
-    name: "Six-Lane Flyovers & EC, Indore (Pigdambar–Dhanmod)",
+    name: "NHAI — Construction of 6-Lane Elevated Corridor",
     category: "Bridges",
     location: "Madhya Pradesh",
     status: "Awarded",
@@ -279,29 +291,32 @@ export const projects: Project[] = [
   },
 ];
 
-export const partners = [
-  "Volvo",
-  "Ashok Leyland",
-  "LeeBoy",
-  "Linnhoff",
-  "JCB",
-  "Tata Motors",
-  "Terex",
-  "Caterpillar",
-  "Schwing Stetter",
-  "Mahindra",
+export const partners: { name: string; logo?: string }[] = [
+  { name: "Volvo",          logo: "/images/fleetPartners/VOLVO.jpg" },
+  { name: "Ashok Leyland",  logo: "/images/fleetPartners/ASHOK-LEYLAND.jpg" },
+  { name: "Liugong",        logo: "/images/fleetPartners/liugong.png" },
+  { name: "Linnhoff",       logo: "/images/fleetPartners/LINNHOFF.png" },
+  { name: "JCB",            logo: "/images/fleetPartners/JCB.png" },
+  { name: "Tata Motors",    logo: "/images/fleetPartners/TATA-MOTORS.jpg" },
+  { name: "Terex",          logo: "/images/fleetPartners/TEREX.jpg" },
+  { name: "Caterpillar",    logo: "/images/fleetPartners/CATERPILLAR.jpg" },
+  { name: "Schwing Stetter",logo: "/images/fleetPartners/SCHWING-STETTER.png" },
+  { name: "Mahindra",       logo: "/images/fleetPartners/MAHINDRA.png" },
+  { name: "Apollo",         logo: "/images/fleetPartners/apollo.png" },
+  { name: "Putzmeister",    logo: "/images/fleetPartners/putzmeister.jpg" },
+  { name: "Ammann",         logo: "/images/fleetPartners/ammann.png" },
 ];
 
-export const bankers = [
-  "HDFC Bank",
-  "IndusInd Bank",
-  "Yes Bank",
-  "ICICI Bank",
-  "IDFC First Bank",
-  "Federal Bank",
-  "Axis Bank",
-  "Punjab National Bank",
-  "Union Bank of India",
+export const bankers: { name: string; logo?: string }[] = [
+  { name: "HDFC Bank",           logo: "/images/bank/HDFC-BANK.jpg" },
+  { name: "IndusInd Bank",       logo: "/images/bank/INDUSIND-BANK.png" },
+  { name: "Yes Bank",            logo: "/images/bank/YES.jpg" },
+  { name: "ICICI Bank" },
+  { name: "IDFC First Bank",     logo: "/images/bank/IDFC-FIRST-BANK.png" },
+  { name: "Axis Bank",           logo: "/images/bank/AXIS-BANK.jpg" },
+  { name: "Punjab National Bank",logo: "/images/bank/PNB-BANK.jpg" },
+  { name: "Deutsche Bank",       logo: "/images/bank/deutsche-bank_thumb.webp" },
+  { name: "Oxyzo Bank",          logo: "/images/bank/oxyzo.webp" },
 ];
 
 export const machinery: { group: string; items: string[] }[] = [
@@ -387,7 +402,7 @@ export const machinery: { group: string; items: string[] }[] = [
 
 export const careers = {
   intro:
-    "Sheeraj is growing — across infrastructure and a brand-new hospitality vertical. If you want to build things that last, we want to meet you.",
+    "SHEERAJ is growing — across infrastructure and a brand-new hospitality vertical. If you want to build things that last, we want you on our team.",
   openings: [
     { title: "Project Engineer — Highways", location: "Project Site, India", type: "Full-time" },
     { title: "Site Engineer — Hospitality", location: "Andaman & Nicobar Islands", type: "Full-time" },
@@ -411,12 +426,12 @@ export const contact = {
 export const hospitalityPage = {
   hero: {
     eyebrow: "Andaman & Nicobar Islands",
-    sub: "An aerial flyover of turquoise lagoons and white sand — where heavy machinery is quietly shaping a beachfront resort that will feel like it was always here.",
+    sub: "Amidst lush green forests, turquoise lagoons, and pristine white-sand beaches, we are quietly crafting beachfront destinations through sustainable eco-engineering, creating places that feel as though they have always been part of the landscape.",
   },
   vision: {
     eyebrow: "The Vision",
-    title: "We build places people dream of visiting — and never want to leave.",
-    body: "At Sheeraj, every resort is envisioned as more than a destination. It is a carefully curated experience where architecture, nature, and hospitality come together effortlessly.",
+    title: "Curated with care, designed to inspire, and destined to be remembered for a lifetime.",
+    body: "At SHEERAJ, every resort is envisioned as more than a destination. It is a carefully curated experience where architecture, nature, and hospitality come together effortlessly.",
     image: andamanVision,
     points: [
       "Designed around nature, wellness, and relaxation",
@@ -443,7 +458,7 @@ export const hospitalityPage = {
     eyebrow: "Tropical Architecture",
     title: "Building world-class resorts inspired by nature.",
     intro:
-      "Sheeraj specializes in the development and construction of premium hospitality destinations. From beachfront villas and overwater experiences to iconic arrival spaces, every project is designed to blend seamlessly with its surroundings while meeting the highest standards of quality and craftsmanship.",
+      "SHEERAJ specializes in the development and construction of premium hospitality destinations. From beachfront villas and overwater experiences to iconic arrival spaces, every project is designed to blend seamlessly with its surroundings while meeting the highest standards of quality and craftsmanship.",
     items: [
       { title: "Luxury Resort Development", blurb: "End-to-end development of world-class hospitality destinations.", image: andaman1, fit: "contain" },
       { title: "Construction & Project Execution", blurb: "Delivering complex resort projects with precision, quality, and efficiency.", image: andaman2, fit: "contain" },
@@ -451,10 +466,10 @@ export const hospitalityPage = {
     ],
   },
   sustainability: {
-    eyebrow: "Sheeraj Difference",
+    eyebrow: "SHEERAJ Difference",
     title: "Building exceptional destinations through vision, precision, and craftsmanship.",
     intro:
-      "From concept to completion, Sheeraj develops hospitality projects that balance architectural elegance, construction excellence, and environmental responsibility—creating destinations designed to inspire for decades.",
+      "From concept to completion, SHEERAJ develops hospitality projects that balance architectural elegance, construction excellence, and environmental responsibility—creating destinations designed to inspire for decades.",
     items: [
       { title: "Strategic Planning", blurb: "Every development begins with detailed planning and feasibility analysis.", icon: "landmark" as IconName },
       { title: "Quality Construction", blurb: "Premium materials, skilled execution, and uncompromising standards.", icon: "crane" as IconName },
@@ -492,8 +507,8 @@ export const hospitalityPage = {
     eyebrow: "Andaman Projects",
     title: "Our projects in Andaman & Nicobar Islands.",
     phases: [
-      { year: "₹175 CR", title: "Eco-Tourism Resort, Shaheed Dweep Island", body: "Development of 5-Star Eco-Tourism Resort at Shaheed Dweep Island, ANI on PPP basis. Awarded by ANIIDCO. Construction Period: 3 Yrs | Concession Period: 75 Yrs (Incl. Construction Period)." },
-      { year: "₹160 CR", title: "Megapode Resort, Sri Vijaya Puram", body: "Design, Build, Finance, Operate and Transfer (DBFOT) of Megapode Resort at Sri Vijaya Puram. Awarded by ANIIDCO. Construction Period: 3 Yrs | Concession Period: 50 Yrs (Incl. Construction Period)." },
+      { year: "₹175 CR", title: "Ultra-Luxury Wellness Retreat, Shaheed Dweep Island", body: "Development of 5-Star Eco-Tourism Resort at Shaheed Dweep Island, ANI on PPP basis. Awarded by ANIIDCO. Construction Period: 3 Yrs | Concession Period: 75 Yrs (Incl. Construction Period)." },
+      { year: "₹160 CR", title: "Megapode Conventional Hotel, Sri Vijaya Puram", body: "Design, Build, Finance, Operate and Transfer (DBFOT) of Megapode Resort at Sri Vijaya Puram. Awarded by ANIIDCO. Construction Period: 3 Yrs | Concession Period: 50 Yrs (Incl. Construction Period)." },
     ],
   },
   gallery: [
@@ -509,12 +524,12 @@ export const hospitalityPage = {
   investment: {
     eyebrow: "Investment Opportunity",
     title: "Own a stake in the islands' future.",
-    body: "Two government-awarded projects in one of India's most coveted island destinations — backed by Sheeraj's two-decade EPC track record. Both developments operate under long-term concession frameworks with ANIIDCO, giving investors a rare combination of sovereign backing, operational upside, and enduring asset value.",
+    body: "Two government-awarded projects in one of India's most coveted island destinations — backed by SHEERAJ's two-decade EPC track record. Both developments operate under long-term concession frameworks with ANIIDCO, giving investors a rare combination of sovereign backing, operational upside, and enduring asset value.",
     stats: [
-      { value: 335, suffix: " CR", label: "Combined project value" },
-      { value: 75, suffix: " Yrs", label: "Max concession period" },
+      { value: 700, suffix: " CR", label: "Combined project value" },
+      { value: 75, suffix: " Yrs", label: "Concession period" },
       { value: 2, suffix: "", label: "Government-awarded projects" },
-      { value: 3, suffix: " Yrs", label: "Time to first revenue" },
+      { value: 2029, suffix: " Yrs", label: "Delivery time" },
     ],
   },
   community: {
@@ -583,7 +598,7 @@ export const team = {
     role: "Founder & Chairman",
     photo: "/images/chairman-Sir.jpg",
     message:
-      "Everything bearing the Sheeraj name is built to outlast us. That quiet promise — made when we laid our first kilometre of highway — still guides every decision we make, from canals and corridors to the shores of the Andamans.",
+      "Everything bearing the SHEERAJ name is built to outlast us. That quiet promise — made when we laid our first kilometre of highway — still guides every decision we make, from canals and corridors to the shores of the Andamans.",
   } as Person,
   md: {
     name: "Director One",
@@ -597,10 +612,17 @@ export const team = {
     { name: "Mr. Pavitra Kumar", role: "Director", photo: "/images/boardMember/pavitraSir.png", message: "We believe that sustainable growth is achieved through strong partnerships, skilled teams, and continuous improvement. Together, we are shaping a future built on reliability and excellence." },
     { name: "Mr. Arpit Kadyan", role: "Director", photo: "/images/boardMember/arpitSir.png", message: "Innovation, integrity, and commitment are the cornerstones of our success. We remain dedicated to delivering projects that exceed expectations and create long-term value." },
   ] as Person[],
+  coo: {
+    name: "Dilbagh Singh Dhandha",
+    role: "Chief Operating Officer",
+    photo: "/images/boardMember/accounts.jpg",
+    message:
+      "Operational excellence is the foundation of every successful project. We are committed to streamlining processes, empowering teams, and delivering results that reflect the highest standards of efficiency and integrity.",
+  } as Person,
   ca: {
     name: "Mr. Alok Bishnoi",
-    role: "Chartered Accountant",
-    photo: "/images/boardMember/accounts.jpg",
+    role: "Auditor",
+    photo: "/images/boardMember/CA2.jpg",
     message:
       "Financial discipline, transparency, and accountability are integral to our operations. We are committed to maintaining strong financial practices that support sustainable growth and stakeholder confidence.",
   } as Person,
@@ -609,7 +631,7 @@ export const team = {
 // Full chairman address rendered in the leadership card on the About page.
 export const chairmanAddress = {
   before: [
-    "It gives me immense pleasure to connect with you through this medium. May this message find you in best of health and happiness. Having an experience of about 40 years in the field of construction and encountering a lot of turbulence and overcoming them eventually by trial-and-error methods, I had developed some revolutionary engineering strategies. I have a vision that I wanted to manifest which led to the birth of an enigma called SHEERAJ PROJECTS PRIVATE LIMITED. Its amalgamation with the Sheeraj Family's paragons of virtue has aided us in experiencing exponential growth in a brief time. Finally, I wish to express it as we have this moment to catch breath in the company of your thoughts.",
+    "It gives me immense pleasure to connect with you through this medium. May this message find you in best of health and happiness. Having an experience of about 40 years in the field of construction and encountering a lot of turbulence and overcoming them eventually by trial-and-error methods, I had developed some revolutionary engineering strategies. I have a vision that I wanted to manifest which led to the birth of an enigma called SHEERAJ PROJECTS PRIVATE LIMITED. Its amalgamation with the SHEERAJ Family's paragons of virtue has aided us in experiencing exponential growth in a brief time. Finally, I wish to express it as we have this moment to catch breath in the company of your thoughts.",
   ],
   quoteLeadIn: "I believe",
   quote:
@@ -627,10 +649,10 @@ export const chairmanMessage = {
   photo: team.chairman.photo,
   signature: team.chairman.name,
   paragraphs: [
-    "When we laid our first kilometre of highway, we made a quiet promise: that everything bearing the Sheeraj name would be built to outlast us. Fifteen years on, that promise still guides every decision we make.",
+    "When we laid our first kilometre of highway, we made a quiet promise: that everything bearing the SHEERAJ name would be built to outlast us. Fifteen years on, that promise still guides every decision we make.",
     "Today, that same discipline carries us into a new chapter. As we shape resorts on the shores of the Andaman & Nicobar Islands, we bring the rigour of infrastructure to the artistry of hospitality — engineering experiences as carefully as we have always engineered roads, canals, and bridges.",
     "Our people remain our proudest achievement. Their craftsmanship, their integrity, and their refusal to cut corners are the real foundation of this company.",
-    "To our partners and clients: thank you for trusting us to build what matters. The best of Sheeraj is still ahead.",
+    "To our partners and clients: thank you for trusting us to build what matters. The best of SHEERAJ is still ahead.",
   ],
 };
 
@@ -662,6 +684,10 @@ export const serviceDetail: Record<string, { points: string[]; image: string }> 
     points: ["Beachfront & overwater resort construction", "Tropical, climate-responsive architecture", "Coastal-grade, sustainable building systems"],
     image: "/images/services/6.jpeg",
   },
+  "real-estate": {
+    points: ["Master-planned gated communities and villa townships", "Premium residential construction to international finishes", "End-to-end delivery from land development to handover"],
+    image: "/images/andaman/5.png",
+  },
 };
 
 // ============================================================================
@@ -687,7 +713,7 @@ export type ProjectDetail = {
 };
 
 export const projectDetails: Record<string, ProjectDetail> = {
-  "four-laning-of-nh-8e-mahuva-kagavadar-package-iii": {
+  "national-highways-authority-of-india-construction-of-four-laning-of-nh-8e-mahuva-kagavadar": {
     officialName:
       "Construction of left out work of four laning of Mahuva To Kagavadar Section of NH-8E from KM 100.100 To KM 139.915 (Design Chainage from KM 100.450 To KM 140.470) (Package-III)",
     client: "National Highways Authority of India (NHAI)",
@@ -723,14 +749,14 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Handover", label: "Safety audit & commissioning" },
     ],
   },
-  "remodeling-of-wjc-augmentation-canal-nabard-ridf-xxv": {
+  "haryana-irrigation-and-water-resources-department-remodeling-of-augmentation-canal": {
     officialName:
-      "Remodeling of augmentation canal from RD 0KM to KM 75.25KM i.e. From Hamida Head to Picholia Head (Merging point with WJC Main Branch) main branch under NABARD RIDF XXV",
+      "Remodeling of augmentation canal from RD 0KM to KM 75.25KM i.e. From HAmidsta Head to Picholia Head (Merging point with WJC Main Branch) main branch under NABARD RIDF XXV",
     client: "Haryana Irrigation & Water Resources Department",
     value: "₹928.34 Cr",
-    stretch: "RD 0KM to KM 75.25KM — Hamida Head to Picholia Head",
+    stretch: "RD 0KM to KM 75.25KM — HAmidsta Head to Picholia Head",
     overview:
-      "Commissioned under NABARD's Rural Infrastructure Development Fund (RIDF XXV), this project remodels 75.25 km of the WJC Augmentation Canal main branch from Hamida Head to Picholia Head — the merging point with the WJC Main Branch — in Haryana. The works involve full-length concrete lining, hydraulic restructuring, and replacement of aging cross-drainage and regulating structures to restore the canal's design discharge capacity and extend assured irrigation to thousands of hectares of farmland across the region.",
+      "Commissioned under NABARD's Rural Infrastructure Development Fund (RIDF XXV), this project remodels 75.25 km of the WJC Augmentation Canal main branch from HAmidsta Head to Picholia Head — the merging point with the WJC Main Branch — in Haryana. The works involve full-length concrete lining, hydraulic restructuring, and replacement of aging cross-drainage and regulating structures to restore the canal's design discharge capacity and extend assured irrigation to thousands of hectares of farmland across the region.",
     scope: [
       "Full-length concrete lining over 75.25 km canal reach",
       "Hydraulic remodeling to restore design discharge capacity",
@@ -759,7 +785,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Commissioning", label: "Hydraulic testing & handover" },
     ],
   },
-  "jaipur-ring-road-nh-148c-two-interchanges": {
+  "national-highway-authority-of-india-construction-of-two-number-of-interchanges": {
     officialName:
       "Construction of Balance Works of Two Number of Interchanges at Jaipur Ring Road (NH-148C) from Tonk Road (NH-52) to Ajmer Road Section (NH-48), Rajasthan — National Highway Authority of India",
     client: "National Highway Authority of India (NHAI)",
@@ -793,7 +819,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Surfacing", label: "Pavement & finishing" },
     ],
   },
-  "four-laning-of-ggm-alwar-road-nh-248a-nuh": {
+  "morth-construction-of-4-lane-with-paved-shoulders": {
     officialName:
       "Construction of Four-Lane with Paved Shoulders of GGM–Alwar Road (NH-248A) from Nuh–Firozpur Jhirka up to Rajasthan Border (KM 46.95 to KM 95.97, Design Chainage KM 96.980), excluding KM 50.900–54.46 and KM 61.900–65.18, including strengthening & improvement of the existing road over 6.84 km in Malab village (KM 50.900–54.46) and Bhadas village (KM 61.900–65.18), Nuh, Haryana",
     client: "Ministry of Road Transport & Highways (MoRTH)",
@@ -829,7 +855,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Surfacing", label: "Pavement, furniture & handover" },
     ],
   },
-  "six-lane-flyovers-and-ec-indore-pigdambar-dhanmod": {
+  "nhai-construction-of-6-lane-elevated-corridor": {
     officialName:
       "Construction of Six-Lane Elevated Corridors at Pigdambar Chauraha (KM 14.235) and Medicaps (KM 13.430), a Light Vehicle Underpass (LVUP) at Sirsodiya Junction (KM 61.660), and Flyovers at Dhanmod Bypass (KM 65.455) and Dhanmod Bypass End (KM 73.495), Indore, Madhya Pradesh",
     client: "National Highways Authority of India (NHAI)",
@@ -865,7 +891,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Surfacing", label: "Pavement, furniture & handover" },
     ],
   },
-  "mp-district-roads-mdr-07-widening-and-reconstruction-package-2": {
+  "madhya-pradesh-road-development-corporation-widening-and-reconstruction-of-district-road": {
     officialName:
       "Widening & Reconstruction of Madhya Pradesh District Road 11 Sector Projects, Package 2: Sirsod–Pkthhore Road and Nlarwar–Chitori to Amola Road (MP-MDR-07-01 & MP-MDR-07-18)",
     client: "Madhya Pradesh Road Development Corporation (MPRDC)",
@@ -900,7 +926,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Surfacing", label: "Furniture, drainage & handover" },
     ],
   },
-  "kmp-link-elevated-road-spur-to-delhi-mumbai-expressway": {
+  "public-works-department-construction-of-elevated-road": {
     officialName:
       "Construction of Elevated Road with Service Road, from Delhi–Agra NH-19 to DND–Faridabad–Ballabhgarh Bypass (KMP Link) — Spur to Delhi–Mumbai Expressway — via Ballabhgarh–Mohna Road",
     client: "Public Works Department, Haryana",
@@ -936,7 +962,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { phase: "Surfacing", label: "Pavement, furniture & handover" },
     ],
   },
-  "andaman-island-resort": {
+  "aniidco-development-of-5-star-eco-tourism-resort": {
     overview:
       "Our flagship luxury resort on a pristine Andaman island — beachfront villas, overwater suites, a lagoon infinity pool and a wellness sanctuary, engineered to coastal-grade durability and built to disappear into the landscape.",
     scope: ["40-acre low-density masterplan", "Beachfront & overwater villas", "Lagoon infinity pool & marine centre", "Solar-ready, reef-safe systems"],
@@ -1177,4 +1203,5 @@ export type IconName =
   | "fish"
   | "anchor"
   | "flower"
-  | "pool";
+  | "pool"
+  | "real-estate";

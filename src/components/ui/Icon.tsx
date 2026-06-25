@@ -133,6 +133,15 @@ export default function Icon({
           <path d="M11 18V6M21 18V6M11 9h10M11 13h10" />
         </svg>
       );
+    case "real-estate":
+      return (
+        <svg {...common}>
+          <path d="M4 18l12-12 12 12" />
+          <path d="M8 18v9h16v-9" />
+          <path d="M13 27v-6h6v6" />
+          <path d="M10 19h4v4h-4z" />
+        </svg>
+      );
     default:
       return null;
   }

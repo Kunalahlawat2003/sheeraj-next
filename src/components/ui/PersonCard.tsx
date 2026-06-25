@@ -32,6 +32,14 @@ const SIZES = {
     name: "text-2xl md:text-3xl",
     msg: "text-base md:text-lg",
   },
+  xs: {
+    pad: "p-4 md:p-6",
+    colsDefault: "md:grid-cols-[1.64fr_0.36fr]",
+    colsReverse: "md:grid-cols-[0.36fr_1.64fr]",
+    portrait: "aspect-[3/4] md:aspect-auto md:h-40",
+    name: "text-xl md:text-2xl",
+    msg: "text-base md:text-lg",
+  },
 } as const;
 
 export default function PersonCard({
@@ -43,7 +51,7 @@ export default function PersonCard({
   person: Person;
   featured?: boolean;
   reverse?: boolean;
-  size?: "lg" | "md" | "sm";
+  size?: "lg" | "md" | "sm" | "xs";
 }) {
   if (featured) {
     const s = SIZES[size];
@@ -73,7 +81,7 @@ export default function PersonCard({
                   alt={person.name}
                   fill
                   sizes="(max-width:768px) 100vw, 22rem"
-                  className="object-cover object-top"
+                  className={size === "xs" ? "object-contain object-center" : "object-cover object-top"}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-base/50 to-transparent" />
               </div>

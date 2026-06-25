@@ -44,8 +44,8 @@ export default function AboutPage() {
           <div>
             <SectionHeading
               eyebrow="Our Story"
-              title={<>Built to <span className="text-gold-gradient">outlast</span> us.</>}
-              intro="What began with a single kilometre of highway has grown into a multi-disciplinary EPC builder — and a hospitality developer shaping the Andaman islands. The discipline never changed: build it to a standard, not a deadline."
+              title={<>Built for <span className="text-gold-gradient">generation</span> to come.</>}
+              intro="What began with four-lane highways has evolved into a multi-disciplinary EPC company and hospitality developer shaping some of the most pristine island destinations. Through every project, our commitment remains the same: to build to a standard, not just a deadline."
             />
             <ul className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2">
               {aboutHighlights.map((h, i) => (
@@ -142,12 +142,6 @@ export default function AboutPage() {
                     </p>
                   ))}
 
-                  <div className="mt-8">
-                    <div className="font-serif text-xl italic text-silver">{team.chairman.name}</div>
-                    <div className="mt-1 text-xs uppercase tracking-[0.2em] text-mist">
-                      {team.chairman.role}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -161,7 +155,7 @@ export default function AboutPage() {
                 role: "Managing Director",
                 photo: "/images/boardMember/ankitSir.png",
                 message:
-                  "At Sheeraj Projects, our commitment is to deliver excellence through quality construction, innovation, and timely project execution. We strive to build lasting value for our clients while contributing to the growth of modern infrastructure.",
+                  "At SHEERAJ Projects, our commitment is to deliver excellence through quality construction, innovation, and timely project execution. We strive to build lasting value for our clients while contributing to the growth of modern infrastructure.",
               }}
               featured
               size="md"
@@ -175,9 +169,14 @@ export default function AboutPage() {
             </Reveal>
           ))}
 
-          {/* CA — continues the alternation: image on the right, shorter (compact) card */}
+          {/* COO — shorter than director cards */}
           <Reveal className="mt-6">
-            <PersonCard person={team.ca} featured size="md" />
+            <PersonCard person={team.coo} featured size="sm" reverse />
+          </Reveal>
+
+          {/* Auditor — shortest card, below COO */}
+          <Reveal className="mt-6">
+            <PersonCard person={team.ca} featured size="xs" />
           </Reveal>
         </div>
       </section>

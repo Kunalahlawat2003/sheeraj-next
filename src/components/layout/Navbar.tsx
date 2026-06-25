@@ -113,13 +113,14 @@ export default function Navbar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass-strong py-3 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)]" : "py-5"
+          scrolled ? "glass-strong pb-3 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)]" : "pb-5"
         }`}
+        style={{ paddingTop: `calc(${scrolled ? "0.75rem" : "1.25rem"} + env(safe-area-inset-top, 0px))` }}
       >
         <nav className="container-x flex items-center justify-between">
           <Link
             href="/"
-            aria-label="Sheeraj Projects — home"
+            aria-label="SHEERAJ Projects — home"
             className="inline-flex items-center gap-2.5"
           >
             <Logo variant="seal" size={40} priority />
@@ -174,7 +175,7 @@ export default function Navbar() {
                               key={c.label}
                               href={c.to}
                               onClick={(e) => handleHash(e, c.to!)}
-                              className="group flex items-center justify-between rounded-xl px-4 py-3 transition-colors hover:[background-color:var(--ui-surface-xs)]"
+                              className="group flex items-center justify-between rounded-xl px-4 py-3 transition-colors hover:bg-(--ui-surface-xs)"
                             >
                               <span className={`text-sm group-hover:text-gold ${isActive(c.to) ? "text-gold" : "text-silver"}`}>{c.label}</span>
                               <span className="text-[0.65rem] text-mist">{c.note}</span>
@@ -183,7 +184,7 @@ export default function Navbar() {
                             <Link
                               key={c.label}
                               href={c.to ?? "#"}
-                              className="group flex items-center justify-between rounded-xl px-4 py-3 transition-colors hover:[background-color:var(--ui-surface-xs)]"
+                              className="group flex items-center justify-between rounded-xl px-4 py-3 transition-colors hover:bg-(--ui-surface-xs)"
                             >
                               <span className={`text-sm group-hover:text-gold ${isActive(c.to) ? "text-gold" : "text-silver"}`}>{c.label}</span>
                               <span className="text-[0.65rem] text-mist">{c.note}</span>
@@ -202,7 +203,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-3 lg:flex">
             <ThemeToggle />
-            <MagneticButton href="/contact" className="!px-6 !py-3 text-xs">
+            <MagneticButton href="/contact" className="px-6! py-3! text-xs">
               Contact
             </MagneticButton>
           </div>
@@ -213,15 +214,15 @@ export default function Navbar() {
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
-            <span className={`h-px w-6 ${barBg} transition-all ${open ? "translate-y-[7px] rotate-45" : ""}`} />
+            <span className={`h-px w-6 ${barBg} transition-all ${open ? "translate-y-1.75 rotate-45" : ""}`} />
             <span className={`h-px w-6 ${barBg} transition-all ${open ? "opacity-0" : ""}`} />
-            <span className={`h-px w-6 ${barBg} transition-all ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
+            <span className={`h-px w-6 ${barBg} transition-all ${open ? "-translate-y-1.75 -rotate-45" : ""}`} />
           </button>
         </nav>
 
         {/* scroll progress */}
         <motion.div
-          className="absolute bottom-0 left-0 h-px w-full origin-left bg-gradient-to-r from-gold-deep via-gold to-gold-soft"
+          className="absolute bottom-0 left-0 h-px w-full origin-left bg-linear-to-r from-gold-deep via-gold to-gold-soft"
           style={{ scaleX: progress }}
         />
       </header>

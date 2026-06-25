@@ -1,24 +1,89 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { projects, slugify, type ProjectStatus } from "@/data/site";
+import Reveal from "@/components/ui/Reveal";
+import { projects, slugify, type Project, type ProjectStatus } from "@/data/site";
 
-const STATUS_PILL: Record<ProjectStatus, { pill: string; dot: string }> = {
-  Executed: { pill: "bg-lagoon/15 text-lagoon", dot: "bg-lagoon" },
-  Ongoing: { pill: "bg-gold/15 text-accent-gold-strong", dot: "animate-pulse bg-gold" },
-  Awarded: { pill: "bg-coral/15 text-coral", dot: "bg-coral" },
+type Accent = { text: string; dot: string; pill: string; ring: string; border: string };
+
+const ACCENTS: Record<ProjectStatus, Accent> = {
+  Executed: {
+    text: "text-lagoon",
+    dot: "bg-lagoon",
+    pill: "bg-lagoon/15 text-lagoon",
+    ring: "group-hover:ring-lagoon/40",
+    border: "hover:border-lagoon/50",
+  },
+  Ongoing: {
+    text: "text-accent-gold-strong",
+    dot: "bg-gold",
+    pill: "bg-gold/15 text-accent-gold-strong",
+    ring: "group-hover:ring-gold/40",
+    border: "hover:border-gold/50",
+  },
+  Awarded: {
+    text: "text-coral",
+    dot: "bg-coral",
+    pill: "bg-coral/15 text-coral",
+    ring: "group-hover:ring-coral/40",
+    border: "hover:border-coral/50",
+  },
 };
 
+const GROUPS: { status: ProjectStatus; label: string; grid: string; aspect: string; sizes: string; compact?: boolean }[] = [
+  { status: "Executed", label: "Executed", grid: "sm:grid-cols-2", aspect: "aspect-16/10", sizes: "(max-width:640px) 100vw, (min-width:1344px) 672px, 50vw", compact: true },
+  { status: "Ongoing",  label: "Ongoing",  grid: "sm:grid-cols-2 lg:grid-cols-3", aspect: "aspect-4/3", sizes: "(max-width:640px) 100vw, (max-width:1024px) 50vw, (min-width:1344px) 448px, 33vw", compact: true },
+  { status: "Awarded",  label: "Awarded",  grid: "sm:grid-cols-2 lg:grid-cols-4", aspect: "aspect-4/3 lg:aspect-3/4", sizes: "(max-width:640px) 100vw, (max-width:1024px) 50vw, (min-width:1344px) 336px, 25vw", compact: true },
+];
+
 function StatusPill({ status }: { status: ProjectStatus }) {
-  const s = STATUS_PILL[status];
+  const a = ACCENTS[status];
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.65rem] font-medium uppercase tracking-wider ${s.pill}`}>
-      <span className={`h-1.5 w-1.5 rounded-full ${s.dot}`} />
+    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.6rem] font-medium uppercase tracking-wider ${a.pill}`}>
+      <span className={`h-1.5 w-1.5 rounded-full ${a.dot} ${status === "Ongoing" ? "animate-pulse" : ""}`} />
       {status}
     </span>
+  );
+}
+
+function ProjectCard({ p, aspect, sizes, compact = false }: { p: Project; aspect: string; sizes: string; compact?: boolean }) {
+  const a = ACCENTS[p.status];
+  return (
+    <a
+      href={`/projects/${slugify(p.name)}`}
+      data-cursor
+      className={`group relative block h-full overflow-hidden rounded-3xl border border-(--ui-border) bg-(--ui-surface-xs) transition-all duration-500 ${a.border}`}
+    >
+      <div className={`relative ${aspect}`}>
+        <Image
+          src={p.image}
+          alt={p.name}
+          fill
+          sizes={sizes}
+          className="object-cover transition-transform duration-[1.2s] ease-out-expo group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-base via-base/45 to-transparent" />
+        <div className={`pointer-events-none absolute inset-3 rounded-2xl ring-1 ring-transparent transition-all duration-500 ${a.ring}`} />
+      </div>
+      <div className={`absolute inset-x-0 bottom-0 ${compact ? "p-5 md:p-6 lg:p-3 xl:p-6" : "p-5 md:p-6"}`}>
+        <div className="flex flex-wrap items-center gap-2.5">
+          <span className={`uppercase ${compact ? "text-[0.68rem] tracking-[0.2em] lg:text-[0.5rem] lg:tracking-[0.12em] xl:text-[0.68rem] xl:tracking-[0.2em]" : "text-[0.68rem] tracking-[0.2em]"} ${a.text}`}>
+            {p.category}
+          </span>
+          <StatusPill status={p.status} />
+        </div>
+        <h3 className={`font-serif tracking-tight ${compact ? "mt-2.5 text-sm lg:mt-1.5 lg:text-[15px] xl:mt-2.5 xl:text-2xl" : "mt-2.5 text-sm lg:text-[15px] xl:text-2xl"}`}>
+          {p.name}
+        </h3>
+        <div className={`flex flex-wrap items-center gap-x-2 gap-y-0.5 text-mist ${compact ? "mt-2 text-xs lg:mt-1 lg:text-[0.6rem] xl:mt-2 xl:text-xs" : "mt-2 text-xs"}`}>
+          <span className="leading-snug">{p.location}</span>
+          <span className="h-1 w-1 shrink-0 rounded-full bg-mist/50" />
+          <span className="leading-snug">{p.year}</span>
+        </div>
+      </div>
+    </a>
   );
 }
 
@@ -30,7 +95,7 @@ export default function ProjectsExplorer() {
   return (
     <div>
       {/* filters */}
-      <div className="mb-10 flex flex-wrap gap-2">
+      <div className="mb-12 flex flex-wrap gap-2 sm:mb-16">
         {categories.map((c) => (
           <button
             key={c}
@@ -38,7 +103,7 @@ export default function ProjectsExplorer() {
             className={`rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-wider transition-all ${
               active === c
                 ? "border-gold/60 bg-gold/10 text-accent-gold"
-                : "[border-color:var(--ui-border)] text-mist hover:border-gold/40 hover:text-silver"
+                : "border-(--ui-border) text-mist hover:border-gold/40 hover:text-silver"
             }`}
           >
             {c}
@@ -46,48 +111,50 @@ export default function ProjectsExplorer() {
         ))}
       </div>
 
-      {/* grid */}
-      <motion.div layout className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((p) => (
-            <motion.div
-              key={p.name}
-              layout
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.4 }}
-            >
-              <Link
-                href={`/projects/${slugify(p.name)}`}
-                data-cursor
-                className="group relative block h-full overflow-hidden rounded-3xl border [border-color:var(--ui-border)] transition-all duration-500 hover:border-gold/45"
-              >
-                <div className="relative aspect-[4/3]">
-                  <Image src={p.image} alt={p.name} fill sizes="(max-width:1024px) 100vw, 33vw" className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-base via-base/70 to-transparent" />
-                  <div className="pointer-events-none absolute inset-3 rounded-2xl ring-1 ring-gold/0 transition-all duration-500 group-hover:ring-gold/40" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[0.7rem] uppercase tracking-[0.2em] text-accent-gold-strong">{p.category}</span>
-                    <StatusPill status={p.status} />
+      {/* grouped by status */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.35 }}
+          className="space-y-12 sm:space-y-16"
+        >
+          {GROUPS.map((group) => {
+            const items = filtered.filter((p) => p.status === group.status);
+            if (items.length === 0) return null;
+            const a = ACCENTS[group.status];
+            const count = String(items.length).padStart(2, "0");
+            return (
+              <div key={group.status}>
+                {/* group header */}
+                <Reveal>
+                  <div className="mb-7 flex items-center gap-4">
+                    <div className="flex items-center gap-2.5">
+                      <span className={`h-2 w-2 rounded-full ${a.dot} ${group.status === "Ongoing" ? "animate-pulse" : ""}`} />
+                      <h3 className="font-display text-sm font-medium uppercase tracking-[0.28em] text-silver">
+                        {group.label}
+                      </h3>
+                    </div>
+                    <span className="h-px flex-1 bg-(--ui-border)" />
+                    <span className={`font-serif text-lg ${a.text}`}>{count}</span>
                   </div>
-                  <h3 className="mt-3 font-serif text-sm lg:text-[15px] xl:text-2xl tracking-tight">{p.name}</h3>
-                  <div className="mt-2 flex items-center gap-3 text-xs text-mist">
-                    <span>{p.location}</span>
-                    <span className="h-1 w-1 rounded-full bg-mist/50" />
-                    <span>{p.year}</span>
-                  </div>
-                  <span className="mt-3 inline-flex items-center gap-2 text-sm text-accent-gold-strong opacity-0 transition-all duration-500 group-hover:opacity-100">
-                    View project →
-                  </span>
+                </Reveal>
+
+                {/* cards */}
+                <div className={`grid grid-cols-1 gap-5 ${group.grid}`}>
+                  {items.map((p, i) => (
+                    <Reveal key={p.name} delay={i * 0.06}>
+                      <ProjectCard p={p} aspect={group.aspect} sizes={group.sizes} compact={group.compact} />
+                    </Reveal>
+                  ))}
                 </div>
-              </Link>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+              </div>
+            );
+          })}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

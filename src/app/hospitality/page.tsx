@@ -12,7 +12,7 @@ import Community from "@/components/hospitality/Community";
 import Investment from "@/components/hospitality/Investment";
 
 export const metadata: Metadata = {
-  title: "Hospitality — Building Luxury Amid Paradise",
+  title: "Hospitality — Building Luxury Amidst Paradise",
   description: hospitalityPage.vision.body,
 };
 

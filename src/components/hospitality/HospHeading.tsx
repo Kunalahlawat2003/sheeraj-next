@@ -38,7 +38,7 @@ export default function HospHeading({
       )}
       <Reveal delay={0.05}>
         <h2
-          className={`mt-5 font-serif text-4xl leading-[1.04] tracking-tight text-balance sm:text-5xl md:text-[3.3rem] ${
+          className={`mt-5 font-serif text-3xl leading-[1.04] tracking-tight text-balance sm:text-4xl md:text-[2.6rem] ${
             onLight ? "!text-ocean-deep" : "!text-foam"
           }`}
         >

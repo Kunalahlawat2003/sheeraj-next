@@ -45,7 +45,7 @@ export default function HospHero() {
         <motion.h1 custom={1} variants={rise} initial="hidden" animate="show" className="mt-5 max-w-4xl font-serif text-[2.5rem] font-medium leading-[1.02] tracking-tight text-balance text-white sm:mt-6 sm:text-6xl sm:leading-[0.98] lg:text-[5.4rem]">
           Building Luxury{" "}
           <span className="bg-gradient-to-r from-aqua via-sand to-coral bg-clip-text italic text-transparent">
-            Amid Paradise.
+            Amidst Paradise.
           </span>
         </motion.h1>
 

@@ -38,7 +38,7 @@ export default function Services() {
             <Reveal
               key={s.key}
               delay={(i % 3) * 0.07}
-              className={s.span === "wide" ? "lg:col-span-2" : ""}
+              className={s.span === "wide" ? "sm:col-span-2 lg:col-span-2" : ""}
             >
               <TiltCard max={6} className="h-full rounded-[1.25rem]">
                 <div className="card-border flex h-full min-h-[15rem] flex-col justify-between p-6 sm:p-7">

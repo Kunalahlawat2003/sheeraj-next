@@ -133,7 +133,7 @@ export default function Footer() {
         <div className="hairline mt-16" />
         <div className="flex flex-col items-center gap-2 py-8 text-center text-xs text-mist">
           <p>
-            © {company.legalName} {year}. All Rights Reserved.
+            © {company.legalName.toUpperCase()} {year}. All Rights Reserved.
           </p>
           <p>
             This site is protected by reCAPTCHA and the Google{" "}

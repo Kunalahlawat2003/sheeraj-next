@@ -130,10 +130,10 @@ export default function Projects() {
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6 sm:gap-8">
           <SectionHeading
-            eyebrow="Selected Work"
+            eyebrow="LANDMARK PROJECTS"
             title={
               <>
-                Built to <span className="text-gold-gradient">outlast</span> us.
+                Built for <span className="text-gold-gradient">generations</span> to come.
               </>
             }
           />
@@ -146,7 +146,7 @@ export default function Projects() {
 
         <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-16">
           {GROUPS.map((group) => {
-            const items = projects.filter((p) => p.status === group.status);
+            const items = projects.filter((p) => p.status === group.status && group.status === "Executed");
             if (items.length === 0) return null;
             const a = ACCENTS[group.status];
             const count = String(items.length).padStart(2, "0");

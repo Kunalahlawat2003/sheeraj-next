@@ -42,7 +42,7 @@ export default function HospitalityPreview() {
             <h2 className="mt-5 font-serif text-4xl leading-[1.04] tracking-tight text-balance sm:text-5xl md:text-[3.4rem]">
               Building Luxury{" "}
               <span className="text-tropical-gradient italic">
-                Amid Paradise.
+                Amidst Paradise.
               </span>
             </h2>
           </Reveal>

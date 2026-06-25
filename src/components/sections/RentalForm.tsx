@@ -181,8 +181,8 @@ function RentalFormInner() {
         <div>
           <span className="eyebrow">Plant &amp; Machinery</span>
           <h2 className="mt-5 font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">
-            Rent from India&apos;s most{" "}
-            <span className="text-gold-gradient italic">capable fleet.</span>
+            Rent from a very diversified and{" "}
+            <span className="text-gold-gradient italic">pristine fleet.</span>
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-mist">
             Excavators, cranes, pavers, batching plants and more — operator-ready

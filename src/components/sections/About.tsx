@@ -23,7 +23,7 @@ export default function About() {
                 building.
               </>
             }
-            intro="For a decade, we have engineered the heavy highways, vital waterways, and ring roads that connect mainland India and its islands. Today, we bring that exact same engineering precision to crafting premium destinations that redefine modern hospitality."
+            intro="For over a decade, we have shaped the infrastructure that connects communities across mainland India and its islands. Extending this legacy of expertise and trust, we craft exceptional hospitality destinations where thoughtful design, comfort, and unforgettable experiences come together."
           />
 
           <ul className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:mt-10">

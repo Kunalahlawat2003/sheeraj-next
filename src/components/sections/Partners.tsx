@@ -1,15 +1,49 @@
 "use client";
 
+import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { partners, bankers } from "@/data/site";
 
-function LogoCard({ name }: { name: string }) {
+function LogoCard({ name, logo }: { name: string; logo?: string }) {
   return (
-    <div className="flex h-20 w-36 items-center justify-center rounded-2xl border border-black/5 bg-white px-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:h-24 sm:w-44 sm:px-6">
-      {/* swap this span for <img src="/logo/partners/<file>.png" alt={name} /> when logos are added */}
-      <span className="text-center font-display text-[1rem] font-semibold tracking-wide text-zinc-800">
-        {name}
-      </span>
+    <div className="flex h-20 w-36 items-center justify-center rounded-2xl border border-black/5 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:h-24 sm:w-44 sm:p-5">
+      {logo ? (
+        <div className="relative h-full w-full">
+          <Image
+            src={logo}
+            alt={name}
+            fill
+            sizes="(max-width:640px) 144px, 176px"
+            className="object-contain"
+          />
+        </div>
+      ) : (
+        <span className="text-center font-display text-[1rem] font-semibold tracking-wide text-zinc-800">
+          {name}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function BankerCard({ name, logo }: { name: string; logo?: string }) {
+  return (
+    <div className="flex h-24 w-44 items-center justify-center rounded-2xl border border-black/5 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:h-28 sm:w-52 md:h-32 md:w-60">
+      {logo ? (
+        <div className="relative h-full w-full">
+          <Image
+            src={logo}
+            alt={name}
+            fill
+            sizes="(max-width:640px) 176px, (max-width:768px) 208px, 240px"
+            className="object-contain"
+          />
+        </div>
+      ) : (
+        <span className="text-center font-display text-[1rem] font-semibold tracking-wide text-zinc-800">
+          {name}
+        </span>
+      )}
     </div>
   );
 }
@@ -34,7 +68,7 @@ export default function Partners() {
       <div className="container-x">
         <div className="flex flex-wrap justify-center gap-5">
           {partners.map((p) => (
-            <LogoCard key={p} name={p} />
+            <LogoCard key={p.name} name={p.name} logo={p.logo} />
           ))}
         </div>
       </div>
@@ -56,7 +90,7 @@ export default function Partners() {
       <div className="container-x">
         <div className="flex flex-wrap justify-center gap-5">
           {bankers.map((b) => (
-            <LogoCard key={b} name={b} />
+            <BankerCard key={b.name} name={b.name} logo={b.logo} />
           ))}
         </div>
       </div>
