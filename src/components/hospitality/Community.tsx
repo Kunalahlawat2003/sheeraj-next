@@ -4,7 +4,6 @@ import Image from "next/image";
 import HospHeading from "./HospHeading";
 import Reveal from "@/components/ui/Reveal";
 import Counter from "@/components/ui/Counter";
-import MagneticButton from "@/components/ui/MagneticButton";
 import { LeafCluster, PalmFrond, Hibiscus } from "./tropical";
 import { hospitalityPage } from "@/data/site";
 
@@ -196,39 +195,6 @@ export default function Community() {
             </div>
           </Reveal>
         </div>
-
-        {/* 5 — CTA ----------------------------------------------------------- */}
-        <Reveal>
-          <div className="relative mt-20 overflow-hidden rounded-4xl border border-white/10 bg-linear-to-br from-white/8 via-white/2 to-transparent p-10 text-center backdrop-blur-xl md:p-16">
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-aqua/40 to-transparent" />
-            <div className="anim-pulse-glow pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-aqua/15 blur-[100px]" />
-            <div
-              className="anim-pulse-glow pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-lagoon/15 blur-[110px]"
-              style={{ animationDelay: "-4.5s" }}
-            />
-            <h3 className="relative mx-auto max-w-2xl font-serif text-3xl leading-tight text-foam md:text-[2.6rem]">
-              {c.cta.title}
-            </h3>
-            <p className="relative mx-auto mt-5 max-w-xl text-[1rem] leading-relaxed text-foam/70">
-              {c.cta.body}
-            </p>
-            <div className="relative mt-9 flex flex-wrap items-center justify-center gap-4">
-              <MagneticButton
-                href={c.cta.primary.href}
-                className="!bg-gradient-to-r !from-aqua !to-lagoon !text-[#06262f]"
-              >
-                {c.cta.primary.label}
-              </MagneticButton>
-              <MagneticButton
-                href={c.cta.secondary.href}
-                variant="ghost"
-                className="!border-white/40 !text-foam hover:!text-white"
-              >
-                {c.cta.secondary.label}
-              </MagneticButton>
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

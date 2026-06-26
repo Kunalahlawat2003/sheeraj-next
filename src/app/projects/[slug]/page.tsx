@@ -128,7 +128,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             caption is guaranteed legible in BOTH light and dark themes. */}
         <Reveal delay={0.12}>
           <div className="container-x pb-12 sm:pb-14 md:pb-20">
-            <div className="media-scrim on-media relative aspect-[16/9] w-full overflow-hidden rounded-xl border [border-color:var(--ui-border-md)] md:aspect-[2.4/1]">
+            <div className="media-scrim on-media relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-(--ui-border-md) md:aspect-[2.4/1]">
               <Image
                 src={project.image}
                 alt={project.name}
@@ -136,6 +136,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 priority
                 sizes="(max-width: 1344px) 100vw, 1280px"
                 className="object-cover"
+                style={{ objectPosition: project.coverPosition ?? "center" }}
               />
               <div className="absolute inset-x-0 bottom-0 z-[1] flex flex-wrap items-end justify-between gap-3 p-5 md:p-7">
                 <span className="font-display text-[0.62rem] uppercase tracking-[0.24em] text-on-media">
@@ -218,7 +219,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <div className="lg:col-span-5 xl:col-span-4">
               <Reveal delay={0.08}>
                 <div className="lg:sticky lg:top-28">
-                  <div className="overflow-hidden rounded-xl border [border-color:var(--ui-border-md)] [background-color:var(--ui-surface-xs)]">
+                  <div className="overflow-hidden rounded-xl border border-(--ui-border-md) bg-(--ui-surface-xs)">
                     <div className="flex items-center justify-between border-b [border-color:var(--ui-border)] px-6 py-4">
                       <span className="font-display text-[0.62rem] font-medium uppercase tracking-[0.26em] text-accent-gold-strong">
                         Project Fact Sheet
@@ -270,27 +271,75 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               </div>
             </Reveal>
 
-            {/* Dense-flow mosaic: the first photo is a 2×2 feature tile, the
-                rest are uniform tiles that backfill around it — no gaps. */}
-            <div className="mt-10 grid grid-flow-dense auto-rows-[8.5rem] grid-cols-2 gap-4 sm:auto-rows-[10rem] md:auto-rows-[12rem] md:grid-cols-4">
-              {detail.gallery.map((src, i) => (
-                <Reveal
-                  key={src}
-                  delay={(i % 4) * 0.05}
-                  className={i === 0 ? "col-span-2 row-span-2" : ""}
-                >
-                  <figure className="group relative h-full w-full overflow-hidden rounded-xl border [border-color:var(--ui-border-md)]">
+            {detail.gallery.length === 2 ? (
+              /* 2 images — equal side-by-side */
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                {detail.gallery.map((src, i) => (
+                  <Reveal key={src} delay={i * 0.08}>
+                    <figure className="group relative aspect-4/3 overflow-hidden rounded-xl border border-(--ui-border-md)">
+                      <Image
+                        src={src}
+                        alt={`${project.name} — site view ${i + 1}`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                      />
+                    </figure>
+                  </Reveal>
+                ))}
+              </div>
+            ) : detail.gallery.length === 3 ? (
+              /* 3 images — 1 large feature left + 2 stacked right */
+              <div className="mt-10 grid gap-4 sm:grid-cols-[2fr_1fr]">
+                <Reveal>
+                  <figure className="group relative aspect-4/3 overflow-hidden rounded-xl border border-(--ui-border-md) sm:aspect-auto sm:h-full">
                     <Image
-                      src={src}
-                      alt={`${project.name} — site view ${i + 1}`}
+                      src={detail.gallery[0]}
+                      alt={`${project.name} — site view 1`}
                       fill
-                      sizes={i === 0 ? "(max-width: 768px) 100vw, 640px" : "(max-width: 768px) 50vw, 25vw"}
+                      sizes="(max-width: 640px) 100vw, 66vw"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                     />
                   </figure>
                 </Reveal>
-              ))}
-            </div>
+                <div className="flex flex-col gap-4">
+                  {detail.gallery.slice(1).map((src, i) => (
+                    <Reveal key={src} delay={(i + 1) * 0.08}>
+                      <figure className="group relative aspect-4/3 overflow-hidden rounded-xl border border-(--ui-border-md)">
+                        <Image
+                          src={src}
+                          alt={`${project.name} — site view ${i + 2}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                        />
+                      </figure>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              /* 4+ images — original dense mosaic */
+              <div className="mt-10 grid grid-flow-dense auto-rows-[8.5rem] grid-cols-2 gap-4 sm:auto-rows-[10rem] md:auto-rows-[12rem] md:grid-cols-4">
+                {detail.gallery.map((src, i) => (
+                  <Reveal
+                    key={src}
+                    delay={(i % 4) * 0.05}
+                    className={i === 0 ? "col-span-2 row-span-2" : ""}
+                  >
+                    <figure className="group relative h-full w-full overflow-hidden rounded-xl border border-(--ui-border-md)">
+                      <Image
+                        src={src}
+                        alt={`${project.name} — site view ${i + 1}`}
+                        fill
+                        sizes={i === 0 ? "(max-width: 768px) 100vw, 640px" : "(max-width: 768px) 50vw, 25vw"}
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                      />
+                    </figure>
+                  </Reveal>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}
@@ -306,11 +355,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               </h2>
             </Reveal>
 
-            <div className="mt-10 sm:mt-12 overflow-hidden rounded-xl border [border-color:var(--ui-border-md)]">
+            <div className="mt-10 sm:mt-12 overflow-hidden rounded-xl border border-(--ui-border-md)">
               {detail.timeline.map((t, i) => (
                 <Reveal key={t.phase} delay={i * 0.06}>
                   <div
-                    className={`grid grid-cols-12 items-baseline gap-4 px-6 py-6 transition-colors hover:[background-color:var(--ui-surface-xs)] md:px-8 ${
+                    className={`grid grid-cols-12 items-baseline gap-4 px-6 py-6 transition-colors hover:bg-(--ui-surface-xs) md:px-8 ${
                       i !== detail.timeline.length - 1 ? "border-b [border-color:var(--ui-border)]" : ""
                     }`}
                   >
@@ -338,7 +387,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       <section className="border-t [border-color:var(--ui-border)] bg-ink py-16 sm:py-20 md:py-28">
         <div className="container-x">
           <Reveal>
-            <div className="flex flex-col items-start justify-between gap-8 rounded-xl border [border-color:var(--ui-border-md)] [background-color:var(--ui-surface-xs)] p-8 md:flex-row md:items-center md:p-12">
+            <div className="flex flex-col items-start justify-between gap-8 rounded-xl border border-(--ui-border-md) bg-(--ui-surface-xs) p-8 md:flex-row md:items-center md:p-12">
               <div className="max-w-xl">
                 <span className="eyebrow">Work With Us</span>
                 <h2 className="mt-4 font-serif text-3xl leading-tight tracking-tight text-balance text-silver md:text-4xl">

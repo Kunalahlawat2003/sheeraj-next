@@ -20,12 +20,12 @@ export default function HospitalityPage() {
   return (
     <>
       <HospHero />
+      <Expansion />
       <Vision />
       <Masterplan />
       <Architecture />
       <Sustainability />
       <ResortBuild />
-      <Expansion />
       <Community />
       <Investment />
     </>

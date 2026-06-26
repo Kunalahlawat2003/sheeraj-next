@@ -199,6 +199,7 @@ export type Project = {
   year: string;
   blurb: string;
   image: string;
+  coverPosition?: string;
   featured?: boolean;
 };
 
@@ -260,7 +261,8 @@ export const projects: Project[] = [
     status: "Awarded",
     year: "75-yr concession",
     blurb: "A 5-star eco-tourism resort on Shaheed Dweep Island, developed on a PPP basis.",
-    image: "/images/resort-overwater.jpg",
+    image: "/images/Shaheed/1.jpeg",
+    coverPosition: "left center",
   },
   {
     name: "ANIIDCO — Design, Build, Finance, Operate and Transfer of Megapode Resort",
@@ -269,7 +271,7 @@ export const projects: Project[] = [
     status: "Awarded",
     year: "50-yr concession",
     blurb: "Design, build, finance, operate & transfer of the Megapode Resort at Sri Vijaya Puram.",
-    image: "/images/island-aerial2.jpg",
+    image: "/images/megapode/1.jpeg",
   },
   {
     name: "MoRTH — Construction of 4 Lane with Paved Shoulders",
@@ -613,7 +615,7 @@ export const team = {
     { name: "Mr. Arpit Kadyan", role: "Director", photo: "/images/boardMember/arpitSir.png", message: "Innovation, integrity, and commitment are the cornerstones of our success. We remain dedicated to delivering projects that exceed expectations and create long-term value." },
   ] as Person[],
   coo: {
-    name: "Dilbagh Singh Dhandha",
+    name: "Mr. Dilbagh Singh Dhandha",
     role: "Chief Operating Officer",
     photo: "/images/boardMember/accounts.jpg",
     message:
@@ -963,20 +965,70 @@ export const projectDetails: Record<string, ProjectDetail> = {
     ],
   },
   "aniidco-development-of-5-star-eco-tourism-resort": {
+    officialName:
+      "Development of 5-Star Eco-Tourism Resort at Shaheed Dweep Island, ANI on PPP basis",
+    client: "ANIIDCO (Andaman & Nicobar Islands Integrated Development Corporation)",
+    value: "₹175 Cr",
     overview:
-      "Our flagship luxury resort on a pristine Andaman island — beachfront villas, overwater suites, a lagoon infinity pool and a wellness sanctuary, engineered to coastal-grade durability and built to disappear into the landscape.",
-    scope: ["40-acre low-density masterplan", "Beachfront & overwater villas", "Lagoon infinity pool & marine centre", "Solar-ready, reef-safe systems"],
-    gallery: ["/images/resort-overwater.jpg", "/images/exp-infinity-pool.jpg", "/images/exp-overwater-deck.jpg", "/images/island-aerial2.jpg"],
+      "Awarded by ANIIDCO on a Public-Private Partnership basis, this project involves the development of a 5-Star Eco-Tourism Resort at Shaheed Dweep Island, Andaman & Nicobar Islands. The resort will be designed, built, financed, operated and maintained by Sheeraj under a 75-year concession (inclusive of the 3-year construction period), setting a new benchmark for luxury eco-tourism in India's island territories.",
+    scope: [
+      "Design and construction of a 5-star eco-tourism resort on Shaheed Dweep Island",
+      "Development on a Public-Private Partnership (PPP) basis",
+      "Financing and project management across the full concession lifecycle",
+      "Operation and maintenance for the concession period",
+      "Coastal-grade civil, structural and MEP works",
+      "Eco-sensitive landscaping and sustainability systems",
+    ],
+    gallery: [
+      "/images/Shaheed/1.jpeg",
+      "/images/Shaheed/2.jpeg",
+      "/images/Shaheed/3.jpeg",
+    ],
     facts: [
-      { label: "Location", value: "Andaman & Nicobar Islands" },
-      { label: "Status", value: "Ongoing · Phase I" },
-      { label: "Keys", value: "120 villas & suites" },
-      { label: "Opening", value: "2026" },
+      { label: "Client", value: "ANIIDCO" },
+      { label: "Project Value", value: "₹175 Cr" },
+      { label: "Construction Period", value: "3 Years" },
+      { label: "Concession Period", value: "75 Yrs (Incl. Construction Period)" },
     ],
     timeline: [
-      { phase: "2024", label: "Groundbreaking & foundations" },
-      { phase: "2025", label: "Villas & overwater structures" },
-      { phase: "2026", label: "Phase I opening" },
+      { phase: "Award", label: "LOA issued by ANIIDCO; PPP concession agreement executed" },
+      { phase: "Design", label: "Architectural, structural and MEP design development" },
+      { phase: "Construction", label: "Civil works, resort structures and coastal infrastructure" },
+      { phase: "Commissioning", label: "MEP fit-out, landscaping and soft opening" },
+      { phase: "Operations", label: "Hotel operations under the 75-year concession" },
+    ],
+  },
+  "aniidco-design-build-finance-operate-and-transfer-of-megapode-resort": {
+    officialName:
+      "Design, Build, Finance, Operate and Transfer (DBFOT) of Megapode Resort at Sri Vijaya Puram through ANIIDCO",
+    client: "ANIIDCO (Andaman & Nicobar Islands Integrated Development Corporation)",
+    value: "₹160 Cr",
+    overview:
+      "Awarded by ANIIDCO under the DBFOT model, this project involves the design, construction, financing, operation and transfer of the Megapode Resort at Sri Vijaya Puram, Andaman & Nicobar Islands. Sheeraj holds a 50-year concession (inclusive of the 3-year construction period), delivering a premium resort that combines modern hospitality with the natural character of the island setting.",
+    scope: [
+      "Design and construction of Megapode Resort at Sri Vijaya Puram",
+      "Full DBFOT (Design, Build, Finance, Operate and Transfer) delivery model",
+      "Financing, project management and risk across the concession lifecycle",
+      "Hotel operations and asset management over the concession period",
+      "Civil, structural and MEP works to coastal-grade standards",
+      "Landscaping, utilities and sustainability infrastructure",
+    ],
+    gallery: [
+      "/images/megapode/1.jpeg",
+      "/images/megapode/2.jpeg",
+    ],
+    facts: [
+      { label: "Client", value: "ANIIDCO" },
+      { label: "Project Value", value: "₹160 Cr" },
+      { label: "Construction Period", value: "3 Years" },
+      { label: "Concession Period", value: "50 Yrs (Incl. Construction Period)" },
+    ],
+    timeline: [
+      { phase: "Award", label: "LOA issued by ANIIDCO; DBFOT concession agreement executed" },
+      { phase: "Design", label: "Architectural, structural and MEP design development" },
+      { phase: "Construction", label: "Civil works, resort structures and coastal infrastructure" },
+      { phase: "Commissioning", label: "MEP fit-out, landscaping and soft opening" },
+      { phase: "Operations", label: "Hotel operations under the 50-year concession" },
     ],
   },
   "state-highway-corridor": {

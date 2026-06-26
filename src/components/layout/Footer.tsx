@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* right group: quick links + contact, centered */}
-          <div className="flex flex-col gap-12 text-center sm:flex-row sm:justify-center sm:gap-16 lg:gap-20">
+          <div className="flex flex-col gap-12 sm:flex-row sm:gap-16 lg:gap-20">
           {/* quick links */}
           <div>
             <h4 className="font-serif text-xl tracking-wide text-accent-gold">Quick Links</h4>
@@ -102,27 +102,27 @@ export default function Footer() {
           {/* contact */}
           <div>
             <h4 className="font-serif text-xl tracking-wide text-accent-gold">Contact Us</h4>
-            <ul className="mx-auto mt-5 flex max-w-xs flex-col items-center gap-3 text-left text-sm text-silver/75">
-              <li className="flex items-start gap-2">
+            <ul className="mt-5 flex flex-col gap-3 text-sm text-silver/75">
+              <li className="flex w-full items-start gap-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold">
                   <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
                 </svg>
-                <span>Address: {company.address}</span>
+                <span className="max-w-56">Address: {company.address}</span>
               </li>
-              <li className="flex items-start gap-2">
+              <li className="flex w-full items-start gap-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold">
                   <path d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z" />
                 </svg>
                 <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-gold">
-                  Phone: {company.phone}
+                  {company.phone}
                 </a>
               </li>
-              <li className="flex items-start gap-2">
+              <li className="flex w-full items-start gap-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold">
                   <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm8 7L4.5 6.5h15L12 11Zm0 2.2L4 8.2V18h16V8.2l-8 5Z" />
                 </svg>
                 <a href={`mailto:${company.email}`} className="transition-colors hover:text-gold">
-                  Email: {company.email}
+                  {company.email}
                 </a>
               </li>
             </ul>
