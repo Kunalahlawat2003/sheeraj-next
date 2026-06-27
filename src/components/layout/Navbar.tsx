@@ -119,17 +119,14 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        className={`site-header fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled ? "glass-strong pb-3 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)]" : "pb-5"
         }`}
         style={{ paddingTop: `calc(${scrolled ? "0.75rem" : "1.25rem"} + env(safe-area-inset-top, 0px))` }}
       >
-        {/* Fills the Dynamic Island / status-bar notch area with the panel colour so it never shows through to the hero. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 bg-panel"
-          style={{ height: "env(safe-area-inset-top, 0px)" }}
-        />
+        {/* The Dynamic Island / status-bar notch strip is filled by the header's own
+            background band — see `.site-header` in globals.css — so the bar colour
+            reaches the very top of the screen in both the hero and scrolled states. */}
         <nav className="container-x flex items-center justify-between">
           <Link
             href="/"

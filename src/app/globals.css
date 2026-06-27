@@ -313,6 +313,27 @@
     }
   }
 
+  /* iOS Dynamic Island / status-bar (notch) fill.
+     The header is position:fixed and, with viewport-fit=cover, spans the
+     safe-area strip at the very top of the screen. A pseudo-element paints that
+     strip with the panel colour so the bar reaches y=0 in EVERY state —
+     transparent-over-hero AND scrolled-glass — and on every route. Using
+     ::before (rather than a JS-set inline-env() child, or the header's own
+     `background` which the glass-strong shorthand resets) is the most reliable
+     way to fill the safe-area region on iOS WebKit: it survives the scroll-state
+     class toggles and can't be dropped on hydration. On non-notched / desktop
+     viewports env() is 0px, so the strip has zero height and is a no-op. */
+  .site-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: env(safe-area-inset-top, 0px);
+    background: var(--color-panel);
+    pointer-events: none;
+  }
+
   .hairline {
     height: 1px;
     width: 100%;
