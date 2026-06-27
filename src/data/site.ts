@@ -16,7 +16,7 @@ import andamanVision from "../../public/images/andaman/vision.jpg";
 export const company = {
   name: "SHEERAJ Projects",
   legalName: "SHEERAJ Projects Private Limited",
-  motto: "Building Establishments",
+  motto: "BUILDING ESTABLISHMENTS",
   tagline: "Building India's Infrastructure. Crafting Island Escapes.",
   theme: "Building the Roads That Connect India. Building the Destinations That Inspire It.",
   established: 2016,
@@ -262,7 +262,7 @@ export const projects: Project[] = [
     status: "Awarded",
     year: "75-yr concession",
     blurb: "A 5-star eco-tourism resort on Shaheed Dweep Island, developed on a PPP basis.",
-    image: "/images/Shaheed/shaheed-1.jpeg",
+    image: "/images/Shaheed/sh1.png",
     coverPosition: "left center",
   },
   {
@@ -272,7 +272,7 @@ export const projects: Project[] = [
     status: "Awarded",
     year: "50-yr concession",
     blurb: "Design, build, finance, operate & transfer of the Megapode Resort at Sri Vijaya Puram.",
-    image: "/images/megapode/megapode-1.jpeg",
+    image: "/images/megapode/mg1.png",
   },
   {
     name: "MoRTH — Construction of 4 Lane with Paved Shoulders",
@@ -985,9 +985,9 @@ export const projectDetails: Record<string, ProjectDetail> = {
       "Eco-sensitive landscaping and sustainability systems",
     ],
     gallery: [
-      "/images/Shaheed/shaheed-1.jpeg",
-      "/images/Shaheed/shaheed-2.jpeg",
-      "/images/Shaheed/shaheed-3.jpeg",
+      "/images/Shaheed/sh1.png",
+      "/images/Shaheed/sh2.png",
+      "/images/Shaheed/sh3.png",
     ],
     facts: [
       { label: "Client", value: "ANIIDCO" },
@@ -1019,8 +1019,8 @@ export const projectDetails: Record<string, ProjectDetail> = {
       "Landscaping, utilities and sustainability infrastructure",
     ],
     gallery: [
-      "/images/megapode/megapode-1.jpeg",
-      "/images/megapode/megapode-2.jpeg",
+      "/images/megapode/mg1.png",
+      "/images/megapode/mg2.png",
     ],
     facts: [
       { label: "Client", value: "ANIIDCO" },
