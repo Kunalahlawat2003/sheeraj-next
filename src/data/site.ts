@@ -262,7 +262,7 @@ export const projects: Project[] = [
     status: "Awarded",
     year: "75-yr concession",
     blurb: "A 5-star eco-tourism resort on Shaheed Dweep Island, developed on a PPP basis.",
-    image: "/images/Shaheed/1.jpeg",
+    image: "/images/Shaheed/shaheed-1.jpeg",
     coverPosition: "left center",
   },
   {
@@ -272,7 +272,7 @@ export const projects: Project[] = [
     status: "Awarded",
     year: "50-yr concession",
     blurb: "Design, build, finance, operate & transfer of the Megapode Resort at Sri Vijaya Puram.",
-    image: "/images/megapode/1.jpeg",
+    image: "/images/megapode/megapode-1.jpeg",
   },
   {
     name: "MoRTH — Construction of 4 Lane with Paved Shoulders",
@@ -985,9 +985,9 @@ export const projectDetails: Record<string, ProjectDetail> = {
       "Eco-sensitive landscaping and sustainability systems",
     ],
     gallery: [
-      "/images/Shaheed/1.jpeg",
-      "/images/Shaheed/2.jpeg",
-      "/images/Shaheed/3.jpeg",
+      "/images/Shaheed/shaheed-1.jpeg",
+      "/images/Shaheed/shaheed-2.jpeg",
+      "/images/Shaheed/shaheed-3.jpeg",
     ],
     facts: [
       { label: "Client", value: "ANIIDCO" },
@@ -1019,8 +1019,8 @@ export const projectDetails: Record<string, ProjectDetail> = {
       "Landscaping, utilities and sustainability infrastructure",
     ],
     gallery: [
-      "/images/megapode/1.jpeg",
-      "/images/megapode/2.jpeg",
+      "/images/megapode/megapode-1.jpeg",
+      "/images/megapode/megapode-2.jpeg",
     ],
     facts: [
       { label: "Client", value: "ANIIDCO" },
