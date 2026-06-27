@@ -48,7 +48,7 @@ export default function Preloader() {
               <span className="font-brand text-lg font-semibold uppercase tracking-[0.12em] text-silver sm:text-xl">
                 {company.name}
               </span>
-              <span className="mt-1 font-serif text-[0.8rem] italic lowercase tracking-wide text-gold">
+              <span className="mt-1 font-serif text-[0.8rem] italic uppercase tracking-wide text-gold">
                 {company.motto}
               </span>
             </span>

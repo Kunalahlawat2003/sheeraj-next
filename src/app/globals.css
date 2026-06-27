@@ -283,18 +283,34 @@
     border: 1px solid color-mix(in oklab, #ffffff 9%, transparent);
   }
 
-  /* Stronger blur for the scrolled navbar */
+  /* Scrolled navbar.
+     The header is position:fixed and spans the iOS safe-area (notch) strip. iOS
+     Safari has a long-standing bug: a fixed element carrying `backdrop-filter`
+     does NOT paint into the safe-area-inset region, so the page shows through
+     under the notch and the bar looks like it starts below the top. To avoid it,
+     phones/tablets get a SOLID opaque bar (plain backgrounds paint under the
+     notch fine), and the frosted-glass blur is scoped to lg+ desktop, where
+     there is no safe-area inset and the bug can't occur. (Also drops a
+     pathological blur(120px) that was costly on mobile GPUs.) */
   .glass-strong {
-    background: color-mix(in oklab, var(--color-panel) 96%, transparent);
-    backdrop-filter: blur(120px) saturate(200%) brightness(0.88);
-    -webkit-backdrop-filter: blur(120px) saturate(200%) brightness(0.88);
+    background: var(--color-panel);
     border-bottom: 1px solid color-mix(in oklab, #000000 16%, transparent);
   }
   html.dark .glass-strong {
-    background: color-mix(in oklab, var(--color-panel) 94%, transparent);
-    backdrop-filter: blur(120px) saturate(220%) brightness(0.72);
-    -webkit-backdrop-filter: blur(120px) saturate(220%) brightness(0.72);
+    background: var(--color-panel);
     border-bottom: 1px solid color-mix(in oklab, #ffffff 8%, transparent);
+  }
+  @media (min-width: 1024px) {
+    .glass-strong {
+      background: color-mix(in oklab, var(--color-panel) 88%, transparent);
+      backdrop-filter: blur(22px) saturate(190%) brightness(0.94);
+      -webkit-backdrop-filter: blur(22px) saturate(190%) brightness(0.94);
+    }
+    html.dark .glass-strong {
+      background: color-mix(in oklab, var(--color-panel) 86%, transparent);
+      backdrop-filter: blur(22px) saturate(210%) brightness(0.78);
+      -webkit-backdrop-filter: blur(22px) saturate(210%) brightness(0.78);
+    }
   }
 
   .hairline {
