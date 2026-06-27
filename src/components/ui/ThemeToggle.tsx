@@ -16,6 +16,13 @@ export default function ThemeToggle() {
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem("theme", next ? "dark" : "light");
+    // Keep the iOS status-bar / Dynamic Island colour matched to the navbar panel.
+    // Read the freshly-resolved --color-panel so globals.css stays the source of truth.
+    const panel = getComputedStyle(document.documentElement)
+      .getPropertyValue("--color-panel")
+      .trim();
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta && panel) meta.setAttribute("content", panel);
   };
 
   if (!mounted) return <div className="h-9 w-9" />;

@@ -38,8 +38,11 @@ export const metadata: Metadata = {
   // Favicon is provided by the App Router file convention: src/app/icon.png (logo1).
 };
 
+// The iOS status-bar / Dynamic Island colour is driven dynamically (boot script
+// below + ThemeToggle) so it always matches the navbar panel (--color-panel) in
+// both light and dark. Our dark mode is class-based, not prefers-color-scheme, so
+// a static themeColor or a media-query array here would desync from the navbar.
 export const viewport: Viewport = {
-  themeColor: "#f7f5ef",
   colorScheme: "light",
   viewportFit: "cover",
 };
@@ -51,11 +54,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${inter.variable} ${sora.variable} ${fraunces.variable} ${cinzel.variable}`}
     >
-      {/* Prevent flash of wrong theme on initial load */}
+      {/* Apply the persisted theme AND paint the iOS Dynamic Island / status-bar
+          meta to the matching navbar panel colour — both before first paint, so
+          neither flashes. Hexes mirror --color-panel in globals.css (light/dark). */}
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();`,
+            __html: `(function(){try{var d=localStorage.getItem('theme')==='dark';if(d)document.documentElement.classList.add('dark');var m=document.querySelector('meta[name="theme-color"]');if(!m){m=document.createElement('meta');m.setAttribute('name','theme-color');document.head.appendChild(m);}m.setAttribute('content',d?'#11141d':'#e9e4d9');}catch(e){}})();`,
           }}
         />
       </head>
