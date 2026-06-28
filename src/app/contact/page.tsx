@@ -71,7 +71,11 @@ export default function ContactPage() {
 
           {/* form */}
           <Reveal delay={0.1}>
-            <ContactForm submitLabel="Send message" />
+            <ContactForm
+              submitLabel="Send message"
+              endpoint="/api/contact"
+              recaptchaAction="contact_form"
+            />
           </Reveal>
         </div>
       </section>

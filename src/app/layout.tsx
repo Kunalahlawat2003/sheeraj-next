@@ -2,10 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Sora, Fraunces, Cinzel } from "next/font/google";
 import "./globals.css";
 
-import SmoothScroll from "@/components/providers/SmoothScroll";
-import Preloader from "@/components/layout/Preloader";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 import { company } from "@/data/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -65,12 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="grain min-h-dvh antialiased">
-        <Preloader />
-<SmoothScroll>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

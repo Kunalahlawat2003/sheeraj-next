@@ -9,20 +9,24 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
   const data: {
     success: boolean;
     score?: number;
+    action?: string;
     "error-codes"?: string[];
     hostname?: string;
   } = await res.json();
   if (!data.success) {
-    // e.g. ["invalid-input-secret"] (key mismatch) or ["browser-error"] /
-    // ["timeout-or-duplicate"] / ["invalid-input-response"] (unregistered domain).
     console.warn("reCAPTCHA siteverify failed:", data["error-codes"], "host:", data.hostname);
   }
-  return data.success && (data.score ?? 1) >= 0.5;
+  // Confirm success, the expected action, and a passing score.
+  return (
+    data.success &&
+    (data.action === undefined || data.action === "contact_form") &&
+    (data.score ?? 1) >= 0.5
+  );
 }
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { machinery, model, quantity, name, email, phone, company, message, recaptchaToken } =
+  const { name, email, phone, company, message, recaptchaToken } =
     body as Record<string, unknown>;
 
   if (!recaptchaToken || typeof recaptchaToken !== "string") {
@@ -38,8 +42,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 422 });
   }
 
-  // TODO: forward to email / CRM
-  console.log("Machinery inquiry:", { machinery, model, quantity, name, email, phone, company, message });
+  // TODO: forward to email (info@sheerajprojects.com) / CRM / Jira ticket.
+  console.log("Contact message:", { name, email, phone, company, message });
 
   return NextResponse.json({ success: true }, { status: 200 });
 }

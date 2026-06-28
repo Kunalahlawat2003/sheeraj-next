@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import MagneticButton from "./MagneticButton";
 
 export type FieldDef = {
@@ -257,15 +258,7 @@ function Field({
   );
 }
 
-export default function ContactForm({
-  fields = DEFAULT_FIELDS,
-  accent = "gold",
-  submitLabel = "Send message",
-  successTitle = "Message received.",
-  successBody = "Thank you — our team will be in touch within one business day.",
-  endpoint,
-  mapPayload,
-}: {
+type ContactFormProps = {
   fields?: FieldDef[];
   accent?: "gold" | "lagoon";
   submitLabel?: string;
@@ -276,7 +269,24 @@ export default function ContactForm({
   endpoint?: string;
   /** Maps the raw field state to the backend's expected JSON keys. */
   mapPayload?: (data: Record<string, string>) => Record<string, unknown>;
-}) {
+  /** reCAPTCHA v3 action name (e.g. "contact_form"). When set together with an
+   *  endpoint, the form generates a token on submit and includes it in the
+   *  payload as `recaptchaToken`. Setting this also wraps the form in a
+   *  GoogleReCaptchaProvider (see the default export below). */
+  recaptchaAction?: string;
+};
+
+function ContactFormInner({
+  fields = DEFAULT_FIELDS,
+  accent = "gold",
+  submitLabel = "Send message",
+  successTitle = "Message received.",
+  successBody = "Thank you — our team will be in touch within one business day.",
+  endpoint,
+  mapPayload,
+  recaptchaAction,
+}: ContactFormProps) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [data, setData] = useState<Record<string, string>>(() =>
     Object.fromEntries(fields.map((f) => [f.name, f.options ? f.options[0] : ""]))
   );
@@ -323,7 +333,18 @@ export default function ContactForm({
     setLoading(true);
     setApiError(null);
     try {
-      const payload = mapPayload ? mapPayload(data) : data;
+      const payload: Record<string, unknown> = mapPayload ? mapPayload(data) : { ...data };
+
+      // reCAPTCHA v3: generate a token for this action and attach it.
+      if (recaptchaAction) {
+        if (!executeRecaptcha) {
+          throw new Error(
+            "Security verification is still loading. Please try again in a moment."
+          );
+        }
+        payload.recaptchaToken = await executeRecaptcha(recaptchaAction);
+      }
+
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -411,4 +432,18 @@ export default function ContactForm({
       </AnimatePresence>
     </div>
   );
+}
+
+export default function ContactForm(props: ContactFormProps) {
+  // Only load reCAPTCHA (and its provider) when an action is requested, so the
+  // forms that don't need it — e.g. the hospitality investment form — stay
+  // script-free and keep their existing behaviour.
+  if (props.recaptchaAction) {
+    return (
+      <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ""}>
+        <ContactFormInner {...props} />
+      </GoogleReCaptchaProvider>
+    );
+  }
+  return <ContactFormInner {...props} />;
 }
