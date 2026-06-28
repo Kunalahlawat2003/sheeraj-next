@@ -5,6 +5,7 @@ import { useState } from "react";
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Reveal from "@/components/ui/Reveal";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { API_BASE } from "@/lib/api";
 import { machinery } from "@/data/site";
 
 type Form = {
@@ -144,27 +145,45 @@ function RentalFormInner() {
     setApiError(null);
 
     try {
-      const recaptchaToken = await executeRecaptcha("machinery_inquiry");
+      // The backend contact endpoint verifies the token itself, so we use its
+      // expected action and let it do the single (one-time) verification.
+      const recaptchaToken = await executeRecaptcha("contact_form");
 
-      const res = await fetch("/api/machinery-inquiry", {
+      // No dedicated machinery endpoint exists on the backend, so we send the
+      // enquiry through the shared contact form and fold the plant details into
+      // the message — that way the email + Jira ticket carry full context.
+      const details = [
+        `Machinery: ${form.machinery}`,
+        form.model && `Model / Spec: ${form.model}`,
+        form.quantity && `Quantity: ${form.quantity}`,
+      ].filter(Boolean);
+      const message = [
+        "Plant & machinery rental enquiry",
+        ...details,
+        form.message && `\n${form.message}`,
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      const res = await fetch(`${API_BASE}/contact-form-sheeraj-projects`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          machinery: form.machinery,
-          model: form.model || undefined,
-          quantity: form.quantity ? parseInt(form.quantity, 10) : undefined,
           name: form.name,
           email: form.email,
           phone: form.phone,
           company: form.company || undefined,
-          message: form.message || undefined,
+          message,
           recaptchaToken,
         }),
       });
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error((data as { error?: string }).error || "Something went wrong.");
+      const data = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
+        message?: string;
+      };
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Something went wrong.");
       }
 
       setSent(true);

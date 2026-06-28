@@ -5,6 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import MagneticButton from "@/components/ui/MagneticButton";
 import ContactForm from "@/components/ui/ContactForm";
+import { API_BASE } from "@/lib/api";
 import { company, contact } from "@/data/site";
 
 function Pin({ x, y, label, delay = 0 }: { x: string; y: string; label: string; delay?: number }) {
@@ -83,7 +84,7 @@ export default function Contact() {
         <Reveal delay={0.1}>
           <ContactForm
             submitLabel="Send message"
-            endpoint="/api/contact"
+            endpoint={`${API_BASE}/contact-form-sheeraj-projects`}
             recaptchaAction="contact_form"
           />
         </Reveal>

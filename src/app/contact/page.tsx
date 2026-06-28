@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
 import ContactForm from "@/components/ui/ContactForm";
+import { API_BASE } from "@/lib/api";
 import { company, contact } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -73,7 +74,7 @@ export default function ContactPage() {
           <Reveal delay={0.1}>
             <ContactForm
               submitLabel="Send message"
-              endpoint="/api/contact"
+              endpoint={`${API_BASE}/contact-form-sheeraj-projects`}
               recaptchaAction="contact_form"
             />
           </Reveal>
