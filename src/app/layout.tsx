@@ -35,18 +35,24 @@ export const metadata: Metadata = {
   // Favicon is provided by the App Router file convention: src/app/icon.png (logo1).
 };
 
-// The iOS status-bar / Dynamic Island colour is driven dynamically (boot script
-// below + ThemeToggle) so it always matches the navbar panel (--color-panel) in
-// both light and dark. Our dark mode is class-based, not prefers-color-scheme, so
-// a static themeColor or a media-query array here would desync from the navbar.
+// The iOS status-bar / Dynamic Island colour:
+//   - We ship a STATIC theme-color (the light navbar panel) here so it is present in
+//     the server-rendered HTML from the first byte. In-app browsers (Google/Chrome
+//     webviews) read theme-color at initial load and, when it is absent, fall back to
+//     sampling the page's top pixels — which on the home route is the hero sky, giving
+//     a mismatched blue-grey status bar. A static value fixes that on first paint.
+//   - The boot script below then UPGRADES it to the dark panel for dark-mode visitors
+//     (our dark mode is class-based, not prefers-color-scheme, so it can't be a static
+//     media-query array). Worst case in a webview that ignores the late JS, a dark-mode
+//     user sees the light panel — a minor tint mismatch, far better than the hero sky.
 //
-// We deliberately do NOT set viewportFit: "cover". With the default fit, iOS keeps
-// the layout viewport below the safe area (Dynamic Island / notch), so the fixed
-// navbar sits beneath the island instead of riding up underneath it, and iOS paints
-// the island region itself with the theme-color meta above. This mirrors the plain
-// behaviour of the reference site and avoids WebKit's safe-area + backdrop-filter bug.
+// We deliberately do NOT set viewportFit: "cover". With the default fit, iOS keeps the
+// layout viewport below the safe area (Dynamic Island / notch), so the fixed navbar sits
+// beneath the island instead of riding up underneath it. This mirrors the plain behaviour
+// of the reference site and avoids WebKit's safe-area + backdrop-filter bug.
 export const viewport: Viewport = {
   colorScheme: "light",
+  themeColor: "#e9e4d9",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
