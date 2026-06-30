@@ -283,21 +283,32 @@
     border: 1px solid color-mix(in oklab, #ffffff 9%, transparent);
   }
 
-  /* Scrolled navbar.
-     The header is position:fixed and spans the iOS safe-area (notch) strip. iOS
-     Safari has a long-standing bug: a fixed element carrying `backdrop-filter`
-     does NOT paint into the safe-area-inset region, so the page shows through
-     under the notch and the bar looks like it starts below the top. To avoid it,
-     phones/tablets get a SOLID opaque bar (plain backgrounds paint under the
-     notch fine), and the frosted-glass blur is scoped to lg+ desktop, where
-     there is no safe-area inset and the bug can't occur. (Also drops a
-     pathological blur(120px) that was costly on mobile GPUs.) */
+  /* Scrolled navbar — frosted glass (fixes the iOS-Safari scroll bleed).
+     The header is position:fixed. iOS Safari has a long-standing bug: a fixed
+     element that does NOT have its own compositing layer is repainted out of sync
+     during momentum scroll, so page content briefly bleeds over the TOP of the bar
+     (even when its background is opaque) and snaps back at rest — iOS Safari only;
+     Chrome/desktop reconcile every frame and never show it. `backdrop-filter`
+     forces the header onto a composited layer, which both KILLS that bleed and
+     gives the frosted look.
+
+     Previously mobile used a SOLID bar with no backdrop-filter (so it was never
+     composited → it bled on iOS) because a fixed element carrying backdrop-filter
+     would not paint into the safe-area strip under `viewport-fit=cover`. That
+     cover mode has since been removed (env(safe-area-inset)=0), so the frosted
+     blur is safe on phones again and is now applied on ALL viewports.
+
+     NB: do NOT add `transform`/`will-change:transform` to this element — WebKit
+     disables backdrop-filter when the same element is also transformed. Blur only
+     applies in the scrolled state, so the hero stays crisp at scrollY=0. */
   .glass-strong {
-    background: var(--color-panel);
+    background: color-mix(in oklab, var(--color-panel) 85%, transparent);
     border-bottom: 1px solid color-mix(in oklab, #000000 16%, transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+            backdrop-filter: blur(18px) saturate(180%);
   }
   html.dark .glass-strong {
-    background: var(--color-panel);
+    background: color-mix(in oklab, var(--color-panel) 82%, transparent);
     border-bottom: 1px solid color-mix(in oklab, #ffffff 8%, transparent);
   }
   @media (min-width: 1024px) {
