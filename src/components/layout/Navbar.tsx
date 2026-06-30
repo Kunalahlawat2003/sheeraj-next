@@ -119,14 +119,16 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`site-header fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass-strong pb-3 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)]" : "pb-5"
+        className={`site-header absolute inset-x-0 top-0 z-50 transition-all duration-500 lg:fixed ${
+          scrolled ? "glass-strong pb-3 lg:shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)]" : "pb-5"
         }`}
         style={{ paddingTop: `calc(${scrolled ? "0.75rem" : "1.25rem"} + env(safe-area-inset-top, 0px))` }}
       >
-        {/* The Dynamic Island / status-bar notch strip is filled by the header's own
-            background band — see `.site-header` in globals.css — so the bar colour
-            reaches the very top of the screen in both the hero and scrolled states. */}
+        {/* On mobile the header is position:absolute and scrolls away with the page
+            (no fixed element → no iOS-Safari scroll-bleed); on lg+ it is fixed and
+            gains the frosted glass panel when scrolled (see `.glass-strong`). The
+            Dynamic Island / status-bar strip is painted by the OS via the theme-color
+            meta (panel colour) — viewport-fit=cover is intentionally not set. */}
         <nav className="container-x flex items-center justify-between">
           <Link
             href="/"

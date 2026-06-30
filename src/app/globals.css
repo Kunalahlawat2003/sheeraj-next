@@ -283,42 +283,30 @@
     border: 1px solid color-mix(in oklab, #ffffff 9%, transparent);
   }
 
-  /* Scrolled navbar — frosted glass (fixes the iOS-Safari scroll bleed).
-     The header is position:fixed. iOS Safari has a long-standing bug: a fixed
-     element that does NOT have its own compositing layer is repainted out of sync
-     during momentum scroll, so page content briefly bleeds over the TOP of the bar
-     (even when its background is opaque) and snaps back at rest — iOS Safari only;
-     Chrome/desktop reconcile every frame and never show it. `backdrop-filter`
-     forces the header onto a composited layer, which both KILLS that bleed and
-     gives the frosted look.
-
-     Previously mobile used a SOLID bar with no backdrop-filter (so it was never
-     composited → it bled on iOS) because a fixed element carrying backdrop-filter
-     would not paint into the safe-area strip under `viewport-fit=cover`. That
-     cover mode has since been removed (env(safe-area-inset)=0), so the frosted
-     blur is safe on phones again and is now applied on ALL viewports.
-
-     NB: do NOT add `transform`/`will-change:transform` to this element — WebKit
-     disables backdrop-filter when the same element is also transformed. Blur only
-     applies in the scrolled state, so the hero stays crisp at scrollY=0. */
+  /* Scrolled navbar — frosted glass on DESKTOP only.
+     On mobile the header is position:absolute (see Navbar.tsx) and SCROLLS AWAY
+     with the page like the reference site (websiteSCW), so it needs no glass bar.
+     Keeping it transparent on mobile means there is no solid sliver flashing as it
+     leaves, and — crucially — there is no position:fixed element on phones at all,
+     which fully eliminates the iOS-Safari fixed-element scroll-bleed (content
+     painting over the bar's top edge during momentum scroll). The Dynamic Island /
+     status-bar strip is handled by the OS, tinted via the theme-color meta (panel
+     colour) since viewport-fit=cover is removed.
+     Desktop keeps the header position:fixed, so it gets the frosted glass panel +
+     hairline + blur when scrolled. */
   .glass-strong {
-    background: color-mix(in oklab, var(--color-panel) 85%, transparent);
-    border-bottom: 1px solid color-mix(in oklab, #000000 16%, transparent);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
-            backdrop-filter: blur(18px) saturate(180%);
-  }
-  html.dark .glass-strong {
-    background: color-mix(in oklab, var(--color-panel) 82%, transparent);
-    border-bottom: 1px solid color-mix(in oklab, #ffffff 8%, transparent);
+    background: transparent;
   }
   @media (min-width: 1024px) {
     .glass-strong {
       background: color-mix(in oklab, var(--color-panel) 88%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, #000000 16%, transparent);
       backdrop-filter: blur(22px) saturate(190%) brightness(0.94);
       -webkit-backdrop-filter: blur(22px) saturate(190%) brightness(0.94);
     }
     html.dark .glass-strong {
       background: color-mix(in oklab, var(--color-panel) 86%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, #ffffff 8%, transparent);
       backdrop-filter: blur(22px) saturate(210%) brightness(0.78);
       -webkit-backdrop-filter: blur(22px) saturate(210%) brightness(0.78);
     }
