@@ -39,9 +39,14 @@ export const metadata: Metadata = {
 // below + ThemeToggle) so it always matches the navbar panel (--color-panel) in
 // both light and dark. Our dark mode is class-based, not prefers-color-scheme, so
 // a static themeColor or a media-query array here would desync from the navbar.
+//
+// We deliberately do NOT set viewportFit: "cover". With the default fit, iOS keeps
+// the layout viewport below the safe area (Dynamic Island / notch), so the fixed
+// navbar sits beneath the island instead of riding up underneath it, and iOS paints
+// the island region itself with the theme-color meta above. This mirrors the plain
+// behaviour of the reference site and avoids WebKit's safe-area + backdrop-filter bug.
 export const viewport: Viewport = {
   colorScheme: "light",
-  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
